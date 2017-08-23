@@ -8,17 +8,17 @@ env.hosts = ['wkss-lb01']
 env.use_ssh_config = True
 
 def deploy():
-    slack_api_token = os.environ['SLACK_API_TOKEN']
+    slackbot_api_token = os.environ['SLACKBOT_API_TOKEN']
     run('mkdir -p /data/techshack.io /var/www/techshack.io/html/static')
     put('./html/static/tech-shack.png', '/var/www/techshack.io/html/static/')
     put('./techshack.py', '/var/www/techshack.io/techshack.py', mode=755)
-    for pid in run("ps aux | grep techshack.py | grep -v grep | awk '{print $2}'"):
-        run("kill -9 %d" % pid)
+    for pid in run("ps aux | grep techshack.py | grep -v grep | awk '{print $2}'").splitlines():
+        if pid:
+            run("kill -9 %s" % pid)
     with cd('/var/www/techshack.io'):
-        run('env SLACK_API_TOKEN=%s STANZA_FILE_PATH=/data/techshack.io/stanza.dat '
+        run('(env SLACKBOT_API_TOKEN=%s STANZA_FILE_PATH=/data/techshack.io/stanza.dat '
             'nohup /var/www/techshack.io/venv/bin/python '
-            '/var/www/techshack.io/techshack.py '
-            'slackbot &' % slack_api_token)
+            '/var/www/techshack.io/techshack.py slackbot &) && sleep 1' % slackbot_api_token)
         run("crontab -l | grep -v techshack | { cat; echo '0 * * * * env "
             "STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
