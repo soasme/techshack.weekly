@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
+import re
 import argparse
 import csv
 import os
@@ -10,6 +11,77 @@ from datetime import datetime
 from io import StringIO
 from uuid import uuid4
 
+ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
+    <div class="post-content"><p>%(thoughts)s</p></div>
+    <div class="post-permalink"><a class="btn btn-default read-original" href="%(ref_url)s">Read Original Post</a></div>
+    <footer class="post-footer clearfix">
+        <div class="pull-left tag-list">%(tags)s</div>
+    </footer>
+</article>"""
+
+SITE_TEMPLATE = """<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="%(description)s">
+    <meta name="author" content="%(author)s">
+    <title>%(title)s</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding-top: 20px; padding-bottom: 20px; }
+        .header, .marketing, .footer { padding-right: 15px; padding-left: 15px; }
+        .header { padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
+        .header h3 { margin-top: 0; margin-bottom: 0; line-height: 40px; }
+        .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: #20b2aa; }
+        .footer { padding-top: 19px; color: #777; border-top: 1px solid #e5e5e5; }
+        @media (min-width: 768px) { .container { max-width: 730px; } }
+        .container-narrow > hr { margin: 30px 0; }
+        .jumbotron { text-align: center; border-bottom: 1px solid #e5e5e5; }
+        .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
+        .post { padding: 35px; background: #ffffff; margin-bottom: 35px; position: relative; overflow: hidden; }
+        .post .post-content { margin: 30px 0; }
+        .post-content { font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; color: #444443; }
+        .post-content p { margin-top: 0; margin-bottom: 1.46em; }
+        .post-permalink .read-original { border: 1px solid #20b2aa; background: #20b2aa; color: #ffffff; transition: all 0.2s ease-in-out; border-radius: 5px; }
+        .post .post-footer { margin-top: 20px; border-top: 1px solid #ebebeb; padding: 10px 0 0; }
+        .post .post-footer .tag-list { color: #959595; line-height: 28px; }
+        .post .post-footer .tag-list  a { color: #959595; margin-left: 7px; }
+        @media screen and (min-width: 768px) {
+            .header, .marketing, .footer { padding-right: 0; padding-left: 0; }
+            .header { margin-bottom: 30px; }
+            .jumbotron { border-bottom: 0; }
+        }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation" class="active"><a href="/">Home</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">%(program_name)s</h3>
+            </div>
+            <div class="jumbotron">
+                <h1><img src="./static/tech-shack.png"></h1>
+                <p class="lead">%(jumbotron_text)s</p>
+                <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe to view all posts!</a></p>
+            </div>
+            <div class="row">
+                %(posts)s
+            </div>
+            <footer class="footer">
+                <p>&copy; 2017 Ju Lin.</p>
+            </footer>
+        </div>
+</html>"""
 
 def prepare_database(conn):
     """Create tables."""
@@ -33,6 +105,12 @@ def open_database():
         yield conn
     finally:
         conn.close()
+
+
+def get_stanzas(conn, limit):
+    cursor = conn.cursor()
+    cursor.execute("select * from stanza order by created desc limit ?", (limit, ))
+    return cursor.fetchall()
 
 
 def get_stanza(conn, uuid):
@@ -87,8 +165,9 @@ def get_stanza_session():
             return f.read()
 
 
+
 def prog_slackbot(args, options):
-    """
+    """Run slackbot.
 
     * ENV required: `SLACKBOT_API_TOKEN`.
 
@@ -172,6 +251,32 @@ def prog_slackbot(args, options):
     bot = Bot()
     bot.run()
 
+def prog_publish(args, options):
+    """Publish stanzas as static website."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dest', help='path to dest directory.', required=True)
+    parser.add_argument('--before-days', '-B', help='Before days', type=int, default=1)
+    parser.add_argument('--after-days', '-A', help='After days', type=int, default=0)
+    args = parser.parse_args(options)
+    with open_database() as conn:
+        widgets = []
+        for stanza in get_stanzas(conn, 20):
+            uuid, created, ref, thoughts, tags = stanza
+            ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
+            thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
+            thoughts = thoughts.replace(r'\n', '<br>')
+            widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=thoughts, ref_url=ref_url, tags=tags)
+            widgets.append(widget)
+
+        page = SITE_TEMPLATE % dict(title='Tech Shack',
+            description='Share useful technical posts for backend engineers.',
+            author='Ju Lin <soasme@gmail.com>',
+            program_name="Tech Shack",
+            jumbotron_text="Share useful technical posts for backend engineers.",
+            posts=''.join(widgets),
+        )
+        with open(os.path.join(args.dest, 'index.html'), 'w') as f:
+            f.write(page)
 
 def prog_zen(args, options):
     """Print zen of this project."""
