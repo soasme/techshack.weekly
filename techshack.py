@@ -40,12 +40,14 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .container-narrow > hr { margin: 30px 0; }
         .jumbotron { text-align: center; border-bottom: 1px solid #e5e5e5; }
         .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
-        .post { padding: 35px; background: #ffffff; margin-bottom: 35px; position: relative; overflow: hidden; }
+        .jumbotron .logo { width: 100%%; }
+        .post { padding: 0 35px; background: #ffffff; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .post .label-default { margin: 2px; }
         .post .post-content { margin: 30px 0; }
         .post-content { font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
         .post-permalink .read-original { border: 1px solid #20b2aa; background: #20b2aa; color: #ffffff; transition: all 0.2s ease-in-out; border-radius: 5px; }
-        .post .post-footer { margin-top: 20px; border-top: 1px solid #ebebeb; padding: 10px 0 0; }
+        .post .post-footer { border-bottom: 1px solid #ebebeb; padding: 10px 0 0; }
         .post .post-footer .tag-list { color: #959595; line-height: 28px; }
         .post .post-footer .tag-list  a { color: #959595; margin-left: 7px; }
         @media screen and (min-width: 768px) {
@@ -70,9 +72,9 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 <h3 class="text-muted">%(program_name)s</h3>
             </div>
             <div class="jumbotron">
-                <h1><img src="./static/tech-shack.png"></h1>
+                <h1><img class="logo" src="./static/tech-shack.png"></h1>
                 <p class="lead">%(jumbotron_text)s</p>
-                <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe to view all posts!</a></p>
+                <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
             </div>
             <div class="row">
                 %(posts)s
@@ -107,10 +109,20 @@ def open_database():
         conn.close()
 
 
-def get_stanzas(conn, limit):
+def get_stanzas(conn):
     cursor = conn.cursor()
-    cursor.execute("select * from stanza order by created desc limit ?", (limit, ))
-    return cursor.fetchall()
+    cursor.execute("select * from stanza order by created desc")
+    seg = []
+    for stanza in cursor:
+        if not seg or seg[-1][1][:9] == stanza[1][:9]:
+            seg.append(stanza)
+        else:
+            yield seg
+            seg = [stanza]
+    if seg:
+        yield seg
+
+
 
 
 def get_stanza(conn, uuid):
@@ -259,24 +271,34 @@ def prog_publish(args, options):
     parser.add_argument('--after-days', '-A', help='After days', type=int, default=0)
     args = parser.parse_args(options)
     with open_database() as conn:
-        widgets = []
-        for stanza in get_stanzas(conn, 20):
-            uuid, created, ref, thoughts, tags = stanza
-            ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
-            thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
-            thoughts = thoughts.replace(r'\n', '<br>')
-            widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=thoughts, ref_url=ref_url, tags=tags)
-            widgets.append(widget)
+        index = 1
+        for stanzas in get_stanzas(conn):
+            widgets = []
+            for stanza in stanzas:
+                uuid, created, ref, thoughts, tags = stanza
+                ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
+                thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
+                thoughts = thoughts.replace(r'\n', '<br>')
+                tags = ''.join(['<span class="label label-default">%s</span>' % tag for tag in tags.split('|') if tag])
+                widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=thoughts, ref_url=ref_url, tags=tags)
+                widgets.append(widget)
 
-        page = SITE_TEMPLATE % dict(title='Tech Shack',
-            description='Share useful technical posts for backend engineers.',
-            author='Ju Lin <soasme@gmail.com>',
-            program_name="Tech Shack",
-            jumbotron_text="Share useful technical posts for backend engineers.",
-            posts=''.join(widgets),
-        )
-        with open(os.path.join(args.dest, 'index.html'), 'w') as f:
-            f.write(page)
+            page = SITE_TEMPLATE % dict(title='Tech Shack',
+                description='Share useful technical posts for backend engineers.',
+                author='Ju Lin <soasme@gmail.com>',
+                program_name="Tech Shack",
+                jumbotron_text="Share useful technical posts for backend engineers.",
+                posts=''.join(widgets),
+            )
+
+            with open(os.path.join(args.dest, 'archive-%d.html' % index), 'w') as f:
+                f.write(page)
+
+            if index == 1:
+                with open(os.path.join(args.dest, 'index.html'), 'w') as f:
+                    f.write(page)
+
+            index += 1
 
 def prog_zen(args, options):
     """Print zen of this project."""
