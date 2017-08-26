@@ -66,7 +66,8 @@ SITE_TEMPLATE = """<!DOCTYPE html>
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active"><a href="/">Home</a></li>
+                        <li role="presentation" class="active"><a href="/">今天的</a></li>
+                        <li role="presentation" id="nav-explore"><a href="#">随便看看</a></li>
                     </ul>
                 </nav>
                 <h3 class="text-muted">%(program_name)s</h3>
@@ -83,6 +84,20 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 <p>&copy; 2017 Ju Lin.</p>
             </footer>
         </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        $(function(){
+            $("#nav-explore").on('click', function(){
+                var now = new Date();
+                // FIXME: need better alg before next month.
+                var day = ("0" + (now.getDate() - Math.floor(Math.random() * 5))).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                var randomDay = now.getFullYear() + "-" + (month) + "-" + (day);;
+                window.location.href = '/archive-' + randomDay + '.html';
+            });
+        });
+        </script>
 </html>"""
 
 def prepare_database(conn):
