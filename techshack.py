@@ -114,13 +114,13 @@ def get_stanzas(conn):
     cursor.execute("select * from stanza order by created desc")
     seg = []
     for stanza in cursor:
-        if not seg or seg[-1][1][:9] == stanza[1][:9]:
+        if not seg or seg[-1][1][:10] == stanza[1][:10]:
             seg.append(stanza)
         else:
-            yield seg
+            yield seg[-1][1][:10], seg
             seg = [stanza]
     if seg:
-        yield seg
+        yield seg[-1][1][:10], seg
 
 
 
@@ -272,7 +272,7 @@ def prog_publish(args, options):
     args = parser.parse_args(options)
     with open_database() as conn:
         index = 1
-        for stanzas in get_stanzas(conn):
+        for date, stanzas in get_stanzas(conn):
             widgets = []
             for stanza in stanzas:
                 uuid, created, ref, thoughts, tags = stanza
@@ -284,14 +284,14 @@ def prog_publish(args, options):
                 widgets.append(widget)
 
             page = SITE_TEMPLATE % dict(title='Tech Shack',
-                description='Share useful technical posts for backend engineers.',
+                jumbotron_text='后端工程师看了以后也许会觉得有点用？<br>%s' % date,
                 author='Ju Lin <soasme@gmail.com>',
                 program_name="Tech Shack",
-                jumbotron_text="Share useful technical posts for backend engineers.",
+                description="Share useful technical posts for backend engineers.",
                 posts=''.join(widgets),
             )
 
-            with open(os.path.join(args.dest, 'archive-%d.html' % index), 'w') as f:
+            with open(os.path.join(args.dest, 'archive-%s.html' % date), 'w') as f:
                 f.write(page)
 
             if index == 1:
