@@ -27,13 +27,13 @@ SITE_TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="%(description)s">
     <meta name="author" content="%(author)s">
-    <title>%(title)s</title>
+    <title>%(title)s - %(date)s</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { padding-top: 20px; padding-bottom: 20px; }
         .header, .marketing, .footer { padding-right: 15px; padding-left: 15px; }
         .header { padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
-        .header h3 { margin-top: 0; margin-bottom: 0; line-height: 40px; }
+        .header h3.site-title { margin-top: 0; margin-bottom: 0; line-height: 40px; font-size: 18px; }
         .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: #20b2aa; }
         .footer { padding-top: 19px; color: #777; border-top: 1px solid #e5e5e5; }
         @media (min-width: 768px) { .container { max-width: 730px; } }
@@ -71,7 +71,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                         <li role="presentation" class="btn-explore"><a href="#">随便看看</a></li>
                     </ul>
                 </nav>
-                <h3 class="text-muted">%(program_name)s</h3>
+                <h3 class="text-muted site-title">%(program_name)s</h3>
             </div>
             <div class="jumbotron">
                 <h1><img class="logo" src="./static/tech-shack.png"></h1>
@@ -90,16 +90,13 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         </div>
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
         <script>
         $(function(){
-            $(".btn-explore").on('click', function(){
-                var now = new Date();
-                // FIXME: need better alg before next month.
-                var day = ("0" + (now.getDate() - Math.floor(Math.random() * 5))).slice(-2);
-                var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                var randomDay = now.getFullYear() + "-" + (month) + "-" + (day);;
-                window.location.href = '/archive-' + randomDay + '.html';
-            });
+            function randomDate(start, end) { return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())); }
+            function formatDate(date) { return date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + (date.getDate())).slice(-2); }
+            function explore(){ var start = new Date('2017-08-22'); var end = new Date(new Date().setDate(new Date().getDate()-1)); window.location.href = '/stanza-' + formatDate(randomDate(start, end)) + '.html'; }
+            $(".btn-explore").on('click', explore);
         });
         </script>
 </html>"""
@@ -293,24 +290,29 @@ def prog_publish(args, options):
         index = 1
         for date, stanzas in get_stanzas(conn):
             widgets = []
+            raw_tags = set()
             for stanza in stanzas:
                 uuid, created, ref, thoughts, tags = stanza
                 ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
                 thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
                 thoughts = thoughts.replace(r'\n', '<br>')
+                raw_tags = raw_tags | set([tag for tag in tags.split('|') if tag])
                 tags = ''.join(['<span class="label label-default">%s</span>' % tag for tag in tags.split('|') if tag])
                 widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=thoughts, ref_url=ref_url, tags=tags)
                 widgets.append(widget)
 
+            slogan = '不要停止技术阅读!'
             page = SITE_TEMPLATE % dict(title='Tech Shack',
-                jumbotron_text='不要停止技术阅读!<br>%s' % date,
+                jumbotron_text='%s<br>%s' % (slogan, date),
                 author='Ju Lin <soasme@gmail.com>',
+                date=date,
                 program_name="Tech Shack",
-                description="Share useful technical posts for backend engineers.",
+                description='%s, 本期关键词: %s' % (slogan, ', '.join(raw_tags)),
                 posts=''.join(widgets),
             )
+            page = ''.join(page.splitlines())
 
-            with open(os.path.join(args.dest, 'archive-%s.html' % date), 'w') as f:
+            with open(os.path.join(args.dest, 'stanza-%s.html' % date), 'w') as f:
                 f.write(page)
 
             if index == 1:

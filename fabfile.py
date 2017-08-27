@@ -24,7 +24,8 @@ def deploy():
             "/var/www/techshack.io/venv/bin/python "
             "/var/www/techshack.io/techshack.py publish "
             "--dest /var/www/techshack.io/html --before-days 2'; } | crontab -")
-        run("env STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
+        run("rm -f /var/www/techshack.io/html/*.html && "
+            "env STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
             "/var/www/techshack.io/techshack.py publish "
             "--dest /var/www/techshack.io/html --before-days 10")
