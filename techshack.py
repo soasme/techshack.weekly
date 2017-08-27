@@ -41,15 +41,16 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .jumbotron { text-align: center; border-bottom: 1px solid #e5e5e5; }
         .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
         .jumbotron .logo { width: 100%%; }
-        .post { padding: 0 35px; background: #ffffff; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
         .post .label-default { margin: 2px; }
         .post .post-content { margin: 30px 0; }
         .post-content { font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
         .post-permalink .read-original { border: 1px solid #20b2aa; background: #20b2aa; color: #ffffff; transition: all 0.2s ease-in-out; border-radius: 5px; }
-        .post .post-footer { border-bottom: 1px solid #ebebeb; padding: 10px 0 0; }
+        .post .post-footer { border-bottom: 1px solid #ebebeb; padding: 10px 0; }
         .post .post-footer .tag-list { color: #959595; line-height: 28px; }
         .post .post-footer .tag-list  a { color: #959595; margin-left: 7px; }
+        .explore-section { text-align: center;margin: 10px; }
         @media screen and (min-width: 768px) {
             .header, .marketing, .footer { padding-right: 0; padding-left: 0; }
             .header { margin-bottom: 30px; }
@@ -66,8 +67,8 @@ SITE_TEMPLATE = """<!DOCTYPE html>
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active"><a href="/">今天的</a></li>
-                        <li role="presentation" id="nav-explore"><a href="#">随便看看</a></li>
+                        <li role="presentation" class=""><a href="/">今天的</a></li>
+                        <li role="presentation" class="btn-explore"><a href="#">随便看看</a></li>
                     </ul>
                 </nav>
                 <h3 class="text-muted">%(program_name)s</h3>
@@ -80,6 +81,9 @@ SITE_TEMPLATE = """<!DOCTYPE html>
             <div class="row">
                 %(posts)s
             </div>
+            <div class="row explore-section">
+                <button class="btn btn-default btn-explore">随便看看</button>
+            </div>
             <footer class="footer">
                 <p>&copy; 2017 Ju Lin.</p>
             </footer>
@@ -88,7 +92,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
         $(function(){
-            $("#nav-explore").on('click', function(){
+            $(".btn-explore").on('click', function(){
                 var now = new Date();
                 // FIXME: need better alg before next month.
                 var day = ("0" + (now.getDate() - Math.floor(Math.random() * 5))).slice(-2);
@@ -299,7 +303,7 @@ def prog_publish(args, options):
                 widgets.append(widget)
 
             page = SITE_TEMPLATE % dict(title='Tech Shack',
-                jumbotron_text='后端工程师看了以后也许会觉得有点用？<br>%s' % date,
+                jumbotron_text='不要停止技术阅读!<br>%s' % date,
                 author='Ju Lin <soasme@gmail.com>',
                 program_name="Tech Shack",
                 description="Share useful technical posts for backend engineers.",
