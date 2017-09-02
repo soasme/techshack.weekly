@@ -24,7 +24,10 @@ def deploy():
             "STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
             "/var/www/techshack.io/techshack.py publish "
-            "--dest /var/www/techshack.io/html --before-days 2'; } | crontab -")
+            "--dest /var/www/techshack.io/html --before-days 2 && "
+            "curl -fsS --retry 3 "
+            "https://hchk.io/9c427328-f3f0-4265-8d20-b142f321a0fb "
+            "> /dev/null'; } | crontab -")
         run("rm -f /var/www/techshack.io/html/*.html && "
             "env STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
