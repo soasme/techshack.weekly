@@ -44,7 +44,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
         .jumbotron .logo { width: 100%%; }
         .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
-        .post .label-default { margin: 2px; }
+        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; }
         .post .post-content { margin: 30px 0; }
         .post-content { font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
