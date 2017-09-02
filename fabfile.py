@@ -19,7 +19,7 @@ def deploy():
         run('(env SLACKBOT_API_TOKEN=%s STANZA_FILE_PATH=/data/techshack.io/stanza.dat '
             'nohup /var/www/techshack.io/venv/bin/python '
             '/var/www/techshack.io/techshack.py slackbot &) && sleep 1' % slackbot_api_token)
-        run("crontab -l | grep -v techshack | { cat; echo '0 * * * * env "
+        run("crontab -l | grep -v techshack | { cat; echo '*/10 * * * * env "
             "STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
             "/var/www/techshack.io/techshack.py publish "
