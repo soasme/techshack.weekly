@@ -6,3 +6,6 @@ source-env:
 
 install-dependencies:
 	pip install -r requirements.txt
+
+deploy: source-env
+	bash -ac '. ./.env; fab deploy'
