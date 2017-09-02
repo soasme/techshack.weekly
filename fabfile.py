@@ -16,6 +16,7 @@ def deploy():
         if pid:
             run("kill -9 %s" % pid)
     with cd('/var/www/techshack.io'):
+        run('/var/www/techshack.io/venv/bin/pip install -q slackbot mistune')
         run('(env SLACKBOT_API_TOKEN=%s STANZA_FILE_PATH=/data/techshack.io/stanza.dat '
             'nohup /var/www/techshack.io/venv/bin/python '
             '/var/www/techshack.io/techshack.py slackbot &) && sleep 1' % slackbot_api_token)
