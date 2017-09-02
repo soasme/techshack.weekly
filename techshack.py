@@ -11,6 +11,8 @@ from datetime import datetime
 from io import StringIO
 from uuid import uuid4
 
+import mistune
+
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     <div class="post-content"><p>%(thoughts)s</p></div>
     <div class="post-permalink"><a class="btn btn-default read-original" href="%(ref_url)s">Read Original Post</a></div>
@@ -245,7 +247,7 @@ def prog_slackbot(args, options):
             else:
                 message.reply('No session found.')
 
-    @respond_to('thoughts (.*)')
+    @respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)
     def set_stanza_thoughts_to_dat(message, thoughts):
         with open_database() as conn:
             uuid = get_stanza_session()
@@ -298,7 +300,8 @@ def prog_publish(args, options):
                 thoughts = thoughts.replace(r'\n', '<br>')
                 raw_tags = raw_tags | set([tag for tag in tags.split('|') if tag])
                 tags = ''.join(['<span class="label label-default">%s</span>' % tag for tag in tags.split('|') if tag])
-                widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=thoughts, ref_url=ref_url, tags=tags)
+                html_thoughts = mistune.markdown(thoughts)
+                widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=html_thoughts, ref_url=ref_url, tags=tags)
                 widgets.append(widget)
 
             slogan = '不要停止技术阅读!'
