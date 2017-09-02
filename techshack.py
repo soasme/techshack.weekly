@@ -31,8 +31,10 @@ SITE_TEMPLATE = """<!DOCTYPE html>
     <meta name="author" content="%(author)s">
     <title>%(title)s - %(date)s</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/sofish/typo.css/master/typo.css" rel="stylesheet">
     <style>
         body { padding-top: 20px; padding-bottom: 20px; }
+        code { color:#1abc9c; }
         .header, .marketing, .footer { padding-right: 15px; padding-left: 15px; }
         .header { padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
         .header h3.site-title { margin-top: 0; margin-bottom: 0; line-height: 40px; font-size: 18px; }
@@ -46,7 +48,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
         .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; }
         .post .post-content { margin: 30px 0; }
-        .post-content { font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; color: #444443; }
+        .post-content { font-size: 17px; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
         .post-permalink .read-original { border: 1px solid #20b2aa; background: #20b2aa; color: #ffffff; transition: all 0.2s ease-in-out; border-radius: 5px; }
         .post .post-footer { border-bottom: 1px solid #ebebeb; padding: 10px 0; }
@@ -75,12 +77,12 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 </nav>
                 <h3 class="text-muted site-title">%(program_name)s</h3>
             </div>
-            <div class="jumbotron">
+            <div class="jumbotron typo">
                 <h1><img class="logo" src="./static/tech-shack.png"></h1>
                 <p class="lead">%(jumbotron_text)s</p>
                 <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
             </div>
-            <div class="row">
+            <div class="row typo">
                 %(posts)s
             </div>
             <div class="row explore-section">
@@ -102,6 +104,14 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         });
         </script>
 </html>"""
+
+class MarkdownRenderer(mistune.Renderer):
+
+    def codespan(self, text):
+        return '<code>%s</code>' % mistune.escape(text.rstrip(), smart_amp=True)
+
+def markdown(text):
+    return mistune.Markdown(renderer=MarkdownRenderer())(text)
 
 def prepare_database(conn):
     """Create tables."""
@@ -297,10 +307,9 @@ def prog_publish(args, options):
                 uuid, created, ref, thoughts, tags = stanza
                 ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
                 thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
-                thoughts = thoughts.replace(r'\n', '<br>')
                 raw_tags = raw_tags | set([tag for tag in tags.split('|') if tag])
                 tags = ''.join(['<span class="label label-default">%s</span>' % tag for tag in tags.split('|') if tag])
-                html_thoughts = mistune.markdown(thoughts)
+                html_thoughts = markdown(thoughts)
                 widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=html_thoughts, ref_url=ref_url, tags=tags)
                 widgets.append(widget)
 

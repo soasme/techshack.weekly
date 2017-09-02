@@ -29,7 +29,7 @@ def deploy():
             "env STANZA_FILE_PATH=/data/techshack.io/stanza.dat "
             "/var/www/techshack.io/venv/bin/python "
             "/var/www/techshack.io/techshack.py publish "
-            "--dest /var/www/techshack.io/html --before-days 10")
+            "--dest /var/www/techshack.io/html --before-days 100")
         run("echo 'server { listen 80; server_name techshack.soasme.com; location / { "
             "root /var/www/techshack.io/html }}' > "
             "/etc/nginx/sites-enabled/techshack_soasme_com_80.conf")
