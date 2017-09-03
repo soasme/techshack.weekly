@@ -12,6 +12,9 @@ from io import StringIO
 from uuid import uuid4
 
 import mistune
+import dropbox
+from dropbox.files import WriteMode
+from dropbox.exceptions import ApiError as DropboxApiError, AuthError as DropboxAuthError
 
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     <div class="post-content"><p>%(thoughts)s</p></div>
@@ -332,6 +335,30 @@ def prog_publish(args, options):
                     f.write(page)
 
             index += 1
+
+def prog_backup(args, options):
+    """Backup database to dropbox."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--token', help='Dropbox token.', required=True)
+    parser.add_argument('--src', help='Source path of backup file.', required=True)
+    parser.add_argument('--dest', help='Dest path of backup file.', required=True)
+    args = parser.parse_args(options)
+    with open(args.src, 'rb') as f:
+        dbx = dropbox.Dropbox(args.token)
+        try:
+            dbx.users_get_current_account()
+        except DropboxAuthError as err:
+            sys.exit("ERROR: Invalid access token; try re-generating one.")
+        try:
+            dbx.files_upload(f.read(), args.dest, mode=WriteMode('overwrite'))
+        except DropboxApiError as err:
+            if (err.error.is_path() and err.error.get_path().error.is_insufficient_space()):
+                sys.exit("ERROR: insufficient dropbox space.")
+            elif err.user_message_text:
+                sys.exit("ERROR: %s" % err.user_message_text)
+            else:
+                print(err); sys.exit()
+
 
 def prog_zen(args, options):
     """Print zen of this project."""
