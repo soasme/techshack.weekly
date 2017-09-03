@@ -4,12 +4,13 @@ import os
 from fabric.api import run, env, cd
 from fabric.operations import put
 
-env.hosts = ['wkss-lb01']
+env.hosts = ['balance']
 env.use_ssh_config = True
+slackbot_api_token = os.environ['SLACKBOT_API_TOKEN']
+dropbox_api_token = os.environ['DROPBOX_API_TOKEN']
+stanza_file_path = os.environ['STANZA_FILE_PATH']
 
 def deploy():
-    slackbot_api_token = os.environ['SLACKBOT_API_TOKEN']
-    dropbox_api_token = os.environ['DROPBOX_API_TOKEN']
     run('mkdir -p /data/techshack.io /var/www/techshack.io/html/static')
     put('./html/static/tech-shack.png', '/var/www/techshack.io/html/static/')
     put('./techshack.py', '/var/www/techshack.io/techshack.py', mode=755)

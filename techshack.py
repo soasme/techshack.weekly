@@ -308,6 +308,8 @@ def prog_publish(args, options):
             raw_tags = set()
             for stanza in stanzas:
                 uuid, created, ref, thoughts, tags = stanza
+                if not thoughts or not tags:
+                    continue
                 ref_url = ref[1:-1] if ref.startswith('<') and ref.endswith('>') else '#'
                 thoughts = re.sub(r'<(.*)>', r'<a href="\1">\1</a>', thoughts)
                 raw_tags = raw_tags | set([tag for tag in tags.split('|') if tag])
