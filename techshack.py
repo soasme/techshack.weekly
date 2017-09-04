@@ -41,6 +41,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .header, .marketing, .footer { padding-right: 15px; padding-left: 15px; }
         .header { padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
         .header h3.site-title { margin-top: 0; margin-bottom: 0; line-height: 40px; font-size: 18px; }
+        .header a.presentation { font-size: 14px; }
         .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: #20b2aa; }
         .footer { padding-top: 19px; color: #777; border-top: 1px solid #e5e5e5; }
         @media (min-width: 768px) { .container { max-width: 730px; } }
