@@ -7,6 +7,8 @@ import csv
 import os
 import sqlite3
 from contextlib import contextmanager
+from functools import partial
+from configparser import ConfigParser
 from datetime import datetime
 from io import StringIO
 from uuid import uuid4
@@ -109,6 +111,12 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         </script>
 </html>"""
 
+DEFAULT_CONFIGS = ['/etc/techshack.io/env', './.env']
+
+config_parser = ConfigParser()
+config_parser.read(next(f for f in DEFAULT_CONFIGS if os.path.exists(f)))
+config = partial(config_parser.get, 'techshackd')
+
 class MarkdownRenderer(mistune.Renderer):
 
     def codespan(self, text):
@@ -132,7 +140,7 @@ def open_database():
     with open_database() as conn:
         do_something(conn)
     """
-    path = os.environ.get('STANZA_FILE_PATH')
+    path = config('STANZA_FILE_PATH')
     conn = sqlite3.connect(path)
     prepare_database(conn)
     try:
@@ -216,6 +224,8 @@ def prog_slackbot(args, options):
     * ENV required: `SLACKBOT_API_TOKEN`.
 
     """
+    os.environ['SLACKBOT_API_TOKEN'] = config('SLACKBOT_API_TOKEN')
+
     from slackbot.bot import Bot
     from slackbot.bot import respond_to
     import re
