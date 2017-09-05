@@ -86,7 +86,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 <h3 class="text-muted site-title">%(program_name)s</h3>
             </div>
             <div class="jumbotron typo">
-                <h1><img class="logo" src="./static/tech-shack.png"></h1>
+                <h1><img class="logo" src="https://cdn.rawgit.com/soasme/techshack.io/5fbf5b1b/html/static/tech-shack.png"></h1>
                 <p class="lead">%(jumbotron_text)s</p>
                 <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
             </div>

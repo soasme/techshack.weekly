@@ -12,9 +12,8 @@ dropbox_api_token = techshack.config('DROPBOX_API_TOKEN')
 stanza_file_path = techshack.config('STANZA_FILE_PATH')
 
 def deploy():
-    run('mkdir -p /data/techshack.io /var/www/techshack.io/html/static /etc/techshack.io')
+    run('mkdir -p /data/techshack.io /var/www/techshack.io/html /etc/techshack.io')
     put('./.env', '/etc/techshack.io/env')
-    put('./html/static/tech-shack.png', '/var/www/techshack.io/html/static/')
     put('./techshack.py', '/var/www/techshack.io/techshack.py', mode=755)
     for pid in run("ps aux | grep techshack.py | grep -v grep | awk '{print $2}'").splitlines():
         if pid:
