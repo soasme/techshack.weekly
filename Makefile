@@ -8,4 +8,4 @@ install-dependencies:
 	pip install -r requirements.txt
 
 deploy:
-	bash -ac '. ./.env; fab deploy'
+	fab deploy
