@@ -21,7 +21,7 @@ from dropbox.exceptions import ApiError as DropboxApiError, AuthError as Dropbox
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     <div class="post-content"><p>%(thoughts)s</p></div>
     <div class="post-permalink">
-        <a class="btn btn-default read-original" href="%(ref_url)s" onclick="ga('send', 'event', 'Stanza', 'read-origin', '%(uuid)s')">查看原文</a>
+        <a class="btn btn-default read-original" href="%(ref_url)s" onclick="ga('send', 'event', 'Stanza', 'stanza %(uuid)s' 'read-origin')">查看原文</a>
     </div>
     <footer class="post-footer clearfix">
         <div class="pull-left tag-list">%(tags)s</div>
