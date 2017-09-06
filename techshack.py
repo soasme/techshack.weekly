@@ -21,7 +21,7 @@ from dropbox.exceptions import ApiError as DropboxApiError, AuthError as Dropbox
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     <div class="post-content"><p>%(thoughts)s</p></div>
     <div class="post-permalink">
-        <a class="btn btn-default read-original" href="%(ref_url)s" onclick="ga('send', 'event', 'Stanza', 'stanza %(uuid)s' 'read-origin')">查看原文</a>
+        <a class="btn btn-default read-original" href="%(ref_url)s" onclick="ga('send', 'event', 'Stanza', 'stanza %(date)s %(uuid)s', 'read-origin')">查看原文</a>
     </div>
     <footer class="post-footer clearfix">
         <div class="pull-left tag-list">%(tags)s</div>
@@ -54,7 +54,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
         .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
         .jumbotron .logo { width: 100%%; }
         .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
-        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; }
+        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; font-size: 12px;}
         .post .post-content { margin: 30px 0; }
         .post-content { font-size: 17px; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
@@ -336,7 +336,7 @@ def prog_publish(args, options):
                 raw_tags = raw_tags | set([tag for tag in tags.split('|') if tag])
                 tags = ''.join(['<span class="label label-default">%s</span>' % tag for tag in tags.split('|') if tag])
                 html_thoughts = markdown(thoughts)
-                widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=html_thoughts, ref_url=ref_url, tags=tags)
+                widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=html_thoughts, ref_url=ref_url, tags=tags, date=date)
                 widgets.append(widget)
 
             slogan = '不要停止技术阅读!'
