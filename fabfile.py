@@ -35,10 +35,7 @@ def deploy():
 
             "echo '*/10 * * * * "
             "/var/www/techshack.io/venv/bin/python "
-            "/var/www/techshack.io/techshack.py backup "
-            "--src /data/techshack.io/stanza.dat "
-            "--dest /backups/stanza.dat "
-            "--token %(dropbox_api_token)s && "
+            "/var/www/techshack.io/techshack.py backup && "
             "curl -fsS --retry 3 "
             "https://hchk.io/f5a2eb4b-611d-40a8-bfe7-cdc1b2617f8d "
             "> /dev/null';"

@@ -363,10 +363,6 @@ def prog_publish(args, options):
 
 def prog_backup(args, options):
     """Backup database to dropbox."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--src', help='Source path of backup file.', required=True)
-    parser.add_argument('--dest', help='Dest path of backup file.', required=True)
-    args = parser.parse_args(options)
     with open(config('STANZA_FILE_PATH'), 'rb') as f:
         dbx = dropbox.Dropbox(config('DROPBOX_API_TOKEN'))
         try:
