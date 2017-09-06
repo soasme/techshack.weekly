@@ -79,14 +79,14 @@ SITE_TEMPLATE = """<!DOCTYPE html>
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class=""><a href="/">今天的</a></li>
+                        <li role="presentation" class=""><a href="/stanza-%(latest_date)s.html">最新</a></li>
                         <li role="presentation" class="btn-explore"><a href="#">随便看看</a></li>
                     </ul>
                 </nav>
                 <h3 class="text-muted site-title">%(program_name)s</h3>
             </div>
             <div class="jumbotron typo">
-                <h1><img class="logo" src="https://cdn.rawgit.com/soasme/techshack.io/5fbf5b1b/html/static/tech-shack.png"></h1>
+                <h1><a href="/stanza-%(latest_date)s.html"><img class="logo" src="https://cdn.rawgit.com/soasme/techshack.io/5fbf5b1b/html/static/tech-shack.png"></a></h1>
                 <p class="lead">%(jumbotron_text)s</p>
                 <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
             </div>
@@ -323,8 +323,9 @@ def prog_publish(args, options):
     parser.add_argument('--after-days', '-A', help='After days', type=int, default=0)
     args = parser.parse_args(options)
     with open_database() as conn:
-        index = 1
+        index, latest_date = 1, None
         for date, stanzas in get_stanzas(conn):
+            latest_date = latest_date or date
             widgets = []
             raw_tags = set()
             for stanza in stanzas:
@@ -344,6 +345,7 @@ def prog_publish(args, options):
                 jumbotron_text='%s<br>%s' % (slogan, date),
                 author='Ju Lin <soasme@gmail.com>',
                 date=date,
+                latest_date=latest_date,
                 program_name="Tech Shack",
                 description='%s, 本期关键词: %s' % (slogan, ', '.join(raw_tags)),
                 posts=''.join(widgets),
