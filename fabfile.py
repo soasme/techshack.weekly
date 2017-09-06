@@ -19,7 +19,7 @@ def deploy():
         if pid:
             run("kill -9 %s" % pid)
     with cd('/var/www/techshack.io'):
-        run('/var/www/techshack.io/venv/bin/pip install -q slackbot mistune dropbox')
+        run('/var/www/techshack.io/venv/bin/pip install -q slackbot mistune dropbox birdy')
         run('(nohup /var/www/techshack.io/venv/bin/python '
             '/var/www/techshack.io/techshack.py slackbot &) && sleep 1')
         run("crontab -l | grep -v techshack "
@@ -42,6 +42,10 @@ def deploy():
             "curl -fsS --retry 3 "
             "https://hchk.io/f5a2eb4b-611d-40a8-bfe7-cdc1b2617f8d "
             "> /dev/null';"
+
+            "echo '*/10 * * * * "
+            "/var/www/techshack.io/venv/bin/python "
+            "/var/www/techshack.io/techshack.py tweet ';"
 
             "} | crontab -" % dict(
                 dropbox_api_token=dropbox_api_token

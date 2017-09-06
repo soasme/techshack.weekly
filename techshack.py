@@ -9,7 +9,7 @@ import sqlite3
 from contextlib import contextmanager
 from functools import partial
 from configparser import ConfigParser
-from datetime import datetime
+from datetime import datetime, timezone
 from io import StringIO
 from uuid import uuid4
 
@@ -364,18 +364,17 @@ def prog_publish(args, options):
 def prog_backup(args, options):
     """Backup database to dropbox."""
     parser = argparse.ArgumentParser()
-    parser.add_argument('--token', help='Dropbox token.', required=True)
     parser.add_argument('--src', help='Source path of backup file.', required=True)
     parser.add_argument('--dest', help='Dest path of backup file.', required=True)
     args = parser.parse_args(options)
-    with open(args.src, 'rb') as f:
-        dbx = dropbox.Dropbox(args.token)
+    with open(config('STANZA_FILE_PATH'), 'rb') as f:
+        dbx = dropbox.Dropbox(config('DROPBOX_API_TOKEN'))
         try:
             dbx.users_get_current_account()
         except DropboxAuthError as err:
             sys.exit("ERROR: Invalid access token; try re-generating one.")
         try:
-            dbx.files_upload(f.read(), args.dest, mode=WriteMode('overwrite'))
+            dbx.files_upload(f.read(), config('REMOTE_BACKUP_STANZA_FILE_PATH'), mode=WriteMode('overwrite'))
         except DropboxApiError as err:
             if (err.error.is_path() and err.error.get_path().error.is_insufficient_space()):
                 sys.exit("ERROR: insufficient dropbox space.")
@@ -383,6 +382,27 @@ def prog_backup(args, options):
                 sys.exit("ERROR: %s" % err.user_message_text)
             else:
                 print(err); sys.exit()
+
+
+def prog_tweet(args, options):
+    """Tweet post url to twitter."""
+    from birdy.twitter import UserClient
+    client = UserClient(config('TWITTER_API_CONSUMER_KEY'),
+            config('TWITTER_API_CONSUMER_SECRET'),
+            config('TWITTER_API_ACCESS_TOKEN'),
+            config('TWITTER_API_ACCESS_SECRET'))
+
+    with open_database() as conn:
+        for date, stanzas in get_stanzas(conn):
+            stanza_url = 'https://techshack.soasme.com/stanza-%s.html#' % date
+            for stanza in stanzas:
+                uuid, created, ref, thoughts, tags = stanza
+                if not thoughts or not tags:
+                    continue
+                created = datetime.strptime(created, '%Y-%m-%dT%H:%M:%S.%f%z')
+                if (datetime.now(timezone.utc) - created).total_seconds() <= 300:
+                    message = '%s... %s' % (thoughts[:30], stanza_url + uuid)
+                    response = client.api.statuses.update.post(status=message)
 
 
 def prog_zen(args, options):
