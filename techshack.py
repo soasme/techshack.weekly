@@ -405,7 +405,7 @@ def prog_tweet(args, options):
                 if not thoughts or not tags:
                     continue
                 created = datetime.strptime(created, '%Y-%m-%dT%H:%M:%S.%f%z')
-                if (datetime.now(timezone.utc) - created).total_seconds() <= 300:
+                if (datetime.now(timezone.utc) - created).total_seconds() <= 600:
                     message = '%s... %s' % (thoughts[:30], stanza_url + uuid)
                     response = client.api.statuses.update.post(status=message)
 
