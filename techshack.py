@@ -97,7 +97,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 <button class="btn btn-default btn-explore">随便看看</button>
             </div>
             <footer class="footer">
-                <p>&copy; 2017 Ju Lin.</p>
+                <p>&copy; 2017 Ju Lin. 已阅读 %(stats_days)s 天，共计 %(stats_stanza_count)s 篇，%(stats_txt_count)s 字。</p>
             </footer>
         </div>
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -157,6 +157,13 @@ def open_database():
         yield conn
     finally:
         conn.close()
+
+
+def get_stats(conn):
+    cursor = conn.cursor()
+    cursor.execute("""select count(distinct substr(created, 0, 11)) as days,
+            count(1) as cnt, sum(length(thoughts)) as text_length from stanza""")
+    return dict(zip('days stanza_count txt_count'.split(), list(cursor.fetchone())))
 
 
 def get_stanzas(conn):
@@ -341,7 +348,7 @@ def prog_publish(args, options):
                 widgets.append(widget)
 
             slogan = '不要停止技术阅读!'
-            page = SITE_TEMPLATE % dict(title='Tech Shack',
+            context = dict(title='Tech Shack',
                 jumbotron_text='%s<br>%s' % (slogan, date),
                 author='Ju Lin <soasme@gmail.com>',
                 date=date,
@@ -350,6 +357,8 @@ def prog_publish(args, options):
                 description='%s, 本期关键词: %s' % (slogan, ', '.join(raw_tags)),
                 posts=''.join(widgets),
             )
+            context.update({'stats_%s' % k: v for k, v in get_stats(conn).items()})
+            page = SITE_TEMPLATE % context
             page = ''.join(page.splitlines())
 
             with open(os.path.join(args.dest, 'stanza-%s.html' % date), 'w') as f:
