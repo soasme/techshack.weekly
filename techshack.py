@@ -406,7 +406,10 @@ def prog_tweet(args, options):
                     continue
                 created = datetime.strptime(created, '%Y-%m-%dT%H:%M:%S.%f%z')
                 if (datetime.now(timezone.utc) - created).total_seconds() <= 600:
-                    message = '%s... %s' % (thoughts[:30], stanza_url + uuid)
+                    rindex = thoughts.index('。') - 1
+                    url = stanza_url + uuid
+                    thoughts = thoughts[:rindex-1] if thoughts[:rindex-1] < 140-len(url)-1 else thoughts[:rindex-1][14-len(url)-4]+'...'
+                    message = '%s %s' % (thoughts, url)
                     response = client.api.statuses.update.post(status=message)
 
 
