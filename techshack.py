@@ -97,7 +97,7 @@ SITE_TEMPLATE = """<!DOCTYPE html>
                 <button class="btn btn-default btn-explore">随便看看</button>
             </div>
             <footer class="footer">
-                <p>&copy; 2017 Ju Lin. 已阅读 %(stats_days)s 天，共计 %(stats_stanza_count)s 篇，%(stats_txt_count)s 字。</p>
+                <p>&copy; 2017 Ju Lin. 已阅读 %(stats_days)s 天，共计 %(stats_stanza_count)s 篇，%(stats_txt_count)s 字。所有内容以 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</a> 许可发布。 </p>
             </footer>
         </div>
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -217,6 +217,26 @@ ref: %s
 thoughts: %s
 tags: %s""" % tuple(stanza)
 
+def format_tweet_stanza(stanza):
+    uuid, created, ref, thoughts, tags = stanza
+    try:
+        thoughts = thoughts[:thoughts.index('。')]
+    except ValueError:
+        thoughts = thoughts[:125]
+    thoughts = len(thoughts) > 125 and thoughts[:125] + '... #techshack ' or thoughts + ' #techshack '
+    stanza_url = 'https://techshack.soasme.com/stanza-%s.html#%s' % (created[:10], uuid, )
+    return '%s%s' % (thoughts, stanza_url)
+
+def pub_tweet(message):
+    """Tweet post url to twitter."""
+    from birdy.twitter import UserClient
+    client = UserClient(config('TWITTER_API_CONSUMER_KEY'),
+            config('TWITTER_API_CONSUMER_SECRET'),
+            config('TWITTER_API_ACCESS_TOKEN'),
+            config('TWITTER_API_ACCESS_SECRET'))
+    user = config('TWITTER_USERNAME')
+    res = client.api.statuses.update.post(status=message)
+    return 'https://twitter.com/%s/status/%s' % (user, res.data.id)
 
 def start_stanza_session(uuid):
     with open('/tmp/techshack.io.stanza.session', 'w') as f:
@@ -234,6 +254,18 @@ def get_stanza_session():
             return f.read()
 
 
+def bot_tweet_stanza(message):
+    session = get_stanza_session()
+    if not session:
+        message.reply('no session found. tweet failed.')
+    else:
+        with open_database() as conn:
+            stanza = get_stanza(conn, session)
+            if not stanza:
+                message.reply('no stanza found. tweet failed.')
+            else:
+                url = pub_tweet(format_tweet_stanza(stanza))
+                messagre.reply(url)
 
 def prog_slackbot(args, options):
     """Run slackbot.
@@ -247,6 +279,8 @@ def prog_slackbot(args, options):
     from slackbot.bot import respond_to
     import re
     import json
+
+    @respond_to('tweet stanza', re.IGNORECASE)(bot_tweet_stanza)
 
     @respond_to('ping', re.IGNORECASE)
     def respond_to_github(message):
@@ -388,29 +422,6 @@ def prog_backup(args, options):
             else:
                 print(err); sys.exit()
 
-
-def prog_tweet(args, options):
-    """Tweet post url to twitter."""
-    from birdy.twitter import UserClient
-    client = UserClient(config('TWITTER_API_CONSUMER_KEY'),
-            config('TWITTER_API_CONSUMER_SECRET'),
-            config('TWITTER_API_ACCESS_TOKEN'),
-            config('TWITTER_API_ACCESS_SECRET'))
-
-    with open_database() as conn:
-        for date, stanzas in get_stanzas(conn):
-            stanza_url = 'https://techshack.soasme.com/stanza-%s.html#' % date
-            for stanza in stanzas:
-                uuid, created, ref, thoughts, tags = stanza
-                if not thoughts or not tags:
-                    continue
-                created = datetime.strptime(created, '%Y-%m-%dT%H:%M:%S.%f%z')
-                if (datetime.now(timezone.utc) - created).total_seconds() <= 600:
-                    rindex = thoughts.index('。') - 1
-                    url = stanza_url + uuid
-                    thoughts = thoughts[:rindex-1] if thoughts[:rindex-1] < 140-len(url)-1 else thoughts[:rindex-1][14-len(url)-4]+'...'
-                    message = '%s %s' % (thoughts, url)
-                    response = client.api.statuses.update.post(status=message)
 
 
 def prog_zen(args, options):
