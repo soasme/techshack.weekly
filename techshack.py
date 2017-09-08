@@ -217,15 +217,48 @@ ref: %s
 thoughts: %s
 tags: %s""" % tuple(stanza)
 
-def format_tweet_stanza(stanza):
+def format_pub_stanza(stanza, tag):
     uuid, created, ref, thoughts, tags = stanza
     try:
         thoughts = thoughts[:thoughts.index('。')]
     except ValueError:
         thoughts = thoughts[:125]
-    thoughts = len(thoughts) > 125 and thoughts[:125] + '... #techshack ' or thoughts + ' #techshack '
+    thoughts = len(thoughts) > 125 and thoughts[:125] + '... ' or thoughts + ' '
+    thoughts = thoughts + tag
     stanza_url = 'https://techshack.soasme.com/stanza-%s.html#%s' % (created[:10], uuid, )
     return '%s%s' % (thoughts, stanza_url)
+
+def get_douban_token():
+    if os.path.exists('/tmp/techshack.io.douban.session'):
+        with open('/tmp/techshack.io.douban.session') as f:
+            return f.read()
+
+def save_douban_token(token):
+    with open('/tmp/techshack.io.douban.session', 'w') as f:
+        f.write(token)
+
+def auth_douban_token(code):
+    client = get_douban_raw_client()
+    client.auth_with_code(code)
+    save_douban_token(client.token_code)
+    return client
+
+def get_douban_raw_client():
+    from douban_client import DoubanClient
+    return DoubanClient(config('DOUBAN_API_KEY'), config('DOUBAN_API_SECRET'),
+            'https://' + config('DOMAIN'), config('DOUBAN_API_SCOPE'))
+
+def get_douban_client():
+    client = get_douban_raw_client()
+    token = get_douban_token()
+    if token: client.auth_with_token(token)
+    return client
+
+def pub_douban(message):
+    client = get_douban_client()
+    res = client.miniblog.new(message)
+    return 'https://www.douban.com/people/%s/status/%s/' % (
+            config('DOUBAN_USERNAME'), res['id'])
 
 def pub_tweet(message):
     """Tweet post url to twitter."""
@@ -254,18 +287,29 @@ def get_stanza_session():
             return f.read()
 
 
-def bot_tweet_stanza(message):
+def bot_pub_stanza(message, sns):
     session = get_stanza_session()
     if not session:
-        message.reply('no session found. tweet failed.')
+        message.reply('no session found. pub to %s failed.' % sns)
     else:
         with open_database() as conn:
             stanza = get_stanza(conn, session)
             if not stanza:
-                message.reply('no stanza found. tweet failed.')
+                message.reply('no stanza found. pub to %s failed.' % sns)
             else:
-                url = pub_tweet(format_tweet_stanza(stanza))
-                messagre.reply(url)
+                pub = globals()['pub_' + sns]
+                tag = '#techshack#' if sns == 'douban' else '#techshack'
+                url = pub(format_pub_stanza(stanza, tag))
+                message.reply(url)
+
+
+def bot_need_auth_douban(message):
+    message.reply(get_douban_raw_client().authorize_url +
+            ' type `auth douban xxxx` after authorization completed')
+
+def bot_auth_douban(message, code):
+    client = auth_douban_token(code)
+    message.reply("you're %s, right?" % client.user.me['name'])
 
 def prog_slackbot(args, options):
     """Run slackbot.
@@ -280,7 +324,9 @@ def prog_slackbot(args, options):
     import re
     import json
 
-    @respond_to('tweet stanza', re.IGNORECASE)(bot_tweet_stanza)
+    respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
+    respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
+    respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
 
     @respond_to('ping', re.IGNORECASE)
     def respond_to_github(message):
