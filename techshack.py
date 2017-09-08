@@ -298,7 +298,7 @@ def bot_pub_stanza(message, sns):
                 message.reply('no stanza found. pub to %s failed.' % sns)
             else:
                 pub = globals()['pub_' + sns]
-                tag = '#techshack#' if sns == 'douban' else '#techshack'
+                tag = '#techshack# ' if sns == 'douban' else '#techshack '
                 url = pub(format_pub_stanza(stanza, tag))
                 message.reply(url)
 
