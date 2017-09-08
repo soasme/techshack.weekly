@@ -27,8 +27,7 @@ def deploy():
 
             "echo '*/10 * * * * "
             "/var/www/techshack.io/venv/bin/python "
-            "/var/www/techshack.io/techshack.py publish "
-            "--dest /var/www/techshack.io/html --before-days 2 && "
+            "/var/www/techshack.io/techshack.py publish && "
             "curl -fsS --retry 3 "
             "https://hchk.io/9c427328-f3f0-4265-8d20-b142f321a0fb "
             "> /dev/null';"
@@ -39,10 +38,6 @@ def deploy():
             "curl -fsS --retry 3 "
             "https://hchk.io/f5a2eb4b-611d-40a8-bfe7-cdc1b2617f8d "
             "> /dev/null';"
-
-            "echo '*/10 * * * * "
-            "/var/www/techshack.io/venv/bin/python "
-            "/var/www/techshack.io/techshack.py tweet ';"
 
             "} | crontab -" % dict(
                 dropbox_api_token=dropbox_api_token

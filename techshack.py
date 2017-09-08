@@ -269,7 +269,7 @@ def pub_tweet(message):
             config('TWITTER_API_ACCESS_SECRET'))
     user = config('TWITTER_USERNAME')
     res = client.api.statuses.update.post(status=message)
-    return 'https://twitter.com/%s/status/%s' % (user, res.data.id)
+    return 'https://twitter.com/%s/status/%s' % (user, res.data['id'])
 
 def start_stanza_session(uuid):
     with open('/tmp/techshack.io.stanza.session', 'w') as f:
@@ -311,6 +311,10 @@ def bot_auth_douban(message, code):
     client = auth_douban_token(code)
     message.reply("you're %s, right?" % client.user.me['name'])
 
+def bot_build_site(message):
+    prog_publish()
+    message.reply('Done')
+
 def prog_slackbot(args, options):
     """Run slackbot.
 
@@ -327,6 +331,7 @@ def prog_slackbot(args, options):
     respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
     respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
     respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
+    respond_to('build site', re.IGNORECASE)(bot_build_site)
 
     @respond_to('ping', re.IGNORECASE)
     def respond_to_github(message):
@@ -402,13 +407,8 @@ def prog_slackbot(args, options):
     bot = Bot()
     bot.run()
 
-def prog_publish(args, options):
+def prog_publish(args=None, options=None):
     """Publish stanzas as static website."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--dest', help='path to dest directory.', required=True)
-    parser.add_argument('--before-days', '-B', help='Before days', type=int, default=1)
-    parser.add_argument('--after-days', '-A', help='After days', type=int, default=0)
-    args = parser.parse_args(options)
     with open_database() as conn:
         index, latest_date = 1, None
         for date, stanzas in get_stanzas(conn):
@@ -441,11 +441,11 @@ def prog_publish(args, options):
             page = SITE_TEMPLATE % context
             page = ''.join(page.splitlines())
 
-            with open(os.path.join(args.dest, 'stanza-%s.html' % date), 'w') as f:
+            with open(os.path.join(config('HTML_PATH'), 'stanza-%s.html' % date), 'w') as f:
                 f.write(page)
 
             if index == 1:
-                with open(os.path.join(args.dest, 'index.html'), 'w') as f:
+                with open(os.path.join(config('HTML_PATH'), 'index.html'), 'w') as f:
                     f.write(page)
 
             index += 1
