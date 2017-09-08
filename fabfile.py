@@ -19,7 +19,7 @@ def deploy():
         if pid:
             run("kill -9 %s" % pid)
     with cd('/var/www/techshack.io'):
-        run('/var/www/techshack.io/venv/bin/pip install -q slackbot mistune dropbox birdy')
+        run('/var/www/techshack.io/venv/bin/pip install -q slackbot mistune dropbox birdy douban-client')
         run('(nohup /var/www/techshack.io/venv/bin/python '
             '/var/www/techshack.io/techshack.py slackbot &) && sleep 1')
         run("crontab -l | grep -v techshack "
