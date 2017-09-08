@@ -1,3 +1,6 @@
 slackbot
 mistune
+dropbox
+birdy
+douban-client
 Fabric3==1.12.0.post1
