@@ -332,7 +332,7 @@ def prog_publish(args=None, options=None):
                 widget = ROW_TEMPLATE % dict(uuid=uuid, thoughts=html_thoughts, ref_url=ref_url, tags=tags, date=date)
                 widgets.append(widget)
 
-            slogan = '不要停止技术阅读!'
+            slogan = '技术阅读+一些思考'
             context = dict(title='Tech Shack',
                 jumbotron_text='%s<br>%s' % (slogan, date),
                 author='Ju Lin <soasme@gmail.com>',
