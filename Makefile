@@ -7,5 +7,5 @@ source-env:
 install-dependencies:
 	pip install -r requirements.txt
 
-deploy:
-	fab deploy
+up:
+	./deploy
