@@ -315,6 +315,83 @@ def bot_build_site(message):
     prog_publish()
     message.reply('Done')
 
+def bot_respond_ping(message):
+    message.reply('pong')
+
+def bot_show_stanza(message, uuid):
+    with open_database() as conn:
+        stanza = get_stanza(conn, uuid)
+        if not stanza:
+            message.reply('stanza %s not found' % uuid)
+        else:
+            message.reply(format_stanza(stanza))
+
+def bot_save_stanza(message, url):
+    with open_database() as conn:
+        uuid = create_stanza(conn, url)
+        start_stanza_session(uuid)
+        message.reply('Start editing %s' % uuid)
+
+def bot_edit_stanza(message, uuid):
+    with open_database() as conn:
+        if get_stanza(conn, uuid):
+            start_stanza_session(uuid)
+            message.reply('Start editing %s' % uuid)
+        else:
+            message.reply('Stanza %s not found' % uuid)
+
+def bot_quit_stanza(message):
+    with open_database() as conn:
+        uuid = get_stanza_session()
+        if uuid:
+            destroy_stanza_session()
+            message.reply('Quit editing %s' % uuid)
+            message.reply(format_stanza(get_stanza(conn, uuid)))
+        else:
+            message.reply('No session found.')
+
+def bot_set_stanza_thoughts(message, thoughts):
+    with open_database() as conn:
+        uuid = get_stanza_session()
+        if uuid:
+            stanza = get_stanza(conn, uuid)
+            if stanza:
+                set_stanza_thoughts(conn, uuid, thoughts)
+                message.reply('Done')
+            else:
+                destroy_stanza_session()
+                message.reply('Stanza %s not found' % uuid)
+        else:
+            message.reply('No session found.')
+
+def bot_set_stanza_tags(message, tags):
+    with open_database() as conn:
+        uuid = get_stanza_session()
+        if uuid:
+            stanza = get_stanza(conn, uuid)
+            if stanza:
+                set_stanza_tags(conn, uuid, tags)
+                message.reply('Done')
+            else:
+                destroy_stanza_session()
+                message.reply('Stanza %s not found' % uuid)
+        else:
+            message.reply('No session found.')
+
+def load_bot_command():
+    from slackbot.bot import respond_to
+    respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
+    respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
+    respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
+    respond_to('build site', re.IGNORECASE)(bot_build_site)
+    respond_to('ping', re.IGNORECASE)(bot_respond_ping)
+    respond_to('show stanza (.*)', re.IGNORECASE)(bot_show_stanza)
+    respond_to('save stanza (.*)', re.IGNORECASE)(bot_save_stanza)
+    respond_to('edit stanza (.*)', re.IGNORECASE)(bot_edit_stanza)
+    respond_to('done stanza')(bot_quit_stanza)
+    respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)(bot_set_stanza_thoughts)
+    respond_to('tags (.*)')(bot_set_stanza_tags)
+
 def prog_slackbot(args, options):
     """Run slackbot.
 
@@ -322,90 +399,8 @@ def prog_slackbot(args, options):
 
     """
     os.environ['SLACKBOT_API_TOKEN'] = config('SLACKBOT_API_TOKEN')
-
     from slackbot.bot import Bot
-    from slackbot.bot import respond_to
-    import re
-    import json
-
-    respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
-    respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
-    respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
-    respond_to('build site', re.IGNORECASE)(bot_build_site)
-
-    @respond_to('ping', re.IGNORECASE)
-    def respond_to_github(message):
-        message.reply('pong')
-
-    @respond_to('show stanza (.*)', re.IGNORECASE)
-    def show_stanza(message, uuid):
-        with open_database() as conn:
-            stanza = get_stanza(conn, uuid)
-            if not stanza:
-                message.reply('stanza %s not found' % uuid)
-            else:
-                message.reply(format_stanza(stanza))
-
-    @respond_to('save stanza (.*)', re.IGNORECASE)
-    def save_stanza_to_dat(message, url):
-        with open_database() as conn:
-            uuid = create_stanza(conn, url)
-            start_stanza_session(uuid)
-            message.reply('Start editing %s' % uuid)
-
-    @respond_to('edit stanza (.*)', re.IGNORECASE)
-    def edit_stanza(message, uuid):
-        with open_database() as conn:
-            if get_stanza(conn, uuid):
-                start_stanza_session(uuid)
-                message.reply('Start editing %s' % uuid)
-            else:
-                message.reply('Stanza %s not found' % uuid)
-
-    @respond_to('done stanza')
-    def stop_editing_stanza(message):
-        with open_database() as conn:
-            uuid = get_stanza_session()
-            if uuid:
-                destroy_stanza_session()
-                message.reply('Quit editing %s' % uuid)
-                message.reply(format_stanza(get_stanza(conn, uuid)))
-            else:
-                message.reply('No session found.')
-
-    @respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)
-    def set_stanza_thoughts_to_dat(message, thoughts):
-        with open_database() as conn:
-            uuid = get_stanza_session()
-            if uuid:
-                stanza = get_stanza(conn, uuid)
-                if stanza:
-                    set_stanza_thoughts(conn, uuid, thoughts)
-                    message.reply('Done')
-                else:
-                    destroy_stanza_session()
-                    message.reply('Stanza %s not found' % uuid)
-            else:
-                message.reply('No session found.')
-
-    @respond_to('tags (.*)')
-    def set_stanza_tags_to_dat(message, tags):
-        with open_database() as conn:
-            uuid = get_stanza_session()
-            if uuid:
-                stanza = get_stanza(conn, uuid)
-                if stanza:
-                    set_stanza_tags(conn, uuid, tags)
-                    message.reply('Done')
-                else:
-                    destroy_stanza_session()
-                    message.reply('Stanza %s not found' % uuid)
-            else:
-                message.reply('No session found.')
-
-
-    bot = Bot()
-    bot.run()
+    Bot().run()
 
 def prog_publish(args=None, options=None):
     """Publish stanzas as static website."""
