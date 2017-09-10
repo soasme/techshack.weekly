@@ -26,6 +26,7 @@ deploy_host() {
     remote "mkdir -p `dirname $ENV_PATH`"
     remote "mkdir -p $HTML_PATH"
     put $CONF $ENV_PATH
+    put ./template.html $HOME_PATH/template.html
     put ./techshack.py $HOME_PATH/techshack.py
     remote "chmod +x $HOME_PATH/techshack.py"
     killpids techshack

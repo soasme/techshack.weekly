@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="不要停止技术阅读! - {{raw_tags|join(',')}}">
-    <meta name="author" content="{{author}}">
-    <title>{{title}} - {{date}}</title>
+    <meta name="description" content="%(description)s">
+    <meta name="author" content="%(author)s">
+    <title>%(title)s - %(date)s</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.rawgit.com/sofish/typo.css/master/typo.css" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
         .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
         .jumbotron .logo { width: 100%%; }
         .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
-        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; }
+        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; font-size: 12px;}
         .post .post-content { margin: 30px 0; }
         .post-content { font-size: 17px; color: #444443; }
         .post-content p { margin-top: 0; margin-bottom: 1.46em; }
@@ -49,41 +49,25 @@
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class=""><a href="/">今天的</a></li>
+                        <li role="presentation" class=""><a href="/stanza-%(latest_date)s.html">最新</a></li>
                         <li role="presentation" class="btn-explore"><a href="#">随便看看</a></li>
                     </ul>
                 </nav>
-                <h3 class="text-muted site-title">{{program_name}}</h3>
+                <h3 class="text-muted site-title">%(program_name)s</h3>
             </div>
             <div class="jumbotron typo">
-                <h1><img class="logo" src="./static/tech-shack.png"></h1>
-                <p class="lead">不要停止技术阅读!<br>{{date}}</p>
+                <h1><a href="/stanza-%(latest_date)s.html"><img class="logo" src="https://cdn.rawgit.com/soasme/techshack.io/5fbf5b1b/html/static/tech-shack.png"></a></h1>
+                <p class="lead">%(jumbotron_text)s</p>
                 <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
             </div>
             <div class="row typo">
-              {% for stanza in stanzas %}
-              <article class="post" id="{{stanza.uuid}}">
-                <div class="post-content"><p>{{stanza.thoughts}}</p></div>
-                <div class="post-permalink">
-                  <a class="btn btn-default read-original" href="{{stanza.ref_url}}">
-                    查看原文
-                  </a>
-                </div>
-                <footer class="post-footer clearfix">
-                  <div class="pull-left tag-list">
-                    {% for tag in stanza.tags %}
-                    <span class="label label-default">{{tag}}</span>
-                    {% endfor %}
-                  </div>
-                </footer>
-              </article>
-              {% endfor %}
+                %(posts)s
             </div>
             <div class="row explore-section">
                 <button class="btn btn-default btn-explore">随便看看</button>
             </div>
             <footer class="footer">
-                <p>&copy; 2017 Ju Lin.</p>
+                <p>&copy; 2017 Ju Lin. 已阅读 %(stats_days)s 天，共计 %(stats_stanza_count)s 篇，%(stats_txt_count)s 字。所有内容以 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</a> 许可发布。 </p>
             </footer>
         </div>
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -96,5 +80,13 @@
             function explore(){ var start = new Date('2017-08-22'); var end = new Date(new Date().setDate(new Date().getDate()-1)); window.location.href = '/stanza-' + formatDate(randomDate(start, end)) + '.html'; }
             $(".btn-explore").on('click', explore);
         });
+        </script>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-36183732-2', 'auto');
+        ga('send', 'pageview');
         </script>
 </html>

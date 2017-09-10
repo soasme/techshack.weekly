@@ -28,98 +28,8 @@ ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     </footer>
 </article>"""
 
-SITE_TEMPLATE = """<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="%(description)s">
-    <meta name="author" content="%(author)s">
-    <title>%(title)s - %(date)s</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.rawgit.com/sofish/typo.css/master/typo.css" rel="stylesheet">
-    <style>
-        body { padding-top: 20px; padding-bottom: 20px; }
-        code { color:#1abc9c; }
-        .header, .marketing, .footer { padding-right: 15px; padding-left: 15px; }
-        .header { padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; }
-        .header h3.site-title { margin-top: 0; margin-bottom: 0; line-height: 40px; font-size: 18px; }
-        .header nav a { font-size: 14px; }
-        .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: #20b2aa; }
-        .footer { padding-top: 19px; color: #777; border-top: 1px solid #e5e5e5; }
-        @media (min-width: 768px) { .container { max-width: 730px; } }
-        .container-narrow > hr { margin: 30px 0; }
-        .jumbotron { text-align: center; border-bottom: 1px solid #e5e5e5; }
-        .jumbotron .btn { padding: 14px 24px; font-size: 21px; background-color: #20b2aa; }
-        .jumbotron .logo { width: 100%%; }
-        .post { padding: 0 35px; background: #ffffff; position: relative; overflow: hidden; }
-        .post .label-default { margin: 2px; background-color: #f5f5f5; color: #aaa; font-size: 12px;}
-        .post .post-content { margin: 30px 0; }
-        .post-content { font-size: 17px; color: #444443; }
-        .post-content p { margin-top: 0; margin-bottom: 1.46em; }
-        .post-permalink .read-original { border: 1px solid #20b2aa; background: #20b2aa; color: #ffffff; transition: all 0.2s ease-in-out; border-radius: 5px; }
-        .post .post-footer { border-bottom: 1px solid #ebebeb; padding: 10px 0; }
-        .post .post-footer .tag-list { color: #959595; line-height: 28px; }
-        .post .post-footer .tag-list  a { color: #959595; margin-left: 7px; }
-        .explore-section { text-align: center;margin: 10px; }
-        @media screen and (min-width: 768px) {
-            .header, .marketing, .footer { padding-right: 0; padding-left: 0; }
-            .header { margin-bottom: 30px; }
-            .jumbotron { border-bottom: 0; }
-        }
-    </style>
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head>
-    <body>
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class=""><a href="/stanza-%(latest_date)s.html">最新</a></li>
-                        <li role="presentation" class="btn-explore"><a href="#">随便看看</a></li>
-                    </ul>
-                </nav>
-                <h3 class="text-muted site-title">%(program_name)s</h3>
-            </div>
-            <div class="jumbotron typo">
-                <h1><a href="/stanza-%(latest_date)s.html"><img class="logo" src="https://cdn.rawgit.com/soasme/techshack.io/5fbf5b1b/html/static/tech-shack.png"></a></h1>
-                <p class="lead">%(jumbotron_text)s</p>
-                <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p> -->
-            </div>
-            <div class="row typo">
-                %(posts)s
-            </div>
-            <div class="row explore-section">
-                <button class="btn btn-default btn-explore">随便看看</button>
-            </div>
-            <footer class="footer">
-                <p>&copy; 2017 Ju Lin. 已阅读 %(stats_days)s 天，共计 %(stats_stanza_count)s 篇，%(stats_txt_count)s 字。所有内容以 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</a> 许可发布。 </p>
-            </footer>
-        </div>
-        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
-        <script>
-        $(function(){
-            function randomDate(start, end) { return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())); }
-            function formatDate(date) { return date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + (date.getDate())).slice(-2); }
-            function explore(){ var start = new Date('2017-08-22'); var end = new Date(new Date().setDate(new Date().getDate()-1)); window.location.href = '/stanza-' + formatDate(randomDate(start, end)) + '.html'; }
-            $(".btn-explore").on('click', explore);
-        });
-        </script>
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-36183732-2', 'auto');
-        ga('send', 'pageview');
-        </script>
-</html>"""
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'template.html')) as f:
+    SITE_TEMPLATE = f.read()
 
 DEFAULT_CONFIGS = ['/etc/techshack.io/env', './.env']
 
@@ -144,12 +54,6 @@ def prepare_database(conn):
 
 @contextmanager
 def open_database():
-    """
-    * ENV required: `STANZA_FILE_PATH`.
-
-    with open_database() as conn:
-        do_something(conn)
-    """
     path = config('STANZA_FILE_PATH')
     conn = sqlite3.connect(path)
     prepare_database(conn)
@@ -178,8 +82,6 @@ def get_stanzas(conn):
             seg = [stanza]
     if seg:
         yield seg[-1][1][:10], seg
-
-
 
 
 def get_stanza(conn, uuid):
@@ -261,7 +163,6 @@ def pub_douban(message):
             config('DOUBAN_USERNAME'), res['id'])
 
 def pub_tweet(message):
-    """Tweet post url to twitter."""
     from birdy.twitter import UserClient
     client = UserClient(config('TWITTER_API_CONSUMER_KEY'),
             config('TWITTER_API_CONSUMER_SECRET'),
@@ -393,17 +294,12 @@ def load_bot_command():
     respond_to('tags (.*)')(bot_set_stanza_tags)
 
 def prog_slackbot(args, options):
-    """Run slackbot.
-
-    * ENV required: `SLACKBOT_API_TOKEN`.
-
-    """
     os.environ['SLACKBOT_API_TOKEN'] = config('SLACKBOT_API_TOKEN')
     from slackbot.bot import Bot
+    load_bot_command()
     Bot().run()
 
 def prog_publish(args=None, options=None):
-    """Publish stanzas as static website."""
     with open_database() as conn:
         index, latest_date = 1, None
         for date, stanzas in get_stanzas(conn):
@@ -445,47 +341,26 @@ def prog_publish(args=None, options=None):
 
             index += 1
 
+
 def prog_backup(args, options):
-    """Backup database to dropbox."""
     with open(config('STANZA_FILE_PATH'), 'rb') as f:
         dbx = dropbox.Dropbox(config('DROPBOX_API_TOKEN'))
-        try:
-            dbx.users_get_current_account()
-        except DropboxAuthError as err:
-            sys.exit("ERROR: Invalid access token; try re-generating one.")
-        try:
-            dbx.files_upload(f.read(), config('REMOTE_BACKUP_STANZA_FILE_PATH'), mode=WriteMode('overwrite'))
-        except DropboxApiError as err:
-            if (err.error.is_path() and err.error.get_path().error.is_insufficient_space()):
-                sys.exit("ERROR: insufficient dropbox space.")
-            elif err.user_message_text:
-                sys.exit("ERROR: %s" % err.user_message_text)
-            else:
-                print(err); sys.exit()
-
+        dbx.users_get_current_account()
+        dbx.files_upload(f.read(),
+                config('REMOTE_BACKUP_STANZA_FILE_PATH'), mode=WriteMode('overwrite'))
 
 
 def prog_zen(args, options):
-    """Print zen of this project."""
     print('Automate myself, and gain knowledge.')
 
 
 def find_prog(prog):
-    """Find prog function by parameter [prog]."""
     try:
         return globals()['prog_%s' % prog]
     except KeyError:
         raise Exception('Prog %s not found' % prog)
 
-
 def main():
-    """Main entry.
-
-    Support multiple level prog.
-
-        $ python techshack.py zen
-        $ python techshack.py zen unknown -n
-    """
     parser = argparse.ArgumentParser()
     parser.add_argument('prog', help='program', nargs='+')
     args, unknown = parser.parse_known_args()
