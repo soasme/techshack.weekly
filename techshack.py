@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import re
+import sys
 import argparse
 import csv
 import os
@@ -279,6 +280,18 @@ def bot_set_stanza_tags(message, tags):
         else:
             message.reply('No session found.')
 
+def bot_restart_himself(message):
+    pid = os.fork()
+    if pid == 0:
+        os.system('curl https://raw.githubusercontent.com/soasme/techshack.io/master/techshack.py > %s' % (config('HOME_PATH') + '/techshack.py'))
+        os.system('nohup %s %s slackbot > %s &' % (
+            config('BIN_PATH') + '/python',
+            config('HOME_PATH') + '/techshack.py',
+            config('HOME_PATH') + '/service.log'
+            ))
+    os.system('kill -9 %s' % os.getpid())
+
+
 def load_bot_command():
     from slackbot.bot import respond_to
     respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
@@ -292,6 +305,7 @@ def load_bot_command():
     respond_to('done stanza')(bot_quit_stanza)
     respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)(bot_set_stanza_thoughts)
     respond_to('tags (.*)')(bot_set_stanza_tags)
+    respond_to('restart yourself')(bot_restart_himself)
 
 def prog_slackbot(args, options):
     os.environ['SLACKBOT_API_TOKEN'] = config('SLACKBOT_API_TOKEN')
