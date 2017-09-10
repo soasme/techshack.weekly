@@ -131,6 +131,13 @@ def format_pub_stanza(stanza, tag):
     stanza_url = 'https://techshack.soasme.com/stanza-%s.html#%s' % (created[:10], uuid, )
     return '%s%s' % (thoughts, stanza_url)
 
+def parse_import_content(content):
+    lines = content.strip().splitlines()
+    url =lines[0].replace('import stanza ', '').strip()
+    tags = lines[-1].strip()
+    thoughts = '\n'.join(lines[1:-1])
+    return url, thoughts, tags
+
 def get_douban_token():
     if os.path.exists('/tmp/techshack.io.douban.session'):
         with open('/tmp/techshack.io.douban.session') as f:
@@ -230,6 +237,13 @@ def bot_show_stanza(message, uuid):
         else:
             message.reply(format_stanza(stanza))
 
+def bot_import_stanza(message, content):
+    with open_database() as conn:
+        url, thoughts, tags = parse_import_content(content)
+        uuid = create_stanza(conn, url)
+        set_stanza_thoughts(conn, uuid, thoughts)
+        set_stanza_tags(conn, uuid, tags)
+
 def bot_save_stanza(message, url):
     with open_database() as conn:
         uuid = create_stanza(conn, url)
@@ -306,6 +320,7 @@ def load_bot_command():
     respond_to('save stanza (.*)', re.IGNORECASE)(bot_save_stanza)
     respond_to('edit stanza (.*)', re.IGNORECASE)(bot_edit_stanza)
     respond_to('done stanza')(bot_quit_stanza)
+    respond_to('import stanza (.*)', re.DOTALL | re.IGNORECASE)(bot_import_stanza)
     respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)(bot_set_stanza_thoughts)
     respond_to('tags (.*)')(bot_set_stanza_tags)
     respond_to('restart yourself')(bot_restart_himself)
