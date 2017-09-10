@@ -189,21 +189,23 @@ def get_stanza_session():
             return f.read()
 
 
+def bot_pub_designated_stanza(message, sns, uuid):
+    with open_database() as conn:
+        stanza = get_stanza(conn, uuid)
+        if not stanza:
+            message.reply('no stanza found. pub to %s failed.' % sns)
+        else:
+            pub = globals()['pub_' + sns]
+            tag = '#techshack# ' if sns == 'douban' else '#techshack '
+            url = pub(format_pub_stanza(stanza, tag))
+            message.reply(url)
+
 def bot_pub_stanza(message, sns):
     session = get_stanza_session()
     if not session:
         message.reply('no session found. pub to %s failed.' % sns)
     else:
-        with open_database() as conn:
-            stanza = get_stanza(conn, session)
-            if not stanza:
-                message.reply('no stanza found. pub to %s failed.' % sns)
-            else:
-                pub = globals()['pub_' + sns]
-                tag = '#techshack# ' if sns == 'douban' else '#techshack '
-                url = pub(format_pub_stanza(stanza, tag))
-                message.reply(url)
-
+        bot_pub_designated_stanza(message, sns, session)
 
 def bot_need_auth_douban(message):
     message.reply(get_douban_raw_client().authorize_url +
@@ -294,7 +296,8 @@ def bot_restart_himself(message):
 
 def load_bot_command():
     from slackbot.bot import respond_to
-    respond_to('pub (.*)', re.IGNORECASE)(bot_pub_stanza)
+    respond_to('pub (\w+) ([0-9a-z\-]+)$', re.IGNORECASE)(bot_pub_designated_stanza)
+    respond_to('pub (\w+)$', re.IGNORECASE)(bot_pub_stanza)
     respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
     respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
     respond_to('build site', re.IGNORECASE)(bot_build_site)
