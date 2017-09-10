@@ -1,5 +1,5 @@
 deploy:
 
 ```bash
-$ make deploy
+$ make up
 ```

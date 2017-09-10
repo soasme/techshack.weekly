@@ -35,7 +35,7 @@ deploy_host() {
 # techshack: managed by techshack.io deployment script.
 $CRON_TIME $BIN_PATH/python $HOME_PATH/techshack.py backup && $HLCK_BACKUP
 # techshack: managed by techshack.io deployment script.
-$CRON_TIME $BIN_PAATH/python $HOME_PATH/techshack.py publish && $HLCK_PUBLISH
+$CRON_TIME $BIN_PATH/python $HOME_PATH/techshack.py publish && $HLCK_PUBLISH
 EOF
     cron techshack "$crontab"
 }
