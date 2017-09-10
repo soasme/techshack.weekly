@@ -243,6 +243,7 @@ def bot_import_stanza(message, content):
         uuid = create_stanza(conn, url)
         set_stanza_thoughts(conn, uuid, thoughts)
         set_stanza_tags(conn, uuid, tags)
+        message.reply(format_stanza(get_stanza(conn, uuid)))
 
 def bot_save_stanza(message, url):
     with open_database() as conn:
