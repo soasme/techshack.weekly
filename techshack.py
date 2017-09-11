@@ -19,6 +19,10 @@ import dropbox
 from dropbox.files import WriteMode
 from dropbox.exceptions import ApiError as DropboxApiError, AuthError as DropboxAuthError
 
+LIST_TEMPLATE = """
+<h3><a href="%(url)s">第 %(index)d 期 - %(date)s</a></h3>
+"""
+
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
     <div class="post-content"><p>%(thoughts)s</p></div>
     <div class="post-permalink">
@@ -336,6 +340,7 @@ def prog_slackbot(args, options):
 def prog_publish(args=None, options=None):
     with open_database() as conn:
         index, latest_date = 1, None
+        dates = []
         for date, stanzas in get_stanzas(conn):
             latest_date = latest_date or date
             widgets = []
@@ -353,7 +358,8 @@ def prog_publish(args=None, options=None):
                 widgets.append(widget)
 
             slogan = '技术阅读+一些思考'
-            context = dict(title='Tech Shack',
+            context = dict(
+                title='Tech Shack',
                 jumbotron_text='%s<br>%s' % (slogan, date),
                 author='Ju Lin <soasme@gmail.com>',
                 date=date,
@@ -374,6 +380,26 @@ def prog_publish(args=None, options=None):
                     f.write(page)
 
             index += 1
+            dates.append(date)
+        list_widget = []
+        for index, date in enumerate(dates):
+            url = '/stanza-%s.html' % date
+            index = len(dates) - index
+            list_widget.append(LIST_TEMPLATE % dict(date=date, url=url, index=index))
+        with open(os.path.join(config('HTML_PATH'), 'archive.html'), 'w') as f:
+            context = dict(
+                title='Tech Shack',
+                jumbotron_text='%s<br>%s' % (slogan, date),
+                author='Ju Lin <soasme@gmail.com>',
+                date='Tech Shack',
+                latest_date=latest_date,
+                program_name="Tech Shack",
+                description='%s - Archived Stanzas' % slogan,
+                posts=''.join(list_widget),
+            )
+            context.update({'stats_%s' % k: v for k, v in get_stats(conn).items()})
+            f.write(SITE_TEMPLATE % context)
+
 
 
 def prog_backup(args, options):
