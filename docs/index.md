@@ -2,8 +2,8 @@
 
 ## 简介
 
-Tech Shack 是聚合了 @soasme 个人技术阅读和心得体会的博客。
-既定目标是每天阅读篇数不定的技术文章，然后做一些摘要，可能会有一些衍生思考。
+Tech Shack 是一个博客，聚合了 @soasme 个人技术阅读和心得体会。
+既定目标是每天阅读篇数不定的技术文章，做一些摘要，可能有衍生思考。
 
 * [查看最近的阅读](https://techshack.soasme.com)
 * [查看所有的阅读](https://techshack.soasme.com/archive.html)
@@ -13,9 +13,9 @@ Tech Shack 是聚合了 @soasme 个人技术阅读和心得体会的博客。
 
 Show me the code: [soasme/techshack.io](https://github.com/soasme/techshack.io)
 
-* 本地使用 ssh 部署 Python slackbot script 到服务器。
+* 本地使用 ssh 部署 Python Slackbot script 到服务器。
 * 服务器使用 Nginx 设定静态目录的 root path。
-* slackbot 发出一些命令完成数据录入，网站编译，和 SNS 分享。
+* Slackbot 发出一些命令完成数据录入，网站编译，和 SNS 分享。
 
 ## 工作流
 
@@ -45,6 +45,7 @@ getpocket | head -n 5 | read | slackbot --publish
 只有一个：坚持做下去。
 
 工作五年，还没有一个能持续运行下去的项目。
+
 想了一下：
 
 * 既然自己的博客关于工作，学习，生活能写十年，那博客中技术阅读那部分分拆出来有很大概率也能坚持做下去。
