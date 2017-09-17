@@ -75,9 +75,10 @@ def get_stats(conn):
     return dict(zip('days stanza_count txt_count'.split(), list(cursor.fetchone())))
 
 
-def get_stanzas(conn):
+def get_stanzas(conn, max=None):
     cursor = conn.cursor()
-    cursor.execute("select * from stanza order by created desc")
+    cursor.execute("select * from stanza order by created desc " +
+            (max and ('limit %d' % max) or ''))
     seg = []
     for stanza in cursor:
         if not seg or seg[-1][1][:10] == stanza[1][:10]:
@@ -134,6 +135,18 @@ def format_pub_stanza(stanza, tag):
     thoughts = thoughts + tag
     stanza_url = 'https://techshack.soasme.com/stanza-%s.html#%s' % (created[:10], uuid, )
     return '%s%s' % (thoughts, stanza_url)
+
+
+def dump_stanzas_to_rss(stanzas):
+    xml = lambda channel: '<?xml version="1.0" encoding="UTF-8" ?><rss>%s</rss>' % channel
+    channel = lambda **meta: ('<channel><title>%(title)s</title><link>%(link)s</link>'
+            '<description>%(description)s</description>%(items)s</channel>') % meta
+    item = lambda stanza: ('<item><title>Tech Shack - %(date)s</title><link>%(url)s</link>'
+            '<description>%(thoughts)s</description></item>') % stanza
+    return xml(channel(title='Tech Shack', link='https://techshack.soasme.com',
+        description='技术阅读+一些思考', items=[item(i) for i in stanzas]))
+
+
 
 def parse_import_content(content):
     lines = content.strip().splitlines()
@@ -399,6 +412,19 @@ def prog_publish(args=None, options=None):
             )
             context.update({'stats_%s' % k: v for k, v in get_stats(conn).items()})
             f.write(SITE_TEMPLATE % context)
+
+
+def prog_rss(args, options):
+    with open_database() as conn:
+        stanzas = []
+        for date, chunk in get_stanzas(conn, 100):
+            for stanza in chunk:
+                uuid, created, ref, thoughts, tags = stanza
+                if not thoughts or not tags:
+                    continue
+                stanzas.append(dict(date=date, url='https://%s/stanza-%s.html#%s' % (
+                    config('DOMAIN'), date, uuid), thoughts=thoughts))
+    print(dump_stanzas_to_rss(stanzas))
 
 
 
