@@ -241,6 +241,7 @@ def bot_auth_douban(message, code):
 
 def bot_build_site(message):
     prog_publish()
+    prog_rss()
     message.reply('Done')
 
 def bot_respond_ping(message):
@@ -414,7 +415,7 @@ def prog_publish(args=None, options=None):
             f.write(SITE_TEMPLATE % context)
 
 
-def prog_rss(args, options):
+def prog_rss(args=None, options=None):
     with open_database() as conn:
         stanzas = []
         for date, chunk in get_stanzas(conn, 100):
@@ -424,8 +425,8 @@ def prog_rss(args, options):
                     continue
                 stanzas.append(dict(date=date, url='https://%s/stanza-%s.html#%s' % (
                     config('DOMAIN'), date, uuid), thoughts=thoughts))
-    print(dump_stanzas_to_rss(stanzas))
-
+    with open(os.path.join(config('HTML_PATH'), 'rss.xml'), 'w') as f:
+        f.write(dump_stanzas_to_rss(stanzas))
 
 
 def prog_backup(args, options):
