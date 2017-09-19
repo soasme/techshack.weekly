@@ -166,14 +166,6 @@ def dump_stanzas_to_rss(stanzas):
     ]}
     meta = {'rss': ' version="2.0"'}
     return '<?xml version="1.0" encoding="UTF-8" ?>\n' + build_rss_format(data, meta)
-    # xml = lambda channel: '<?xml version="1.0" encoding="UTF-8" ?><rss>%s</rss>' % channel
-    # channel = lambda **meta: ('<channel><title>%(title)s</title><link>%(link)s</link>'
-            # '<description>%(description)s</description>%(items)s</channel>') % meta
-    # item = lambda stanza: ('<item><title>Tech Shack - %(date)s</title><link>%(url)s</link>'
-            # '<description>%(thoughts)s</description></item>') % stanza
-    # return xml(channel(title='Tech Shack', link='https://techshack.soasme.com',
-        # description='技术阅读+一些思考', items='\n'.join([item(i) for i in stanzas])))
-
 
 
 def parse_import_content(content):
