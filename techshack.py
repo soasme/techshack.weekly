@@ -137,14 +137,42 @@ def format_pub_stanza(stanza, tag):
     return '%s%s' % (thoughts, stanza_url)
 
 
+def build_rss_format(data, meta):
+    if isinstance(data, list):
+        return '\n'.join([build_rss_format(item, meta) for item in data])
+    elif isinstance(data, str):
+        return '<![CDATA[%s]]>' % data if '。' in data else data
+    elif isinstance(data, dict):
+        return '\n'.join(['<%s%s>%s</%s>' % (k, (meta[k] + ' ' if k in meta else ''), build_rss_format(v, meta), k)
+            for k, v in data.items()])
+    else:
+        raise Exception(data)
+
 def dump_stanzas_to_rss(stanzas):
-    xml = lambda channel: '<?xml version="1.0" encoding="UTF-8" ?><rss>%s</rss>' % channel
-    channel = lambda **meta: ('<channel><title>%(title)s</title><link>%(link)s</link>'
-            '<description>%(description)s</description>%(items)s</channel>') % meta
-    item = lambda stanza: ('<item><title>Tech Shack - %(date)s</title><link>%(url)s</link>'
-            '<description>%(thoughts)s</description></item>') % stanza
-    return xml(channel(title='Tech Shack', link='https://techshack.soasme.com',
-        description='技术阅读+一些思考', items=[item(i) for i in stanzas]))
+    data = {'rss': [
+        {'channel': [
+            {'title': 'Tech Shack'},
+            {'link': 'https://techshack.soasme.com'},
+            {'description': '技术阅读+一些思考'},
+        ] + [
+            {'item': [
+                {'title': 'Tech Shack - %s' % stanza['date']},
+                {'link': stanza['url']},
+                {'guid': stanza['url']},
+                {'description': stanza['thoughts']},
+            ]}
+            for stanza in stanzas
+        ]}
+    ]}
+    meta = {'rss': ' version="2.0"'}
+    return '<?xml version="1.0" encoding="UTF-8" ?>\n' + build_rss_format(data, meta)
+    # xml = lambda channel: '<?xml version="1.0" encoding="UTF-8" ?><rss>%s</rss>' % channel
+    # channel = lambda **meta: ('<channel><title>%(title)s</title><link>%(link)s</link>'
+            # '<description>%(description)s</description>%(items)s</channel>') % meta
+    # item = lambda stanza: ('<item><title>Tech Shack - %(date)s</title><link>%(url)s</link>'
+            # '<description>%(thoughts)s</description></item>') % stanza
+    # return xml(channel(title='Tech Shack', link='https://techshack.soasme.com',
+        # description='技术阅读+一些思考', items='\n'.join([item(i) for i in stanzas])))
 
 
 
