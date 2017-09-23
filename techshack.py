@@ -20,7 +20,7 @@ from dropbox.files import WriteMode
 from dropbox.exceptions import ApiError as DropboxApiError, AuthError as DropboxAuthError
 
 LIST_TEMPLATE = """
-<h3><a href="%(url)s">第 %(index)d 期 - %(date)s</a></h3>
+<h3><a href="%(url)s">第 %(index)s 期 - %(date)s</a></h3>
 """
 
 ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
@@ -418,7 +418,7 @@ def prog_publish(args=None, options=None):
         list_widget = []
         for index, date in enumerate(dates):
             url = '/stanza-%s.html' % date
-            index = len(dates) - index
+            index = '%04d' % (len(dates) - index)
             list_widget.append(LIST_TEMPLATE % dict(date=date, url=url, index=index))
         with open(os.path.join(config('HTML_PATH'), 'archive.html'), 'w') as f:
             context = dict(
