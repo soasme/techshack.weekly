@@ -111,6 +111,15 @@ def set_stanza_thoughts(conn, uuid, thoughts):
     conn.commit()
 
 
+def set_stanza_date(conn, uuid, date):
+    cursor = conn.cursor()
+    year, month, day = date.split('-')
+    created = datetime.utcnow().replace(year=int(year), month=int(month),
+            day=int(day)).isoformat() + '+0000'
+    cursor.execute("update stanza set created=? where id=?", (created, uuid, ))
+    conn.commit()
+
+
 def set_stanza_tags(conn, uuid, tags):
     cursor = conn.cursor()
     tags = tags.replace(',', '|')
@@ -308,13 +317,13 @@ def bot_quit_stanza(message):
         else:
             message.reply('No session found.')
 
-def bot_set_stanza_thoughts(message, thoughts):
+def _bot_set_stanza_field(message, f, data):
     with open_database() as conn:
         uuid = get_stanza_session()
         if uuid:
             stanza = get_stanza(conn, uuid)
             if stanza:
-                set_stanza_thoughts(conn, uuid, thoughts)
+                f(conn, uuid, data)
                 message.reply('Done')
             else:
                 destroy_stanza_session()
@@ -322,19 +331,16 @@ def bot_set_stanza_thoughts(message, thoughts):
         else:
             message.reply('No session found.')
 
+
+def bot_set_stanza_thoughts(message, thoughts):
+    _bot_set_stanza_field(message, set_stanza_thoughts, thoughts)
+
 def bot_set_stanza_tags(message, tags):
-    with open_database() as conn:
-        uuid = get_stanza_session()
-        if uuid:
-            stanza = get_stanza(conn, uuid)
-            if stanza:
-                set_stanza_tags(conn, uuid, tags)
-                message.reply('Done')
-            else:
-                destroy_stanza_session()
-                message.reply('Stanza %s not found' % uuid)
-        else:
-            message.reply('No session found.')
+    _bot_set_stanza_field(message, set_stanza_tags, tags)
+
+def bot_set_stanza_date(message, date):
+    _bot_set_stanza_field(message, set_stanza_date, date)
+
 
 def bot_restart_himself(message):
     pid = os.fork()
@@ -350,20 +356,21 @@ def bot_restart_himself(message):
 
 def load_bot_command():
     from slackbot.bot import respond_to
-    respond_to('pub (\w+) ([0-9a-z\-]+)$', re.IGNORECASE)(bot_pub_designated_stanza)
-    respond_to('pub (\w+)$', re.IGNORECASE)(bot_pub_stanza)
-    respond_to('need auth douban', re.IGNORECASE)(bot_need_auth_douban)
-    respond_to('auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
-    respond_to('build site', re.IGNORECASE)(bot_build_site)
-    respond_to('ping', re.IGNORECASE)(bot_respond_ping)
-    respond_to('show stanza (.*)', re.IGNORECASE)(bot_show_stanza)
-    respond_to('save stanza (.*)', re.IGNORECASE)(bot_save_stanza)
-    respond_to('edit stanza (.*)', re.IGNORECASE)(bot_edit_stanza)
-    respond_to('done stanza')(bot_quit_stanza)
-    respond_to('import stanza (.*)', re.DOTALL | re.IGNORECASE)(bot_import_stanza)
-    respond_to('thoughts (.*)', re.DOTALL | re.IGNORECASE)(bot_set_stanza_thoughts)
-    respond_to('tags (.*)')(bot_set_stanza_tags)
-    respond_to('restart yourself')(bot_restart_himself)
+    respond_to('^pub (\w+) ([0-9a-z\-]+)$', re.IGNORECASE)(bot_pub_designated_stanza)
+    respond_to('^pub (\w+)$', re.IGNORECASE)(bot_pub_stanza)
+    respond_to('^need auth douban', re.IGNORECASE)(bot_need_auth_douban)
+    respond_to('^auth douban (.*)', re.IGNORECASE)(bot_auth_douban)
+    respond_to('^build site', re.IGNORECASE)(bot_build_site)
+    respond_to('^ping', re.IGNORECASE)(bot_respond_ping)
+    respond_to('^show stanza (.*)', re.IGNORECASE)(bot_show_stanza)
+    respond_to('^save stanza (.*)', re.IGNORECASE)(bot_save_stanza)
+    respond_to('^edit stanza (.*)', re.IGNORECASE)(bot_edit_stanza)
+    respond_to('^done stanza')(bot_quit_stanza)
+    respond_to('^import stanza (.*)', re.DOTALL | re.IGNORECASE)(bot_import_stanza)
+    respond_to('^thoughts (.*)', re.DOTALL | re.IGNORECASE)(bot_set_stanza_thoughts)
+    respond_to('^tags (.*)')(bot_set_stanza_tags)
+    respond_to('^date (.*)')(bot_set_stanza_date)
+    respond_to('^restart yourself')(bot_restart_himself)
 
 def prog_slackbot(args, options):
     os.environ['SLACKBOT_API_TOKEN'] = config('SLACKBOT_API_TOKEN')
