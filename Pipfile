@@ -1,0 +1,19 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+name = "pypi"
+verify_ssl = true
+
+
+[packages]
+
+slackbot = "*"
+mistune = "*"
+dropbox = "*"
+birdy = "*"
+douban-client = "*"
+"fabric3" = "==1.12.0.post1"
+
+
+[dev-packages]
+
