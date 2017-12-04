@@ -36,7 +36,10 @@ ROW_TEMPLATE = """<article class="post" id="%(uuid)s">
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'template.html')) as f:
     SITE_TEMPLATE = f.read()
 
-DEFAULT_CONFIGS = ['/etc/techshack.io/env', './.env']
+DEFAULT_CONFIGS = ['/etc/techshack.io/techshack.ini',
+        '/etc/techshack.io/env',
+        './techshack.ini',
+        './.env']
 
 config_parser = ConfigParser()
 config_parser.read(next(f for f in DEFAULT_CONFIGS if os.path.exists(f)))
