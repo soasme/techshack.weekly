@@ -3,33 +3,37 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Ju Lin'
-SITENAME = 'Tech Shack - 精细耕耘后端开发每一个知识点'
+SITENAME = 'Techshack Weekly'
 SITEURL = ''
 
 PATH = 'content'
 
-TIMEZONE = 'Pacific/Auckland'
+TIMEZONE = 'UTC'
 
 DEFAULT_LANG = 'zh'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (
+    # ('SRE Weekly', 'https://sreweekly.com'),
+    # ('Monitoring Weekly', 'https://weekly.monitoring.love'),
+)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'https://twitter.com/TechshackWeekly'),
+        ('Facebook', 'https://facebook.com/techshack.weekly'),)
 
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+GOOGLE_ANALYTICS = 'UA-36183732-2'
+
+THEME = 'themes/default'
