@@ -16,6 +16,7 @@ douban-client = "*"
 simplenote = "*"
 pelican = "*"
 markdown = "*"
+ghp-import = "*"
 
 
 [dev-packages]
