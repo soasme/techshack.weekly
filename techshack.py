@@ -13,6 +13,7 @@ from configparser import ConfigParser
 from datetime import datetime, timezone
 from io import StringIO
 from uuid import uuid4
+from simplenote import Simplenote
 
 import mistune
 import dropbox

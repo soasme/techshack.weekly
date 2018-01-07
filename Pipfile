@@ -13,6 +13,8 @@ dropbox = "*"
 birdy = "*"
 douban-client = "*"
 "fabric3" = "==1.12.0.post1"
+simplenote = "*"
+pelican = "*"
 
 
 [dev-packages]
