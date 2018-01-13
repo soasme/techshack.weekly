@@ -4,8 +4,8 @@ deploy:
 $ make up
 ```
 
-install theme:
+Build issues from one day:
 
 ```
-pipenv run pelican-themes --install themes/default --verbose
+$ pipenv run ./admin.py import_simplenote --since=2018-01-01
 ```
