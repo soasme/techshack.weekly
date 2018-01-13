@@ -12,6 +12,8 @@
                     <article>
                         <h1 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1> 
                         {{ article.content }}
+                        <a class="readmore" href="{{ SITEURL }}/{{ article.url }}"
+                            >read more</a>
                     </article>
                     {% if loop.length == 1 %}
                         {% include 'pagination.html' %}
