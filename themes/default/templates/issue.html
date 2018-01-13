@@ -8,7 +8,7 @@
 
 <section id="content" class="body">
 {% for verse in articles %}
-  {% if article.verse_start and article.verse_end and verse.date | string >= article.verse_start and verse.date | string < article.verse_end %}
+  {% if verse.category == 'verses' and article.verse_start and article.verse_end and verse.date | string >= article.verse_start and verse.date | string < article.verse_end  %}
   <hr>
   <article class="hentry">
       <header>
