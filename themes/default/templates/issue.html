@@ -1,0 +1,29 @@
+{{ article.content }}
+
+<p>声明:</p>
+<ul>
+  <li>Techshack Weekly 所有内容以 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</a> 协议发布。</li>
+  <li>若对内容正确性存疑，请发推文并 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。</li>
+</ul>
+
+<section id="content" class="body">
+{% for verse in articles %}
+  {% if article.verse_start and article.verse_end and verse.date | string >= article.verse_start and verse.date | string < article.verse_end %}
+  <hr>
+  <article class="hentry">
+      <header>
+          <h3>
+              <a href="{{ SITEURL }}/{{ verse.url }}" rel="bookmark"
+                  title="Permalink to {{ verse.title|striptags }}"
+                  >{{ verse.title }}</a>
+          </h3>
+      </header>
+      <div class="entry-content">
+          {{ verse.summary }}
+          <a class="readmore" href="{{ SITEURL }}/{{ verse.url }}"
+              >read more</a>
+      </div><!-- /.entry-content -->
+  </article>
+  {% endif %}
+{% endfor %}
+</section>

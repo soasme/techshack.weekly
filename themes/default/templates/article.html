@@ -1,0 +1,10 @@
+{% extends "article-base.html" %}
+
+
+{% block article_content %}
+  {% if article.category == 'verses' %}
+    {{ super() }}
+  {% elif article.category == 'issues' %}
+    {% include "issue.html" %}
+  {% endif %}
+{% endblock %}
