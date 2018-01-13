@@ -3,6 +3,8 @@
 <head>
         <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" type="text/css" />
         <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
         {% if FEED_RSS %}
@@ -22,46 +24,44 @@
 </head>
 
 <body>
-	<div id="wrap" style="width:850px">
-	    <div id="container" style="width:560px">
-            <div class="entry">
-                {% block content %}
-                {% endblock %}
+    <div class="container">
+        <div class="row">
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="{{ SITEURL }} " title="{{ SITENAME }}">
+                        <img src="{{ SITEURL }}/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description">{{ DESCRIPTION }} </span>
+                <div>{% include "subscribe.html" %}</div>
+                <div>{% include "social.html" %}</div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div id="content" class="col-lg-8">
+                <div class="entry">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        {% for page in pages %}
+                            <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>{% if not loop.last %} ::{% endif %}</li>
+                        {% endfor %}
+                        {% if categories|length > 1 %}
+                            <li>:: <a href="{{ SITEURL }}/categories.html">Categories</a></li>
+                        {% endif %}
+                        {% if tags|length > 1 %}
+                            <li>:: <a href="{{ SITEURL }}/tags.html">Tags</a></li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
-
-
-        <div id="sidebar">
-            <h1><a href="{{ SITEURL }} " title="title">{{ SITENAME }}</a></h1>
-            <span class="description">{{ DESCRIPTION }} </span>
-            <div>{% include "subscribe.html" %}</div>
-            <div>{% include "social.html" %}</div>
-            <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
-        </div>
-
-        <div id="footer">
-            <nav>
-                <ul>
-                {% for page in pages %}
-                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>{% if not loop.last %} ::{% endif %}</li>
-                {% endfor %}
-                {% if categories|length > 1 %}
-                    <li>:: <a href="{{ SITEURL }}/categories.html">Categories</a></li>
-                {% endif %}
-                {% if tags|length > 1 %}
-                    <li>:: <a href="{{ SITEURL }}/tags.html">Tags</a></li>
-                {% endif %}
-                </ul>
-            </nav>
-
-            <div id="credits">
-                <span>Adapted from <a href="http://wordpress.org/themes/monospace">Monospace</a> || Created with <a href="">Pelican</a></span>
-            </div>
-        </div>
-
-    {% include 'analytics.html' %}
-
     </div>
-
+    {% include 'analytics.html' %}
 </body>
 </html>
