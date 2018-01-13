@@ -102,3 +102,5 @@ input#s { width:70%; height:auto; margin:5px 0px;  }
 
 /* LWM EDITS */
 #page-title{ position : relative; top : 8px; }
+hr{ border: 0; margin: 1.4em 0; color: #1abc9c; height: 1em; }
+hr:before {content: '...'; display: block; width: 100%; letter-spacing: 2em; text-indent: 2em; z-index: 1; line-height: .5; text-align: center;}

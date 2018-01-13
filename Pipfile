@@ -17,6 +17,7 @@ simplenote = "*"
 pelican = "*"
 markdown = "*"
 ghp-import = "*"
+click = "*"
 
 
 [dev-packages]
