@@ -4,6 +4,7 @@ Modified: 2018-01-16 00:00
 Slug: verses/0e69fbd7-702f-45b2-bbe1-4febbb3cde43
 Category: verses
 Authors: Ju Lin
+verse_category: Tools
 
 [查看原文](https://github.com/tbrand/which_is_the_fastest)
 

@@ -4,6 +4,7 @@ Modified: 2018-01-20 00:00
 Slug: verses/5bfc8b7a-ab1e-46aa-8b71-bfb6ad084f1c
 Category: verses
 Authors: Ju Lin
+verse_category: Performance
 
 [查看原文](https://www.viget.com/articles/make-your-site-faster-with-preconnect-hints/)
 

@@ -1,4 +1,4 @@
-{{ article.content }}
+{{ articles | newsletter_verses(article) | newsletter_content(article) | md}}
 
 <p>声明:</p>
 <ul>
@@ -7,8 +7,8 @@
 </ul>
 
 <section id="content" class="body">
-{% for verse in articles %}
-  {% if verse.category == 'verses' and article.verse_start and article.verse_end and verse.date | string >= article.verse_start and verse.date | string < article.verse_end  %}
+{% for category, verses in articles | newsletter_verses(article) %}
+{% for verse in verses %}
   <hr>
   <article class="hentry">
       <header>
@@ -24,6 +24,6 @@
               >read more</a>
       </div><!-- /.entry-content -->
   </article>
-  {% endif %}
+{% endfor %}
 {% endfor %}
 </section>

@@ -17,6 +17,7 @@ Modified: {{date}} 00:00
 Slug: verses/{{uuid}}
 Category: verses
 Authors: Ju Lin
+verse_category: {{category}}
 
 [查看原文]({{url}})
 
@@ -70,6 +71,13 @@ def _parse_simplenote_note(content):
         assert _is_title_hint(ctx, line)
         return line.replace('* title:', '').strip()
 
+    def _is_category_hint(ctx, line):
+        return not ctx.get('category') and line.startswith('* category:')
+
+    def _parse_category(ctx, line):
+        assert _is_category_hint(ctx, line)
+        return line.replace('* category:', '').strip()
+
     def _is_hint(ctx, line):
         return 'content' not in ctx
 
@@ -80,6 +88,7 @@ def _parse_simplenote_note(content):
         return 'uuid' in ctx and 'date' in ctx and 'url' in ctx and 'content' in ctx
 
 
+
     ctx = {}
 
     for line in lines:
@@ -87,6 +96,7 @@ def _parse_simplenote_note(content):
             if _is_valid_ctx(ctx):
                 yield {'date': ctx['date'], 'uuid': ctx['uuid'],
                        'url': ctx['url'], 'title': ctx.get('title'),
+                       'category': ctx.get('category'),
                        'content': '\n'.join(ctx['content'])}
             if 'date' not in ctx:
                 break # Invalid post
@@ -100,6 +110,8 @@ def _parse_simplenote_note(content):
                 ctx['url'] = _parse_url(ctx, line)
             elif _is_title_hint(ctx, line):
                 ctx['title'] = _parse_title(ctx, line)
+            elif _is_category_hint(ctx, line):
+                ctx['category'] = _parse_category(ctx, line)
             elif _is_hint_end(ctx, line):
                 ctx.setdefault('content', [])
         else: # parse verse content
@@ -108,6 +120,7 @@ def _parse_simplenote_note(content):
     if _is_valid_ctx(ctx):
         yield {'date': ctx['date'], 'uuid': ctx['uuid'],
                 'url': ctx['url'], 'title': ctx.get('title'),
+                'category': ctx['category'],
                 'content': '\n'.join(ctx['content'])}
 
 

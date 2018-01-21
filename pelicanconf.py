@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+import sys
+sys.path.append('.')
+import filters
+
 AUTHOR = 'Ju Lin'
 SITENAME = 'Techshack Weekly'
 SITEURL = 'http://127.0.0.1:8000'
@@ -37,3 +41,9 @@ DEFAULT_PAGINATION = 10
 GOOGLE_ANALYTICS = 'UA-36183732-2'
 
 THEME = 'themes/default'
+
+JINJA_FILTERS = {
+    'newsletter_verses': filters.group_verses_into_newsletter,
+    'newsletter_content': filters.newsletter_content,
+    'md': filters.md,
+}
