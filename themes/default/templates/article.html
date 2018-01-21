@@ -3,15 +3,6 @@
 
 {% block article_content %}
   {% if article.category == 'verses' %}
-    <div class="entry-subscription">
-        <hr>
-        Techshack Weekly 专注于后端技术阅读，目前有上百位订阅者。
-        <br>
-        👈  <====== 欢迎在网站左方提交邮箱订阅。
-        <br>
-        也欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，或者关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
-        <hr>
-    </div>
     {{ super() }}
   {% elif article.category == 'issues' %}
     {% include "issue.html" %}
