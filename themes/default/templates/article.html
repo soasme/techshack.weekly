@@ -6,5 +6,7 @@
     {{ super() }}
   {% elif article.category == 'issues' %}
     {% include "issue.html" %}
+  {% else %}
+    {{ article.content }}
   {% endif %}
 {% endblock %}
