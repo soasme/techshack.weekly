@@ -5,8 +5,11 @@ import os
 import click
 import re
 import jinja2
+import requests
 from datetime import datetime, timedelta
 from simplenote import Simplenote
+from apiclient.discovery import build
+from oauth2client.service_account import ServiceAccountCredentials
 
 TECHSHACK_SIMPLENOTE_TAG = 'techshack'
 DATE_PATTERN = re.compile(r'^# Techshack (\d{4}-\d{2}-\d{2})$')
@@ -153,6 +156,71 @@ def import_simplenote(since):
         for verse in _parse_simplenote_note(note['content']):
             _generate_verse(verse)
 
+GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
+def get_ga_stats(date):
+    # https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GA_KEY_FILE_LOCATION'], GA_SCOPES)
+    analytics = build('analyticsreporting', 'v4', credentials=credentials)
+    response = analytics.reports().batchGet(
+        body={
+            'reportRequests': [
+            {
+            # https://ga-dev-tools.appspot.com/account-explorer/
+            'viewId': os.environ['GA_VIEW_ID'],
+            'dateRanges': [{'startDate': date, 'endDate': date}],
+            # https://developers.google.com/analytics/devguides/reporting/core/dimsmets
+            'metrics': [{'expression': 'ga:sessions'}, {'expression': 'ga:users'}, {'expression': 'ga:pageviews'}],
+            #'dimensions': [{'name': 'ga:country'}]
+            }]
+        }
+    ).execute()
+    reports = response.get('reports', [])
+    assert len(reports) == 1, reports
+    report = reports[0]
+    return dict(zip(['site_sessions', 'site_users', 'page_views'], report['data']['rows'][0]['metrics'][0]['values']))
+
+def get_twitter_client():
+    # https://github.com/inueni/birdy
+    from birdy.twitter import UserClient
+    client = UserClient(os.environ.get('TWITTER_API_CONSUMER_KEY'),
+            os.environ.get('TWITTER_API_CONSUMER_SECRET'),
+            os.environ.get('TWITTER_API_ACCESS_TOKEN'),
+            os.environ.get('TWITTER_API_ACCESS_SECRET'))
+    return client
+
+def get_twitter_followers_count():
+    res = get_twitter_client().api.users.show.get(screen_name='techshackweekly')
+    return {'twitter_followers_count': res.data['followers_count']}
+
+def get_tg_channel_members_count():
+    res = requests.get('https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568')
+    match = re.search(r'(\d+) members', str(res.content))
+    return {'telegram_channel_members_count': int(match.group(1))}
+
+def get_mailchimp_subscribers_count():
+    key = os.environ.get('MAILCHIMP_API_KEY')
+    res = requests.get('https://us17.api.mailchimp.com/3.0/',
+            auth=('TechshackWeekly', key))
+    return {'mailchimp_subscribers_count': res.json()['total_subscribers']}
+
+@cli.command()
+def update_growth_numbers():
+    today = datetime.utcnow().strftime('%Y-%m-%d')
+    data = {'today': today}
+    data.update(get_ga_stats(today))
+    data.update(get_twitter_followers_count())
+    data.update(get_tg_channel_members_count())
+    data.update(get_mailchimp_subscribers_count())
+    with open('content/stories/0001-growth-of-techshack-weekly.md') as f:
+        content = f.read()
+        tag = '<NEW-STUFF-HERE>'
+        line = ('|%(today)s|%(twitter_followers_count)s|'
+            '%(mailchimp_subscribers_count)s|'
+            '%(telegram_channel_members_count)s|'
+            '%(site_sessions)s|%(site_users)s|%(page_views)s|' % data
+        )
+        content = content.replace(tag, line + '\n' + tag)
+        print(content)
 
 if __name__ == '__main__':
     cli()

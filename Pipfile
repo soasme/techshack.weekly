@@ -18,6 +18,7 @@ pelican = "*"
 markdown = "*"
 ghp-import = "*"
 click = "*"
+google-api-python-client = "*"
 
 
 [dev-packages]
