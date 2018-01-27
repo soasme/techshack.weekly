@@ -201,6 +201,8 @@ def get_mailchimp_subscribers_count():
     key = os.environ.get('MAILCHIMP_API_KEY')
     res = requests.get('https://us17.api.mailchimp.com/3.0/',
             auth=('TechshackWeekly', key))
+    if res.status_code != 200:
+        raise Exception(res.json())
     return {'mailchimp_subscribers_count': res.json()['total_subscribers']}
 
 @cli.command()
