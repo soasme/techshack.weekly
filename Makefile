@@ -122,6 +122,7 @@ github: publish
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 sync_verses:
+	rm -rf output
 	git pull
 	pipenv run python admin.py import_simplenote --since `python -c "from datetime import datetime, timedelta; print((datetime.utcnow() - timedelta(days=2)).strftime('%Y-%m-%d'))"`
 	git add content/verses
