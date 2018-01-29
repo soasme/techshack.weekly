@@ -19,6 +19,7 @@ markdown = "*"
 ghp-import = "*"
 click = "*"
 google-api-python-client = "*"
+python-telegram-bot = "*"
 
 
 [dev-packages]

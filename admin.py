@@ -6,6 +6,7 @@ import click
 import re
 import jinja2
 import requests
+import telegram
 from datetime import datetime, timedelta
 from simplenote import Simplenote
 from apiclient.discovery import build
@@ -223,6 +224,31 @@ def update_growth_numbers():
         )
         content = content.replace(tag, line + '\n' + tag)
         print(content)
+
+@cli.command()
+@click.option('--release/--no-release', default=False)
+@click.argument('input', type=click.File('rb'))
+def push_to_telegram_channel(release, input):
+    # https://core.telegram.org/bots/api#markdown-style
+    # Supported style
+
+    # pipenv run python admin.py push_to_telegram_channel /tmp/b.md
+
+    bot = telegram.Bot(os.environ['TELEGRAM_API_TOKEN'])
+
+    if release:
+        chat = '@techshack'
+    else:
+        chat = '@techshackweeklystaging'
+
+    text = input.read().decode('utf-8')
+
+    print(text)
+    if len(text) > 4096:
+        raise Exception('Text too long.')
+
+    bot.send_message(chat, text=str(text), parse_mode='Markdown')
+
 
 if __name__ == '__main__':
     cli()
