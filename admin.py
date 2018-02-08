@@ -13,7 +13,7 @@ from apiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 
 TECHSHACK_SIMPLENOTE_TAG = 'techshack'
-DATE_PATTERN = re.compile(r'^# Techshack (\d{4}-\d{2}-\d{2})$')
+DATE_PATTERN = re.compile(r'^# Techshack\s+(\d{4}-\d{2}-\d{2})$')
 URL_PATTERN = re.compile(r'\* url: <(.*)>')
 VERSE_TEMPLATE = """Title: {{title}}
 Date: {{date}} 00:00
