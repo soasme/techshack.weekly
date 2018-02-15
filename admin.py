@@ -7,6 +7,7 @@ import re
 import jinja2
 import requests
 import telegram
+from urllib.parse import unquote
 from datetime import datetime, timedelta
 from simplenote import Simplenote
 from apiclient.discovery import build
@@ -14,7 +15,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 TECHSHACK_SIMPLENOTE_TAG = 'techshack'
 DATE_PATTERN = re.compile(r'^# Techshack\s+(\d{4}-\d{2}-\d{2})$')
-URL_PATTERN = re.compile(r'\* url: <(.*)>')
+URL_PATTERN = re.compile(r'\* url: (&lt;|<)(.*)(&gt;|>)')
 VERSE_TEMPLATE = """Title: {{title}}
 Date: {{date}} 00:00
 Modified: {{date}} 00:00
@@ -65,8 +66,8 @@ def _parse_simplenote_note(content):
     def _parse_url(ctx, line):
         assert _is_url_hint(ctx, line)
         match = URL_PATTERN.search(line)
-        assert match, 'no matching url'
-        return match.group(1)
+        assert match, 'no matching url: %s' % line
+        return match.group(2)
 
     def _is_title_hint(ctx, line):
         return not ctx.get('title') and line.startswith('* title:')
@@ -96,6 +97,7 @@ def _parse_simplenote_note(content):
     ctx = {}
 
     for line in lines:
+        line = unquote(line)
         if _is_verses_hint(ctx, line): # start parse verse
             if _is_valid_ctx(ctx):
                 yield {'date': ctx['date'], 'uuid': ctx['uuid'],
