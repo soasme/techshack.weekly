@@ -9,6 +9,7 @@ import json
 import jinja2
 import requests
 import telegram
+import html
 from urllib.parse import unquote
 from datetime import datetime, timedelta
 from simplenote import Simplenote
@@ -33,7 +34,6 @@ verse_category: {{category}}
 
 sn = Simplenote(username=os.environ.get('SIMPLENOTE_USER'),
                 password=os.environ.get('SIMPLENOTE_PASS'))
-
 
 @click.group()
 def cli():
@@ -131,7 +131,7 @@ def _parse_simplenote_note(content):
             elif _is_hint_end(ctx, line):
                 ctx.setdefault('content', [])
         else: # parse verse content
-            ctx['content'].append(line)
+            ctx['content'].append(html.unescape(line))
 
     if _is_valid_ctx(ctx):
         yield {'date': ctx['date'], 'uuid': ctx['uuid'],
@@ -185,7 +185,7 @@ def import_simplenote(since, format):
             for verse in _parse_simplenote_note(note['content']):
                 _generate_verse(verse)
         elif format == 'jsonrow':
-            verses = [for verse in _parse_simplenote_note(note['content'])]
+            verses = list(_parse_simplenote_note(note['content']))
             _generate_jsonrow(verses)
 
 GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
