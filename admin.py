@@ -3,7 +3,9 @@
 
 import os
 import click
+import sys
 import re
+import json
 import jinja2
 import requests
 import telegram
@@ -134,7 +136,7 @@ def _parse_simplenote_note(content):
     if _is_valid_ctx(ctx):
         yield {'date': ctx['date'], 'uuid': ctx['uuid'],
                 'url': ctx['url'], 'title': ctx.get('title'),
-                'tags': ctx['tags'], 'category': ctx['category'],
+                'tags': ctx['tags'], 'category': ctx.get('category'),
                 'content': '\n'.join(ctx['content'])}
 
 
@@ -156,22 +158,19 @@ def _generate_verse(verse):
         print(markdown)
 
 
-def _generate_jsonrow(verse):
-    if not is_valid_verse(verse):
-        print('WARNING: invalid verse: %s' % verse)
-        return
-
-    print(json.dumps({
+def _generate_jsonrow(verses):
+    print(json.dumps([{
         'uuid': verse['uuid'],
         'title': verse['title'],
         'text': verse['content'],
         'url': verse['url'],
         'modified': '%s000000000' % verse['date'].replace('-', ''),
         'created': '%s000000000' % verse['date'].replace('-', ''),
+        'ts-type': 'verse',
         'ts-date': verse['date'],
         'ts-category': verse.get('category', 'non-categorized'),
         'ts-tags': verse.get('tags', 'untagged').replace('|', ' ').replace(',', ' '),
-    }))
+    } for verse in verses], ensure_ascii=False))
 
 @cli.command()
 @click.option('--since', help='Format: YYYY-MM-DD')
@@ -182,11 +181,12 @@ def import_simplenote(since, format):
     for _note in notes:
         note, status = sn.get_note(_note['key'])
         assert status != -1, 'Get techshack simplenote note {} failed.'.format(_note['key'])
-        for verse in _parse_simplenote_note(note['content']):
-            if format == 'markdown':
+        if format == 'markdown':
+            for verse in _parse_simplenote_note(note['content']):
                 _generate_verse(verse)
-            elif format == 'jsonrow':
-                _generate_jsonrow(verse)
+        elif format == 'jsonrow':
+            verses = [for verse in _parse_simplenote_note(note['content'])]
+            _generate_jsonrow(verses)
 
 GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 def get_ga_stats(date):
