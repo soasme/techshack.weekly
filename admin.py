@@ -82,6 +82,13 @@ def _parse_simplenote_note(content):
         assert _is_category_hint(ctx, line)
         return line.replace('* category:', '').strip()
 
+    def _is_tags_hint(ctx, line):
+        return not ctx.get('tags') and line.startswith('* tags:')
+
+    def _parse_tags(ctx, line):
+        assert _is_tags_hint(ctx, line)
+        return line.replace('* tags:', '').strip()
+
     def _is_hint(ctx, line):
         return 'content' not in ctx
 
@@ -90,7 +97,6 @@ def _parse_simplenote_note(content):
 
     def _is_valid_ctx(ctx):
         return 'uuid' in ctx and 'date' in ctx and 'url' in ctx and 'content' in ctx
-
 
 
     ctx = {}
@@ -116,6 +122,8 @@ def _parse_simplenote_note(content):
                 ctx['title'] = _parse_title(ctx, line)
             elif _is_category_hint(ctx, line):
                 ctx['category'] = _parse_category(ctx, line)
+            elif _is_tags_hint(ctx, line):
+                ctx['tags'] = _parse_tags(ctx, line)
             elif _is_hint_end(ctx, line):
                 ctx.setdefault('content', [])
         else: # parse verse content
@@ -124,17 +132,17 @@ def _parse_simplenote_note(content):
     if _is_valid_ctx(ctx):
         yield {'date': ctx['date'], 'uuid': ctx['uuid'],
                 'url': ctx['url'], 'title': ctx.get('title'),
-                'category': ctx['category'],
+                'tags': ctx['tags'], 'category': ctx['category'],
                 'content': '\n'.join(ctx['content'])}
 
 
+def is_valid_verse(verse):
+    return verse.get('title') and verse.get('content') and \
+            verse.get('uuid') and verse.get('date')
+
 def _generate_verse(verse):
 
-    def _is_valid_verse(verse):
-        return verse.get('title') and verse.get('content') and \
-                verse.get('uuid') and verse.get('date')
-
-    if not _is_valid_verse(verse):
+    if not is_valid_verse(verse):
         print('WARNING: invalid verse: %s' % verse)
         return
 
@@ -146,16 +154,37 @@ def _generate_verse(verse):
         print(markdown)
 
 
+def _generate_jsonrow(verse):
+    if not is_valid_verse(verse):
+        print('WARNING: invalid verse: %s' % verse)
+        return
+
+    print(json.dumps({
+        'uuid': verse['uuid'],
+        'title': verse['title'],
+        'text': verse['content'],
+        'url': verse['url'],
+        'modified': '%s000000000' % verse['date'].replace('-', ''),
+        'created': '%s000000000' % verse['date'].replace('-', ''),
+        'ts-date': verse['date'],
+        'ts-category': verse.get('category', 'non-categorized'),
+        'ts-tags': verse.get('tags', 'untagged').replace('|', ' ').replace(',', ' '),
+    }))
+
 @cli.command()
 @click.option('--since', help='Format: YYYY-MM-DD')
-def import_simplenote(since):
+@click.option('--format', default='markdown')
+def import_simplenote(since, format):
     notes, status = sn.get_note_list(since=since, tags=[TECHSHACK_SIMPLENOTE_TAG])
     assert status != -1, 'Get techshack simplenote notes failed.'
     for _note in notes:
         note, status = sn.get_note(_note['key'])
         assert status != -1, 'Get techshack simplenote note {} failed.'.format(_note['key'])
         for verse in _parse_simplenote_note(note['content']):
-            _generate_verse(verse)
+            if format == 'markdown':
+                _generate_verse(verse)
+            elif format == 'jsonrow':
+                _generate_jsonrow(verse)
 
 GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 def get_ga_stats(date):
