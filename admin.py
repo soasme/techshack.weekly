@@ -178,15 +178,19 @@ def _generate_jsonrow(verses):
 def import_simplenote(since, format):
     notes, status = sn.get_note_list(since=since, tags=[TECHSHACK_SIMPLENOTE_TAG])
     assert status != -1, 'Get techshack simplenote notes failed.'
-    for _note in notes:
-        note, status = sn.get_note(_note['key'])
-        assert status != -1, 'Get techshack simplenote note {} failed.'.format(_note['key'])
-        if format == 'markdown':
+    if format == 'markdown':
+        for _note in notes:
+            note, status = sn.get_note(_note['key'])
+            assert status != -1, 'Get techshack simplenote note {} failed.'.format(_note['key'])
             for verse in _parse_simplenote_note(note['content']):
                 _generate_verse(verse)
-        elif format == 'jsonrow':
-            verses = list(_parse_simplenote_note(note['content']))
-            _generate_jsonrow(verses)
+    elif format == 'jsonrow':
+        verses = []
+        for _note in notes:
+            note, status = sn.get_note(_note['key'])
+            assert status != -1, 'Get techshack simplenote note {} failed.'.format(_note['key'])
+            verses.extend(list(_parse_simplenote_note(note['content'])))
+        _generate_jsonrow(verses)
 
 GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 def get_ga_stats(date):
