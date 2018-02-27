@@ -136,7 +136,7 @@ def _parse_simplenote_note(content):
     if _is_valid_ctx(ctx):
         yield {'date': ctx['date'], 'uuid': ctx['uuid'],
                 'url': ctx['url'], 'title': ctx.get('title'),
-                'tags': ctx['tags'], 'category': ctx.get('category'),
+                'tags': ctx.get('tags'), 'category': ctx.get('category'),
                 'content': '\n'.join(ctx['content'])}
 
 
@@ -160,16 +160,14 @@ def _generate_verse(verse):
 
 def _generate_jsonrow(verses):
     print(json.dumps([{
-        'uuid': verse['uuid'],
-        'title': verse['title'],
+        'key': verse['uuid'],
+        'title': verse.get('title') or 'No-title',
         'text': verse['content'],
         'url': verse['url'],
-        'modified': '%s000000000' % verse['date'].replace('-', ''),
-        'created': '%s000000000' % verse['date'].replace('-', ''),
-        'ts-type': 'verse',
-        'ts-date': verse['date'],
-        'ts-category': verse.get('category', 'non-categorized'),
-        'ts-tags': verse.get('tags', 'untagged').replace('|', ' ').replace(',', ' '),
+        'type': 'verse',
+        'date': verse['date'],
+        'category': verse.get('category', 'non-categorized'),
+        'tags': verse.get('tags')
     } for verse in verses], ensure_ascii=False))
 
 @cli.command()
