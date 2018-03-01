@@ -282,6 +282,44 @@ def push_to_telegram_channel(release, input):
 
     bot.send_message(chat, text=str(text), parse_mode='Markdown')
 
+@cli.command()
+def sync_zetanote():
+    with open('default.json') as f:
+        data = json.load(f)
+        for note in data['notes'].values():
+            if 'title' in note and 'date' in note and 'key' in note \
+                    and 'category' in note and 'url' in note \
+                    and 'text' in note and note['title'] != 'No-title' \
+                    and 'type' in note and note['type'] == 'verse':
+                verse = """Title: %(title)s
+Date: %(date)s 00:00
+Modified: %(date)s 00:00
+Slug: verses/%(key)s
+Category: verses
+Authors: Ju Lin
+verse_category: %(category)s
+
+[查看原文](%(url)s)
+
+%(text)s""" % note
+                with open('content/verses/%s.md' % note['key'], 'w') as w:
+                    w.write(verse)
+            elif 'type' in note and note['type'] == 'techshack-issue' \
+                    and 'start' in note and 'end' in note \
+                    and 'publish' in note and 'issue' in note:
+                issue = """Title: 第 %(issue)s 期
+Date: %(publish)s 00:00
+Modified: %(publish)s 00:00
+Slug: issues/%(issue)s
+Category: issues
+Authors: Ju Lin
+Summary: Techshack Weekly 第 %(issue)s 期
+verse_start: %(start)s
+verse_end: %(end)s
+
+%(text)s""" % note
+                with open('content/issues/%s.md' % note['issue'], 'w') as w:
+                    w.write(issue)
 
 if __name__ == '__main__':
     cli()

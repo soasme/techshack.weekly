@@ -140,6 +140,11 @@ growth_stats:
 	make github
 
 dump_all:
-	pipenv run python admin.py import_simplenote --since='2018-01-01' --format=jsonrow > database.json
+	pipenv run python admin.py sync_zetanote
+
+view_raw:
+	 python -mjson.tool default.json | less
+
+
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
