@@ -149,6 +149,8 @@ dump_all:
 view_raw:
 	 python -mjson.tool default.json | less
 
+db:
+	git pull origin master; git add default.json; git commit -m'db updated.'; git push origin master
 
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
