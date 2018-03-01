@@ -121,6 +121,10 @@ github: publish
 	pipenv run ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
+travis: publish
+	pipenv run ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
+	git push -fq https://${GITHUB_TOKEN}@github.com/$(TRAVIS_REPO_SLUG).git $(GITHUB_PAGES_BRANCH) > /dev/null
+
 sync_verses:
 	rm -rf output
 	git pull

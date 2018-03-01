@@ -6,4 +6,4 @@ install:
     - pipenv install
 script:
     - make dump_all
-    - make github
+    - make travis
