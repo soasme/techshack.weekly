@@ -1,4 +1,9 @@
-# Tech Shack
+Title: Tech Shack
+Date: 2018-01-01 00:00
+Modified: 2018-01-01 00:00
+Slug: stories/0002-original-idea
+Category: stories
+Authors: Ju Lin
 
 ## 简介
 
