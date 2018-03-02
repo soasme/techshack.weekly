@@ -13,15 +13,16 @@
                             >{{ issue.title  }}</a>
                     </h3>
                 </header>
-                <div class="entry-content">
-                    {{ articles | newsletter_verses(issue) | newsletter_content(issue) | md}}
-                    <a class="readmore" href="{{ SITEURL  }}/{{ issue.url  }}"
-                            >阅读更多</a>
-                </div>
+                <section>{{ issue.content|truncate(200)}}</section>
             </article>
             <hr>
         {% endfor %}
     {% endif %}
 {% endfor %}
+<p>声明:</p>
+<ul>
+  <li>Techshack Weekly 所有内容以 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</a> 协议发布。</li>
+  <li>若对内容正确性存疑，请发推文并 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。</li>
+</ul>
 
 {% endblock content %}
