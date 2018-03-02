@@ -152,5 +152,13 @@ view_raw:
 db:
 	git pull origin master; git add default.json; git commit -m'db updated.'; git push origin master
 
+list_issues:
+	pipenv run zeta ls -ftype,issue,text | sort -k3 | grep techshack-issue
+
+list_latest_verses:
+	pipenv run zeta ls -ftype,date,title | grep verse | sort -k3 | tail -30
+
+telegram_message:
+	@pipenv run python admin.py tg_issue $(ISSUE)
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github

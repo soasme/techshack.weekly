@@ -6,10 +6,16 @@ $ pipenv install
 
 ---
 
-Build issues for one day:
+Sync data.
 
 ```
-$ pipenv run ./admin.py import_simplenote --since=2018-01-01
+$ make db
+```
+
+```
+$ make ISSUE=0006 telegram_message > /tmp/0006.md
+$ pipenv run ./admin.py push_to_telegram_channel /tmp/0006.md
+$ pipenv run ./admin.py push_to_telegram_channel /tmp/0006.md --release
 ```
 
 https://domchristie.github.io/turndown/

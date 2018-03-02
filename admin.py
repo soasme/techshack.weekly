@@ -10,6 +10,7 @@ import jinja2
 import requests
 import telegram
 import html
+from collections import defaultdict
 from urllib.parse import unquote
 from datetime import datetime, timedelta
 from apiclient.discovery import build
@@ -167,6 +168,32 @@ verse_end: %(end)s
 %(text)s""" % note
                 with open('content/issues/%s.md' % note['issue'], 'w') as w:
                     w.write(issue)
+
+PREFERENCE = ['News', 'DevOps', 'Security', 'System Design', 'Engineering', 'Infrastructure', 'Performance', 'Unix', 'Tools', 'Unix / Tools', 'Machine Learning', 'Python', 'Protocol', 'Coding Style', 'Database', 'Chicken Soup for the Soul', 'Frontend']
+
+@cli.command()
+@click.argument('issue')
+def tg_issue(issue):
+    def sort(kv):
+        category, _ = kv
+        if category in PREFERENCE:
+            return PREFERENCE.index(category)
+        return 999
+    with open('default.json') as f:
+        data = json.load(f)
+        iss = next(note for note in data['notes'].values() if note.get('issue') == issue)
+        click.echo('*%s*\n\n%s [前往查看](https://www.soasme.com/techshack.weekly/issues/%s.html)\n\n' % (issue, iss['text'], issue))
+        verses = [note for note in data['notes'].values() if note.get('type') == 'verse' and iss['start'] <= note['date'] < iss['end']]
+        cat_verses = defaultdict(list)
+        for verse in verses:
+            cat_verses[verse['category']].append(verse)
+        verses = sorted(cat_verses.items(), key=sort)
+        for cat, notes in verses:
+            click.echo('%s\n' % cat)
+            for note in notes:
+                url = 'https://www.soasme.com/techshack.weekly/verses/%s.html' % note['key']
+                click.echo('- [%s](%s)\n' % (note['title'], url))
+        #print(iss, verses)
 
 if __name__ == '__main__':
     cli()

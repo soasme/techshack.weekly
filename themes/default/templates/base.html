@@ -26,7 +26,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <div id="content" class="col-lg-8">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
                 <div class="entry">
                     {% block content %}
                     {% endblock %}
@@ -60,6 +61,7 @@
                 {% endif %}
                 <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
             </div>
+            <div class="col-lg-2"></div>
         </div>
     </div>
     {% include 'analytics.html' %}
