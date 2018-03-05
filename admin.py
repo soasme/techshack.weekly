@@ -96,7 +96,7 @@ def update_growth_numbers():
     data.update(get_tg_channel_members_count())
     data.update(get_mailchimp_subscribers_count())
     with open('content/stories/0001-growth-of-techshack-weekly.md') as f:
-        content = f.read()
+        content = f.read().strip()
         tag = '<NEW-STUFF-HERE>'
         line = ('|%(today)s|%(twitter_followers_count)s|'
             '%(mailchimp_subscribers_count)s|'
