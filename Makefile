@@ -134,6 +134,9 @@ growth_stats:
 	git push origin master
 	make github
 
+download:
+	scp balance:/zfs/gh/369081/default.json ./default.json
+
 dump_all:
 	pipenv run python admin.py sync_zetanote
 
