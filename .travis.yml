@@ -4,7 +4,7 @@ python:
 install:
     - pip install pipenv==11.0.0
     - pipenv install
-    - git clone git@github.com:soasme/sowiki.git
+    - git clone https://$GITHUB_TOKEN@github.com/soasme/sowiki.git
     - export DATA_DIR=./sowiki/tiddlers
 script:
     - make dump_all
