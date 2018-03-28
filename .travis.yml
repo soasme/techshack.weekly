@@ -2,7 +2,7 @@ language: python
 python:
     - "3.6"
 install:
-    - pip install pipenv
+    - pip install pipenv==11.0.0
     - pipenv install
     - git clone git@github.com:soasme/sowiki.git
     - export DATA_DIR=./sowiki/tiddlers

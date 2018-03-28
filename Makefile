@@ -125,23 +125,17 @@ travis: publish
 	pipenv run ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push -fq https://${GITHUB_TOKEN}@github.com/$(TRAVIS_REPO_SLUG).git $(GITHUB_PAGES_BRANCH) > /dev/null
 
-sync_verses:
-	rm -rf output
-	git pull
-	pipenv run python admin.py import_simplenote --since `python -c "from datetime import datetime, timedelta; print((datetime.utcnow() - timedelta(days=2)).strftime('%Y-%m-%d'))"`
-	git add content/verses
-	git commit -m'sync verses.'
-	git push
-	make github
-
 growth_stats:
 	git pull
 	pipenv run python admin.py update_growth_numbers > /tmp/.techshack.growth.md
 	cat /tmp/.techshack.growth.md > content/stories/0001-growth-of-techshack-weekly.md
 	git add content/stories/0001-growth-of-techshack-weekly.md
 	git commit -m'sync growth stats.'
-	git push
+	git push origin master
 	make github
+
+download:
+	scp balance:/zfs/gh/369081/default.json ./default.json
 
 dump_all:
 	pipenv run python admin.py sync_tiddlers > default.json
