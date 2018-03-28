@@ -144,7 +144,8 @@ growth_stats:
 	make github
 
 dump_all:
-	pipenv run python admin.py sync_zetanote
+	pipenv run python admin.py sync_tiddlers > default.json
+	pipenv run python admin.py dump_from_json
 
 view_raw:
 	 python -mjson.tool default.json | less

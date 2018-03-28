@@ -4,6 +4,8 @@ python:
 install:
     - pip install pipenv
     - pipenv install
+    - git clone git@github.com:soasme/sowiki.git
+    - export DATA_DIR=./sowiki/tiddlers
 script:
     - make dump_all
     - make travis

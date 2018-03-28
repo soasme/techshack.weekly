@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+import itertools
 import click
+import glob
 import sys
 import re
 import json
@@ -130,14 +132,43 @@ def push_to_telegram_channel(release, input):
 
     bot.send_message(chat, text=str(text), parse_mode='Markdown')
 
+def _parse_tiddler_header_item(content):
+    spliter = content.index(':')
+    return [content[:spliter].strip(), content[spliter+1:].strip()]
+
+def _parse_tiddler(content):
+    lines = content.splitlines()
+    meta = dict(_parse_tiddler_header_item(line) for line in itertools.takewhile(lambda l: l.strip(), lines))
+    meta['text'] = '\n'.join(itertools.dropwhile(lambda l: l.strip(), lines)).strip()
+    if 'ns' not in meta:
+        return
+    if meta['ns'] == 'techshack-weekly.verse':
+        meta['type'] = 'verse'
+    elif meta['ns'] == 'techshack-weekly.issue':
+        meta['type'] = 'techshack-issue'
+    else:
+        return
+    return meta
+
 @cli.command()
-def sync_zetanote():
+def sync_tiddlers():
+    notes = []
+    for path in glob.glob('%s/*.tid' % os.environ['DATA_DIR']):
+        with open(path) as f:
+            tiddler = _parse_tiddler(f.read())
+            if tiddler:
+                notes.append(tiddler)
+    click.echo(json.dumps(notes, indent=4, ensure_ascii=False))
+
+@cli.command()
+def dump_from_json():
     with open('default.json') as f:
         data = json.load(f)
-        for note in data['notes'].values():
+        assert len(data)
+        for note in data:
             if 'title' in note and 'date' in note and 'key' in note \
                     and 'category' in note and 'url' in note \
-                    and 'text' in note and note['title'] != 'No-title' \
+                    and 'text' in note \
                     and 'type' in note and note['type'] == 'verse':
                 verse = """Title: %(title)s
 Date: %(date)s 00:00
