@@ -108,5 +108,5 @@ hr{ border: 0; margin: 1.4em 0; color: #1abc9c; height: 1em; }
 hr:before {content: '...'; display: block; width: 100%; letter-spacing: 2em; text-indent: 2em; z-index: 1; line-height: .5; text-align: center;}
 */
 #container { margin: 20px; }
-.entry-title {  color: #353535; font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif; font-size: 2.5rem; margin: 1rem 0; text-align: center;}
+.entry-title {  color: #353535; font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif; margin: 1rem 0; text-align: center;}
 .entry-content p { text-align: justify; }
