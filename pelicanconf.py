@@ -38,5 +38,5 @@ GOOGLE_ANALYTICS = 'UA-36183732-2'
 
 THEME = 'themes/default'
 
-PLUGIN_PATHS = ['./plugins']
-PLUGINS = ['techshack_issue', ]
+#PLUGIN_PATHS = ['./plugins']
+#PLUGINS = ['techshack_issue', ]

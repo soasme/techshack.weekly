@@ -168,6 +168,30 @@ def sync_tiddlers():
 
     click.echo(json.dumps(notes, indent=4, ensure_ascii=False))
 
+PREFERENCE = ['News', 'DevOps', 'Security', 'System Design', 'Engineering', 'Infrastructure', 'Performance', 'Unix', 'Tools', 'Unix / Tools', 'Machine Learning', 'Python', 'Protocol', 'Coding Style', 'Database', 'Chicken Soup for the Soul', 'Frontend']
+
+def sort_preference(kv):
+    category, _ = kv
+    if category in PREFERENCE:
+        return PREFERENCE.index(category)
+    return 999
+
+def _gen_issue_text(data, iss):
+    text = []
+    issue = iss['issue']
+    text.append('%s [前往查看](https://www.soasme.com/techshack.weekly/issues/%s.html)\n\n' % (iss['text'], issue))
+    verses = [note for note in data if note.get('type') == 'verse' and iss['start'] <= note['date'] < iss['end']]
+    cat_verses = defaultdict(list)
+    for verse in verses:
+        cat_verses[verse['category']].append(verse)
+    verses = sorted(cat_verses.items(), key=sort_preference)
+    for cat, notes in verses:
+        text.append('%s\n' % cat)
+        for note in notes:
+            url = 'https://www.soasme.com/techshack.weekly/verses/%s.html' % note['key']
+            text.append('- [%s](%s)\n' % (note['title'], url))
+    return '\n'.join(text)
+
 @cli.command()
 def dump_from_json():
     with open('default.json') as f:
@@ -194,45 +218,30 @@ verse_category: %(category)s
             elif 'type' in note and note['type'] == 'techshack-issue' \
                     and 'start' in note and 'end' in note \
                     and 'publish' in note and 'issue' in note:
-                issue = """Title: 第 %(issue)s 期
+                note['_content'] = _gen_issue_text(data, note)
+                note['title'] = note.get('title') or 'Techshack Weekly 第 %s 期' % note['issue']
+                issue = """Title: Techshack Weekly 第 %(issue)s 期
 Date: %(publish)s 00:00
 Modified: %(publish)s 00:00
 Slug: issues/%(issue)s
 Category: issues
 Authors: Ju Lin
-Summary: Techshack Weekly 第 %(issue)s 期
+Summary: %(text)s
 verse_start: %(start)s
 verse_end: %(end)s
 
-%(text)s""" % note
+%(_content)s""" % note
                 with open('content/issues/%s.md' % note['issue'], 'w') as w:
                     w.write(issue)
 
-PREFERENCE = ['News', 'DevOps', 'Security', 'System Design', 'Engineering', 'Infrastructure', 'Performance', 'Unix', 'Tools', 'Unix / Tools', 'Machine Learning', 'Python', 'Protocol', 'Coding Style', 'Database', 'Chicken Soup for the Soul', 'Frontend']
 
 @cli.command()
 @click.argument('issue')
 def tg_issue(issue):
-    def sort(kv):
-        category, _ = kv
-        if category in PREFERENCE:
-            return PREFERENCE.index(category)
-        return 999
     with open('default.json') as f:
         data = json.load(f)
-        iss = next(note for note in data['notes'].values() if note.get('issue') == issue)
-        click.echo('*%s*\n\n%s [前往查看](https://www.soasme.com/techshack.weekly/issues/%s.html)\n\n' % (issue, iss['text'], issue))
-        verses = [note for note in data['notes'].values() if note.get('type') == 'verse' and iss['start'] <= note['date'] < iss['end']]
-        cat_verses = defaultdict(list)
-        for verse in verses:
-            cat_verses[verse['category']].append(verse)
-        verses = sorted(cat_verses.items(), key=sort)
-        for cat, notes in verses:
-            click.echo('%s\n' % cat)
-            for note in notes:
-                url = 'https://www.soasme.com/techshack.weekly/verses/%s.html' % note['key']
-                click.echo('- [%s](%s)\n' % (note['title'], url))
-        #print(iss, verses)
+        iss = next(note for note in data if note.get('issue') == issue)
+        click.echo(_gen_issue_text(data, iss))
 
 if __name__ == '__main__':
     cli()

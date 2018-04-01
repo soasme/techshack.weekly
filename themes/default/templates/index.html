@@ -13,7 +13,7 @@
                             >{{ issue.title  }}</a>
                     </h3>
                 </header>
-                <section>{{ issue.content|truncate(200)}}</section>
+                <section>{{ issue.summary }}</section>
             </article>
             <hr>
         {% endfor %}
