@@ -158,6 +158,14 @@ def sync_tiddlers():
             tiddler = _parse_tiddler(f.read())
             if tiddler:
                 notes.append(tiddler)
+    for path in glob.glob('%s/*.md' % os.environ['DATA_DIR']):
+        with open('%s.meta' % path) as f:
+            tiddler = _parse_tiddler(f.read())
+        if tiddler:
+            with open(path) as f:
+                tiddler['text'] = f.read()
+            notes.append(tiddler)
+
     click.echo(json.dumps(notes, indent=4, ensure_ascii=False))
 
 @cli.command()
