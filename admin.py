@@ -61,7 +61,7 @@ def get_ga_stats(date):
     reports = response.get('reports', [])
     assert len(reports) == 1, reports
     report = reports[0]
-    return dict(zip(['site_sessions', 'site_users', 'page_views'], report['data']['rows'][0]['metrics'][0]['values']))
+    return dict(zip(['Site Sessions', 'Site Users', 'PV'], report['data']['rows'][0]['metrics'][0]['values']))
 
 def get_twitter_client():
     # https://github.com/inueni/birdy
@@ -74,12 +74,12 @@ def get_twitter_client():
 
 def get_twitter_followers_count():
     res = get_twitter_client().api.users.show.get(screen_name='techshackweekly')
-    return {'twitter_followers_count': res.data['followers_count']}
+    return {'Followers': res.data['followers_count']}
 
 def get_tg_channel_members_count():
     res = requests.get('https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568')
     match = re.search(r'(\d+) members', str(res.content))
-    return {'telegram_channel_members_count': int(match.group(1))}
+    return {'Members': int(match.group(1))}
 
 def get_mailchimp_subscribers_count():
     key = os.environ.get('MAILCHIMP_API_KEY')
@@ -87,26 +87,40 @@ def get_mailchimp_subscribers_count():
             auth=('TechshackWeekly', key))
     if res.status_code != 200:
         raise Exception(res.json())
-    return {'mailchimp_subscribers_count': res.json()['total_subscribers']}
+    return {'Subscribers': res.json()['total_subscribers']}
 
 @cli.command()
 def update_growth_numbers():
     today = datetime.utcnow().strftime('%Y-%m-%d')
-    data = {'today': today}
+    data = {'Date': today}
     data.update(get_ga_stats(today))
     data.update(get_twitter_followers_count())
     data.update(get_tg_channel_members_count())
     data.update(get_mailchimp_subscribers_count())
-    with open('content/stories/0001-growth-of-techshack-weekly.md') as f:
-        content = f.read().strip()
-        tag = '<NEW-STUFF-HERE>'
-        line = ('|%(today)s|%(twitter_followers_count)s|'
-            '%(mailchimp_subscribers_count)s|'
-            '%(telegram_channel_members_count)s|'
-            '%(site_sessions)s|%(site_users)s|%(page_views)s|' % data
-        )
-        content = content.replace(tag, line + '\n' + tag)
-        print(content)
+    with open('%s/Techshack_Weekly_Meta_-_Growth_Stats.tid' % os.environ['DATA_DIR']) as f:
+        tiddler = _parse_tiddler(f.read(), raw=True)
+        dataset = json.loads(tiddler['text'])
+        el = next((t for t in dataset if t['Date'] == today), None)
+        if el:
+            el.update(data)
+        else:
+            dataset.append(data)
+    for k in tiddler:
+        if k != 'text':
+            print('%s: %s' % (k, tiddler[k]))
+    print('\n')
+    print(json.dumps(dataset, indent=4, sort_keys=True))
+
+    # with open('content/stories/0001-growth-of-techshack-weekly.md') as f:
+        # content = f.read().strip()
+        # tag = '<NEW-STUFF-HERE>'
+        # line = ('|%(today)s|%(twitter_followers_count)s|'
+            # '%(mailchimp_subscribers_count)s|'
+            # '%(telegram_channel_members_count)s|'
+            # '%(site_sessions)s|%(site_users)s|%(page_views)s|' % data
+        # )
+        # content = content.replace(tag, line + '\n' + tag)
+        # print(content)
 
 @cli.command()
 @click.option('--release/--no-release', default=False)
@@ -136,7 +150,7 @@ def _parse_tiddler_header_item(content):
     spliter = content.index(':')
     return [content[:spliter].strip(), content[spliter+1:].strip()]
 
-def _parse_tiddler(content):
+def _parse_tiddler(content, raw=False):
     lines = content.splitlines()
     meta = dict(_parse_tiddler_header_item(line) for line in itertools.takewhile(lambda l: l.strip(), lines))
     meta['text'] = '\n'.join(itertools.dropwhile(lambda l: l.strip(), lines)).strip()
@@ -146,6 +160,8 @@ def _parse_tiddler(content):
         meta['type'] = 'verse'
     elif meta['ns'] == 'techshack-weekly.issue':
         meta['type'] = 'techshack-issue'
+    elif raw:
+        return meta
     else:
         return
     return meta

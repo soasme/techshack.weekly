@@ -126,13 +126,8 @@ travis: publish
 	git push -fq https://${GITHUB_TOKEN}@github.com/$(TRAVIS_REPO_SLUG).git $(GITHUB_PAGES_BRANCH) > /dev/null
 
 growth_stats:
-	git pull
-	pipenv run python admin.py update_growth_numbers > /tmp/.techshack.growth.md
-	cat /tmp/.techshack.growth.md > content/stories/0001-growth-of-techshack-weekly.md
-	git add content/stories/0001-growth-of-techshack-weekly.md
-	git commit -m'sync growth stats.'
-	git push origin master
-	make github
+	pipenv run python admin.py update_growth_numbers > /tmp/.techshack.growth.tid
+	cp /tmp/.techshack.growth.tid ../sowiki/tiddlers/Techshack_Weekly_Meta_-_Growth_Stats.tid
 
 download:
 	scp balance:/zfs/gh/369081/default.json ./default.json
