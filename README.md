@@ -46,4 +46,3 @@ $ make mailchimp_message > /tmp/$ISSUE.md
 $ make mailchimp
 ```
 
-https://domchristie.github.io/turndown/
