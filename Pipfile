@@ -18,7 +18,6 @@ pelican = "*"
 Markdown = "*"
 ghp-import = "*"
 click = "*"
-google-api-python-client = "*"
 python-telegram-bot = "*"
 
 

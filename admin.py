@@ -16,7 +16,6 @@ from collections import defaultdict
 from urllib.parse import unquote
 from datetime import datetime, timedelta
 from apiclient.discovery import build
-from oauth2client.service_account import ServiceAccountCredentials
 
 TECHSHACK_SIMPLENOTE_TAG = 'techshack'
 DATE_PATTERN = re.compile(r'^# Techshack\s+(\d{4}-\d{2}-\d{2})$')
@@ -39,29 +38,6 @@ verse_category: {{category}}
 def cli():
     pass
 
-
-GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
-def get_ga_stats(date):
-    # https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GA_KEY_FILE_LOCATION'], GA_SCOPES)
-    analytics = build('analyticsreporting', 'v4', credentials=credentials)
-    response = analytics.reports().batchGet(
-        body={
-            'reportRequests': [
-            {
-            # https://ga-dev-tools.appspot.com/account-explorer/
-            'viewId': os.environ['GA_VIEW_ID'],
-            'dateRanges': [{'startDate': date, 'endDate': date}],
-            # https://developers.google.com/analytics/devguides/reporting/core/dimsmets
-            'metrics': [{'expression': 'ga:sessions'}, {'expression': 'ga:users'}, {'expression': 'ga:pageviews'}],
-            #'dimensions': [{'name': 'ga:country'}]
-            }]
-        }
-    ).execute()
-    reports = response.get('reports', [])
-    assert len(reports) == 1, reports
-    report = reports[0]
-    return dict(zip(['Site Sessions', 'Site Users', 'PV'], report['data']['rows'][0]['metrics'][0]['values']))
 
 def get_twitter_client():
     # https://github.com/inueni/birdy
@@ -93,7 +69,6 @@ def get_mailchimp_subscribers_count():
 def update_growth_numbers():
     today = datetime.utcnow().strftime('%Y-%m-%d')
     data = {'Date': today}
-    data.update(get_ga_stats(today))
     data.update(get_twitter_followers_count())
     data.update(get_tg_channel_members_count())
     data.update(get_mailchimp_subscribers_count())
