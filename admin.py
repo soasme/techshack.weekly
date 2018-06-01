@@ -15,7 +15,6 @@ import html
 from collections import defaultdict
 from urllib.parse import unquote
 from datetime import datetime, timedelta
-from apiclient.discovery import build
 
 TECHSHACK_SIMPLENOTE_TAG = 'techshack'
 DATE_PATTERN = re.compile(r'^# Techshack\s+(\d{4}-\d{2}-\d{2})$')
