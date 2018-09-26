@@ -126,15 +126,15 @@ travis: publish
 	git push -fq https://${GITHUB_TOKEN}@github.com/$(TRAVIS_REPO_SLUG).git $(GITHUB_PAGES_BRANCH) > /dev/null
 
 growth_stats:
-	pipenv run python admin.py update_growth_numbers > /tmp/.techshack.growth.tid
+	pipenv run python admin.py update-growth-numbers > /tmp/.techshack.growth.tid
 	cp /tmp/.techshack.growth.tid ../sowiki/tiddlers/Techshack_Weekly_Meta_-_Growth_Stats.tid
 
 download:
 	scp balance:/zfs/gh/369081/default.json ./default.json
 
 dump_all:
-	pipenv run python admin.py sync_tiddlers > default.json
-	pipenv run python admin.py dump_from_json
+	pipenv run python admin.py sync-tiddlers > default.json
+	pipenv run python admin.py dump-from-json
 
 view_raw:
 	 python -mjson.tool default.json | less
@@ -149,6 +149,6 @@ list_latest_verses:
 	pipenv run zeta ls -ftype,date,title | grep verse | sort -k3 | tail -30
 
 telegram_message:
-	@pipenv run python admin.py tg_issue $(ISSUE)
+	@pipenv run python admin.py tg-issue $(ISSUE)
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
