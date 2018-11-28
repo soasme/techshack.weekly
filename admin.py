@@ -141,7 +141,7 @@ def _parse_tiddler(content, raw=False):
     return meta
 
 @cli.command()
-def sync_tiddlers():
+def synctiddlers():
     notes = []
     for path in glob.glob('%s/*.tid' % os.environ['DATA_DIR']):
         with open(path) as f:
@@ -183,7 +183,7 @@ def _gen_issue_text(data, iss):
     return '\n'.join(text)
 
 @cli.command()
-def dump_from_json():
+def dumpfromjson():
     with open('default.json') as f:
         data = json.load(f)
         assert len(data)

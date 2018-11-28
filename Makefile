@@ -133,8 +133,8 @@ download:
 	scp balance:/zfs/gh/369081/default.json ./default.json
 
 dump_all:
-	pipenv run python admin.py sync-tiddlers > default.json
-	pipenv run python admin.py dump-from-json
+	pipenv run python admin.py synctiddlers > default.json
+	pipenv run python admin.py dumpfromjson
 
 view_raw:
 	 python -mjson.tool default.json | less
