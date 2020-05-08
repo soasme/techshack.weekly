@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9689f8e4-7f3a-40fb-8acf-c91941eab237.html" rel="bookmark"
+                                title="Permalink to Why You Should Do It Yourself"
+                                >Why You Should Do It Yourself</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.linuxjournal.com/content/why-you-should-do-it-yourself">查看原文</a></p>
+<p>本文倡导了一种学习方法：DIY！对应汉语：知其然，知其所以然。使用 Linux 多戳戳看系统怎么运行的，出了问题去底层看看怎么修复，云实例出问题删了重建对职业生涯没啥帮助。建议可以自己鼓捣鼓捣 Linux 桌面，树莓派，从 DHCP, DNS，mailserver, webserver 开始一个一个搭建</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9689f8e4-7f3a-40fb-8acf-c91941eab237.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b8a2495e-9e8b-4f5c-a9a6-c91ae35309d1.html" rel="bookmark"
+                                title="Permalink to The Benefits of HTTPS for DNS"
+                                >The Benefits of HTTPS for DNS</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://bitsup.blogspot.com/2018/05/the-benefits-of-https-for-dns.html">查看原文</a></p>
+<p>本文介绍了最近 IETF 标准的一项议案 DNS over HTTPS (DoH)，并探讨了为什么不选用 DNS over TCP。首先DoH 和 DoT 二者有很多是一样的，甚至 HTTPS 基本都是基于 TCP 的。人们寄希望于 HTTPS 可以修复 DNS 劫持的问题，通过 HTTPS 也可以引入更好地 纠错，Congestion 控制。现有大部分互联网设施对 HTTP 几乎都支持地非常友好。HTTP/2 到 QUIC 的升级，可以让 DoH 不用再去做标准化。好处多多，对于 HTTP 和 DNS 协议二者可能都是互利互惠的事情。有人甚至在考虑集成 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b8a2495e-9e8b-4f5c-a9a6-c91ae35309d1.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/464ce7f2-d2ce-4f39-a1cf-1d6538db4474.html" rel="bookmark"
+                                title="Permalink to Linux Replacing Netstat"
+                                >Linux Replacing Netstat</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://utcc.utoronto.ca/~cks/space/blog/linux/ReplacingNetstatNotBad">查看原文</a></p>
+<p>本文讨论了 Linux 替换掉 Unix 标准的一套网络管理工具 netstat, ifconfig，使用新的工具例如 ss, ip 套件。</p>
+<ul>
+<li>Linux ss ip 这套工具使用 netlink sockets，比较高效. netstat, ifconfig 这套工具的缺点在于性能低，要从 /proc 中读取很多文件，而要改写底层估计很难，技术上倒是可以做到但是更多是个 political 问题。</li>
+<li>另外一个问题是 ifconfig 的输出其实已经和现在的网络架构蛮不一样了，有些信息都不够全。要修输出格式，估计很多脚本都会坏掉。</li>
+<li>既然升级成本太高，切到新工具也是个不错的办法。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/464ce7f2-d2ce-4f39-a1cf-1d6538db4474.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/8cbbb5b2-8e53-4d9c-ad82-2e578692f8dc.html" rel="bookmark"
+                                title="Permalink to Debug Latency - Additional Signals of Services"
+                                >Debug Latency - Additional Signals of Services</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/observability/want-to-debug-latency-7aa48ecbe8f7">查看原文</a></p>
+<p>本文介绍了如何在服务响应时间偏高后快速定位问题，解决方案是做 service tracing。监控除了采集应用的 latency，也采集依赖服务的调用或者方法的 latency，面板上可以在应用 latency 偏高后转而查看具体依赖的 latency distribution heatmap，如果能定位到具体的机器或者进程就更好了，可以转到具体的机器去排查 utilization 和内存什么的。从方法上来说，就是有办法 drilldown 到具体的病灶，链条不能断。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/8cbbb5b2-8e53-4d9c-ad82-2e578692f8dc.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/929237cf-e3f1-47b1-b607-89977bad2bc4.html" rel="bookmark"
+                                title="Permalink to Calendar Versioning"
+                                >Calendar Versioning</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://calver.org/">查看原文</a></p>
+<p>Calendar Versioning 是一种基于日历日期的软件发新版打版本号的方法。软件会随着时间越来越好，这种发版方法简称 CalVer，一般使用 Gregorian calendar。例如 Ubuntu，Twisted, youtube_dl, pytz 等不少软件使用这种方法抬版本号。使用 CalVer 的场景可以是项目非常大，或者是 time-sensitive 的项目。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/929237cf-e3f1-47b1-b607-89977bad2bc4.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b6e5d665-8d64-4ff6-afaf-7530c6cf2062.html" rel="bookmark"
+                                title="Permalink to Good code - easy to delete and debug"
+                                >Good code - easy to delete and debug</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://programmingisterrible.com/post/173883533613/code-to-debug">查看原文</a></p>
+<p>本文讨论了Debuggable code 的好处。</p>
+<ul>
+<li>Debuggable code 可能和 clean code 相违背</li>
+<li>Robust software 有一个特性：能在任何有问题不晓得怎么处理的地方崩溃，又能从上次崩溃的地方恢复执行。时不时做些 check，过不了的地方直接崩溃，而不是简单认为“这不可能发生”，这样会省下很多debug的时间。</li>
+<li>Debuggable code: 总是在运行前做些检查。</li>
+<li>比起运行的快的系统，不如慢一些，但是容易 debug</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b6e5d665-8d64-4ff6-afaf-7530c6cf2062.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/116c6a55-c081-4f7c-9a79-f55785e7ec3f.html" rel="bookmark"
+                                title="Permalink to Google - performance analysis of cloud applications"
+                                >Google - performance analysis of cloud applications</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.acolyer.org/2018/05/04/performance-analysis-of-cloud-applications/">查看原文</a></p>
+<p>本文是一篇 Google 的论文的学习笔记，论文讲的是 Google 如何给像 Gmail 这样的 user-facing 服务做性能分析和性能数据收集。</p>
+<ul>
+<li>要想分析生产环境的性能，只能上生产环境去收集，不能在实验环境里面收集。生产环境的数据实在是太难预测了。</li>
+<li>Google 使用的技术有两种：<ul>
+<li>coordinated bursty tracing：所谓的 bursty 是指同一时间点，所有程序同时开启 tracing 几毫秒，然后同时关闭 tracing 一会儿，如此往复。</li>
+<li>vertical context injection：比较复杂，大约是整个系统各个层上的所有软件都直接触发 syscall，通过一些无副作用的 syscall 序列把需要的信息丢进 kernal traces。// 有点黑科技。。</li>
+</ul>
+</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/116c6a55-c081-4f7c-9a79-f55785e7ec3f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/130a0c2b-5997-4c40-bb1e-de75cf4d77af.html" rel="bookmark"
+                                title="Permalink to Kubernetes Chaos Engineering - kubelet and kube-proxy"
+                                >Kubernetes Chaos Engineering - kubelet and kube-proxy</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://learnk8s.io/blog/kubernetes-chaos-engineering-lessons-learned">查看原文</a></p>
+<p>本文是一篇实验报告，在 GCE 上删掉 iptable 规则后，路由到那台节点的请求会怎么样呢？</p>
+<ul>
+<li>理解的前提是：<ul>
+<li>kube-proxy 运行在每台节点上</li>
+<li>kube-proxy 需要查询 master 才能知道每个节点能处理哪些 application 的请求。</li>
+<li>就算请求到了节点，而应用不在这个节点上，kube-proxy 也能将请求导到临近可用的节点上。</li>
+<li>kube-proxy 负责管理 iptable 规则</li>
+</ul>
+</li>
+<li>当你删除了某个节点上的 iptable 的一条规则，请求会卡住大约 30 秒，不 timeout 的话，最终会等到结果响应回去。</li>
+<li>原理：有 pod add/delete 的时候 master node 就会重新计算 routing list.kube-proxy 会每隔 <code>--iptables-sync-period</code> （10-30s …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/130a0c2b-5997-4c40-bb1e-de75cf4d77af.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2966c7b5-df32-4c85-a854-a694e3af4310.html" rel="bookmark"
+                                title="Permalink to THE STATE OF DEBUGGING MICROSERVICES ON KUBERNETES"
+                                >THE STATE OF DEBUGGING MICROSERVICES ON KUBERNETES</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://radu-matei.com/blog/state-of-debugging-microservices-on-k8s/">查看原文</a></p>
+<p>有了 Kubernetes 编排的容器，服务，部署，Pod，Secret 等系统部件，debug 反而变得比单体应用难多了，因为这些部件太动态了。一般出了问题，除了删掉 Pod，碰碰运气能否自己解决。如果不能解决，目前比较简单地做法：快速加个代码，打个日志，重新部署。文中提到了一个方案：部署 <a href="https://github.com/solo-io/squash">Squash</a> Daemonset 到 Host，可以做 debug。另外一个方案是打包镜像的时候就把 debugger 打进去，然后部署的时候把 debugger 的端口暴露到 node localhost。最后一个方案是 kubernetes <code>--feature-gates=PodShareProcessNamespace=true</code> 和 <code>kubectl debug  --image=&lt;your-debugger-image&gt; &lt;your-application-pod&gt;</code>。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2966c7b5-df32-4c85-a854-a694e3af4310.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/571a9b36-5742-43d9-82f4-c246968afd61.html" rel="bookmark"
+                                title="Permalink to SRE vs DevOps - close friends"
+                                >SRE vs DevOps  - close friends</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2018/05/SRE-vs-DevOps-competing-standards-or-close-friends.html">查看原文</a></p>
+<p>这又是一篇比较 SRE 和 DevOps 的文章。SRE 要去定义什么算一个服务的可用指标，哪些可用的级别, 以及不可用时的预案。这些事情有对应的概念，SLI-指标，SLO-指标的目标，SLA-跟客户的约定目标。SRE 在定义出这些指标后，要去搜集监控信息，算出 uptime，进而算出各个指标。如果违背了 SLO，也就是 uptime 降低了，甚至烧光了预定的额度（error budget），那在恢复之前就别做特性开发了，把系统调稳了先。Toil 是指手动做运维的部分工作，SRE 的目标是尽可能将这部分工作降低。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/571a9b36-5742-43d9-82f4-c246968afd61.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses20.html">&laquo;</a>
+    Page 21 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses22.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

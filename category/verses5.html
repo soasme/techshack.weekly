@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ea1b1bb9-f044-42d5-b372-372bbe7da598.html" rel="bookmark"
+                                title="Permalink to How to manage connections efficiently in any database"
+                                >How to manage connections efficiently in any database</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://brandur.org/postgres-connections">查看原文</a></p>
+<p>本文讨论了如何高效管理数据库连接。下图是 Postgres 的 forking 进程模型，瓶颈在共享内存那块。</p>
+<p><img alt="" src="https://brandur.org/assets/postgres-connections/process-model.svg"></p>
+<p>优化方法：</p>
+<ul>
+<li>connection pools: 在每个节点都保存一个内存池，workers 从内存池拿连接，而内存池只需要向 master 维持一个连接。缺点是一旦遇上使用 unicorn/puma 这类 forking servers，程序就不是单进程了，内存池就没那么有效。
+<img alt="" src="https://brandur.org/assets/postgres-connections/connection-pooling.svg"></li>
+<li>minimum viable checkouts: workers 只在必要的时候占用连接池，像 decoding，validating， rate limiting 这些事情就别占用连接时间了。
+<img alt="" src="https://brandur.org/assets/postgres-connections/minimum-viable-checkout.svg"></li>
+<li>PgBouncer &amp; inter-node pooling: 如果连接还是太多了，可以考虑在数据库前面再放一层 proxy，让 proxy 处理这些连接，给后端数据库减负担。
+<img alt="" src="https://brandur.org/assets/postgres-connections/pgbouncer.svg"></li>
+</ul>
+<p>结论：连接即是资源（connection as …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ea1b1bb9-f044-42d5-b372-372bbe7da598.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/152b7f16-863d-4f8a-9358-da664c75f834.html" rel="bookmark"
+                                title="Permalink to Subversion Delta Editor - Beautiful Code Chapter 2"
+                                >Subversion Delta Editor - Beautiful Code Chapter 2</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.red-bean.com/kfogel/beautiful-code/bc-chapter-02.html">查看原文</a></p>
+<p>本文论述的核心是讨论 svn delta editor 接口的美。</p>
+<p>背景：通过两文件的仓库 /A/fish/tuna/FILE， /B/ 的图表描述版本控制，树的变型。
+过渡：tree diff 该如何表达呢？开始讨论挑战在哪里。
+正篇：概念介绍，贴出源码，就上面的例子给出源码实际执行的序列，带来的好处。
+结论：好处的综述：简化开发，快速适配新功能。</p>
+<hr>
+<ul>
+<li><code>svn_delta_editor_t</code> 这个 struct 中定义了关于表达 tree diff 的核心操作接口，主要在于把树的深度优先遍历和<code>apply_textdelta</code>分拆出来。</li>
+<li>有趣的是，文中提到了一个废弃的老接口，它视图解决 X 问题，后来的开发者们尝试用它来解决 Y 问题但是并不太顺利，所以就变成了一个废弃的接口。尽管如此，原来的设计依然很漂亮 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/152b7f16-863d-4f8a-9358-da664c75f834.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/185ea9b2-0d34-4be8-8e63-82a47eb84a84.html" rel="bookmark"
+                                title="Permalink to How to create an OS from scratch"
+                                >How to create an OS from scratch</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/cfenollosa/os-tutorial">查看原文</a></p>
+<p>这个小仓库介绍了如何从头写一个 OS，很适合想通过 get hands dirty 的人深入学习 OS。</p>
+<ul>
+<li>Mac 用户需要准备 qemu, nasm (brew install)</li>
+<li>可以通过 nasm 编译汇编代码</li>
+<li>可以通过 qemu 启动镜像</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/185ea9b2-0d34-4be8-8e63-82a47eb84a84.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/55f3b26a-1554-4b27-b8a7-6afc9a4e7871.html" rel="bookmark"
+                                title="Permalink to Kubernetes for small projects"
+                                >Kubernetes for small projects</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://carlosrdrz.es/kubernetes-for-small-projects/">查看原文</a></p>
+<p>本文是 <a href="https://www.doxsey.net/blog/kubernetes--the-surprisingly-affordable-platform-for-personal-projects">这篇文章</a> 的驳文，前文认为 k8s 适合小项目，本文作者则认为不合适。软件工程很讲究 trade-off 的艺术.</p>
+<ul>
+<li>rsync 到服务器怎么了，不好吗，它能用啊。</li>
+<li>软件依赖很多怎么了，ansible playbook 运行的很好啊</li>
+<li>systemd 怎么了，蛮好用的呀。</li>
+<li>nginx virtual host 设计也不难啊，比起 k8s daemon set。</li>
+<li>zero-downtime 其实是个伪需求吧，至少对于很多项目来说。</li>
+<li>回滚？部署一遍老版本就好了啦。</li>
+<li>那些 redis 七七八八的服务怎么配？就用上游 distro 的安装包外加配置文件，在适当的时间点可以挪进 ansible。</li>
+</ul>
+<p>作者认为一个月付 5 刀的小项目，去考虑 infra 为时尚早了（除非你更想鼓捣那些东西另说 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/55f3b26a-1554-4b27-b8a7-6afc9a4e7871.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cb605c66-05e4-47d2-89e7-20da15052638.html" rel="bookmark"
+                                title="Permalink to Artifact Introduction"
+                                >Artifact Introduction</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://vitiral.github.io/artifact/docs/Introduction.html">查看原文</a></p>
+<p>Artifact 是一个设计的文档工具，虽然适用于设计，但是也可以窥见很多软件工程的思路。</p>
+<ul>
+<li>设计是结果导向的，一般先设计出样子，再慢慢推进。</li>
+<li>领域模型是一种叫做 <code>artifacts</code> 的对象，有 name，text，可以连接到其他 artifacts 和源代码。</li>
+<li>有三种 artifacts: REQ(需求），SPC(规约), TST(测试)。例如，下面的示例文档：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">REQ</span><span class="o">-</span><span class="n">name</span>
+<span class="n">partof</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">REQ</span><span class="o">-</span><span class="n">other</span>
+<span class="o">-</span> <span class="n">REQ</span><span class="o">-</span><span class="n">foo</span>
+<span class="n">done</span><span class="p">:</span> <span class="n">This</span> <span class="n">artifact</span> <span class="k">is</span> <span class="ss">&quot;defined as done&quot;</span><span class="p">.</span>
+<span class="o">###</span>
+<span class="n">The</span> <span class="n">description</span> <span class="k">of</span> <span class="n">the</span> <span class="n">artifact</span> <span class="n">goes</span> <span class="n">here</span><span class="p">.</span>
+
+<span class="n">You</span> <span class="n">can …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cb605c66-05e4-47d2-89e7-20da15052638.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d0ee9444-b992-43eb-898b-5913ea866879.html" rel="bookmark"
+                                title="Permalink to Goroutines vs Java Threads"
+                                >Goroutines vs Java Threads</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://rcoh.me/posts/why-you-can-have-a-million-go-routines-but-only-1000-java-threads/">查看原文</a></p>
+<p>本文谈论了为何在一台机器上可以有百万个 Goroutines 而只能有千量级的 Threads.</p>
+<ul>
+<li>Threads 的运行需要两个东西：指令 pc 用来表示运行到了代码的哪里，以及 stack 用来维护局部变量和到堆上的指针变量。所有 Threasd 共享一个 Heap。</li>
+<li>几乎所有的 JVM 实现都依赖 OS threads 来实现语言的 Thread。所以操作系统能搞出的上限，Java 只会少不会多。</li>
+<li>假设 JVM per thread 能用 1MB stack，那 1GB 内存只能产生 1k Threads。</li>
+<li>Go 使用 Dynamically Sized Stacks。每个 stack 只消耗 4kb，所以 1GB …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d0ee9444-b992-43eb-898b-5913ea866879.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f13951b8-a0ea-4816-9b05-97c40120615c.html" rel="bookmark"
+                                title="Permalink to k8s 配置最佳实践"
+                                >k8s 配置最佳实践</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://kubernetes.io/docs/concepts/configuration/overview/">查看原文</a></p>
+<p>本文是 kubernetes Configuration Best Practices。</p>
+<ul>
+<li>总之指定最近的 stable api version</li>
+<li>用 yaml</li>
+<li>把相关的对象放到单一的一个文件。</li>
+<li>没事不需要指定默认值，越多代码越容易引发错误。</li>
+<li>把描述放进 annotations 方便后面追查。</li>
+<li>不用 Naked Pods，尽可能用 ReplicaSet 或者 Deployment。</li>
+<li>创建 service 最早在 deployments/replicaset 之前操作。</li>
+<li>用 dns name of service 替代环境变量。</li>
+<li>debug 的时候用 kubectl port-forward 或者 apiserver proxy</li>
+<li>用好标签，例如 app 是什么，tier 是哪层 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f13951b8-a0ea-4816-9b05-97c40120615c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0fb977a1-c2bf-400f-8b99-c6865fae8e24.html" rel="bookmark"
+                                title="Permalink to 使用 audio 数据产生 true entropy"
+                                >使用 audio 数据产生 true entropy</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://josephbasquin.fr/audiorandomness">查看原文</a></p>
+<p>本文介绍了一个脑洞，使用电脑的话筒录声音，可能附近空调或者键盘打字的背景噪音会被录进去，用算法规整化+shuffle后可以得到 true random data（不是伪随机数，是真的随机数）。让我们希望这个软件不要运行在敲木鱼的和尚旁边。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0fb977a1-c2bf-400f-8b99-c6865fae8e24.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/228dd23b-bd82-48fe-a705-4adf63fd2c3c.html" rel="bookmark"
+                                title="Permalink to GitHub - Natural Language Semantic Code Search"
+                                >GitHub - Natural Language Semantic Code Search</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://githubengineering.com/towards-natural-language-semantic-code-search/">查看原文</a></p>
+<p>本文介绍了 GitHub 工程团队的一个脑洞 - 使用自然语言搜索代码：https://experiments.github.com/semantic-code-search</p>
+<p>目前它还只能搜索一些简单的 Python 相关的函数和方法。底层原理是</p>
+<ul>
+<li>搜索的词经过 Text Encoder 算出一个向量, 基于 fast.ai 库封装。</li>
+<li>仓库里的代码经过 Code Encoder 也算出一个向量, 使用了 sequence-to-sequence model / tree-based LSTMs / gated-graph networks 等算法。</li>
+<li>比较向量的相关性，给出列表。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/228dd23b-bd82-48fe-a705-4adf63fd2c3c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5cbedb53-2769-4b0b-98ca-6ae0c9d0eabd.html" rel="bookmark"
+                                title="Permalink to Rocky River Pattern"
+                                >Rocky River Pattern</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://seddonym.me/2018/09/16/rocky-river-pattern/">查看原文</a></p>
+<p>本文提出了一个编程范式：Rocky River。形同小河布满石头，软件也有上游下游，数据流经中间各个模块。</p>
+<p>Rocky River 要求：</p>
+<ul>
+<li>模块要小，容易被整合成一个大程序。</li>
+<li>程序变大后可以搞成二级的，三级的结构。</li>
+<li>使用分层架构，只有上层可以调用下层，不能有循环依赖。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5cbedb53-2769-4b0b-98ca-6ae0c9d0eabd.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses4.html">&laquo;</a>
+    Page 5 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses6.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2296bf57-abb5-4cf3-861a-9a05db431399.html" rel="bookmark"
+                                title="Permalink to 12 Factor App & AWS Serverless Applications"
+                                >12 Factor App & AWS Serverless Applications</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://aws.amazon.com/cn/blogs/compute/applying-the-twelve-factor-app-methodology-to-serverless-applications/">查看原文</a></p>
+<p><a href="https://12factor.net/">12-Factor App</a> 整理了一系列关于配置，部署，运行时，服务间通信等话题的方法论；这篇文章则讲述了如何在写 AWS Lambda + API Gateway 程序的时候符合这套标准。</p>
+<ul>
+<li>每个 Serverless 应用使用单独的库托管代码，编译成单独的交付产物拿去部署。拆库的标准是处理共享的事件的代码，需要放在一个仓库中。</li>
+<li>使用各种语言标准的库依赖管理软件，例如 node.js npm, python pip, java maven, NuGet-c#, go get 等。</li>
+<li>应用的配置放在环境变量中。应用读取配置的时候用类似 <code>process.env</code>, <code>os.environ</code> 等方法读取。如果配置是敏感的，那么将 key-value 存放在 KMS 这样的服务中。在 API Gateway 中这种配置可以是 stage …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2296bf57-abb5-4cf3-861a-9a05db431399.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e746b045-971d-4d06-ab27-0b7f685f5ece.html" rel="bookmark"
+                                title="Permalink to Python range 不是 iterator"
+                                >Python range 不是 iterator</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://treyhunner.com/2018/02/python-range-is-not-an-iterator/">查看原文</a></p>
+<p>这篇文章解释了为什么 Python 3 中 range 产生的对象不是 iterator。</p>
+<ul>
+<li>range 和 iterators 都是 lazy 的（延时求值），但是他们最重要的区别是 iterator 是一次性的，而 range 不是。</li>
+<li>你可以写 <code>iter(range(3))</code> 或者 <code>tuple(range(3))</code>，但不能写 <code>next(range(3))</code>，后者会报错 TypeError。</li>
+<li>range 对象定义了 start，end，step，以便我们遍历的时候算出来，从这点来说，range 是 lazy 的。但 iterator 用过一次就不能用了，例如 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e746b045-971d-4d06-ab27-0b7f685f5ece.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f90f6aa5-accb-40ac-99f4-551c3560ff21.html" rel="bookmark"
+                                title="Permalink to Write Dumb Code"
+                                >Write Dumb Code</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://matthewrocklin.com/blog/work/2018/01/27/write-dumb-code">查看原文</a></p>
+<p>本文介绍的主要话题是少写代码，保持简单。以下是作者的主要观点:</p>
+<ul>
+<li>给开源项目贡献的最好方法是：删代码。</li>
+<li>写容易被人看懂的代码。</li>
+<li>软件像是用来支付解决问题用的货币，相应地，付越少越好。</li>
+<li>用尽可能简单的技术，这样大多数人才能使用和扩展它而不需要理解很多。</li>
+<li>更少的代码，花费别人更少的时间去读，去 code review，去维护。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f90f6aa5-accb-40ac-99f4-551c3560ff21.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/777d0daf-7f7b-49b9-8cab-7b78cc82ab5a.html" rel="bookmark"
+                                title="Permalink to 使用 Dot 和 Graphviz 画图"
+                                >使用 Dot 和 Graphviz 画图</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://tonyballantyne.com/graphs.html">查看原文</a></p>
+<p>Dot 是一个使用文本描述流程图的小语言，Graphviz 是开源的画图软件，这篇文章介绍了如何使用 Graphviz 将 Dot 文本描述的结构化图表生成图片。</p>
+<ul>
+<li>最基本的图表是节点和边，例如 <code>graph G { a -- b; b --c; a -- c; }</code>。</li>
+<li>我们可以用 <code>graph G { rankdir=LR; a -- b; }</code> 生成左右方向的图表。</li>
+<li>有向图表可以用 <code>digraph G { a -&gt; b; b -&gt; c; }</code>。</li>
+<li>节点名字太长可以用标签：<code>digraph G { A [label="Apple"]; B [label="Banana"]; A -&gt; B}</code>。</li>
+<li>不满足方框节点，可以写各种形状，例如：<code>A …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/777d0daf-7f7b-49b9-8cab-7b78cc82ab5a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/8d1caaba-228b-4e6b-8dda-75cb21a9b656.html" rel="bookmark"
+                                title="Permalink to 世界上使用 Python 的大公司们"
+                                >世界上使用 Python 的大公司们</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://realpython.com/blog/python/world-class-companies-using-python/">查看原文</a></p>
+<p>这篇文章列出了几家使用了 Python 的大公司。</p>
+<ul>
+<li>Industrial Light and Magic，做 CG 的公司，开发过像星战，星际迷航等知名影片。他们本来使用 Unix shell，后来从 Python 1.4 开始就积极跟进，性能不高的部分用 C/C++ 写，然后用 Python 包上接口给他们的标准图形库用。他们的 Python 拳头产品是 OpenEXR。</li>
+<li>Google，龟叔以前上班的地方。Google 曾经的决定是“能用 Python 的地方用 Python，只有必须了才换成 C++”。</li>
+<li>Facebook，在 C++ 和 PHP/Hack 技术栈背后是很多 Python …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/8d1caaba-228b-4e6b-8dda-75cb21a9b656.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/af36eed3-7450-4f43-8ef6-7481312d400a.html" rel="bookmark"
+                                title="Permalink to 分布式系统管理的变迁"
+                                >分布式系统管理的变迁</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.xkyle.com/the-evolution-of-distributed-systems-management/">查看原文</a></p>
+<p>这篇文章的作者做了一份调查，调研了过去和现在大家都是怎么管理分布式系统的，并展望了下未来。</p>
+<ul>
+<li>手动部署和配置，例如 MySQL。当运行在 Master/Slave 模式下，它需要人工安装配置 ini 文件，然后用 shell 做运行时的 orchestration，尽管有一丢丢的脚本可以做一些简单地自动化，但它依然缺失内建的自动化设施，整套流程比较笨重。同类型的应用例如常见的网络交换器(Cisco IOS), Classic Redis, Zookeeper。</li>
+<li>Host-Centric 配置管理。使用诸如 Puppet，Chef，Ansible，Salt 基于主机自动化配置所有东西。缺点是当配置 cluster 的时候会有点不太方便。主要是因为这类工具的对象是 host, 而基于集群的操作则是基于应用节点。</li>
+<li>两类基于 Host-Centric 配置管理衍生的类型，一类的操作对象是分布式系统的 infrastructure 本身，例如 Hashicorp Terraform …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/af36eed3-7450-4f43-8ef6-7481312d400a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cad4f42b-4fdf-4e7d-9907-d236fdcdb2a8.html" rel="bookmark"
+                                title="Permalink to 如何评定服务的可用性 - Google Cloud Platform 博客"
+                                >如何评定服务的可用性 - Google Cloud Platform 博客</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2017/01/available-or-not-that-is-the-question-CRE-life-lessons.html">查看原文</a></p>
+<p>本文介绍了什么情况下服务是 success 的，以及如何评定服务是 success 的。而 success 的前置条件是 availability（可用性）。可用性指的是在给定时间段内服务有否达到其预期的功能。</p>
+<p>有人用 success-requests-count / total-requests-count, 有人用 up-time / total-time，不管哪个指标，都希望其到达 99.9% 甚至 99.999%。例如，假设使用了 99.9% 用于 up-time, 那么服务一个月不能超过宕机 43.2min (30days)。此外，Mean Time Between Failures (MTBF): total uptime / # of failures； Mean Time to Repair …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cad4f42b-4fdf-4e7d-9907-d236fdcdb2a8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f3121669-3a12-407f-a30f-a09432f858e2.html" rel="bookmark"
+                                title="Permalink to Google Cloud Platform Blog: SLO v/s SLI v/s SLA"
+                                >Google Cloud Platform Blog: SLO v/s SLI v/s SLA</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2017/01/availability-part-deux--CRE-life-lessons.html">查看原文</a></p>
+<p>本文介绍了 Google 内部如何为系统定制 Service Level Objective (SLO)。这个指标用于表示系统是否正在可靠高效地运行着，以及指导设计与架构变迁能够在继续满足要求。一般来说 Service Level Indicator (SLI) 适合 SLO 保持一致的，我们用 SLI 得到 service availability percentage，与 SLO 做对比，如果抵御 SLO，那系统可能性就偏低了，可能需要起新的健康的实例恢复指标。</p>
+<p>SLO 存在的意义是，它指出了服务的 downtime 在多大限度内是可接受的。否则的话，一有问题，就有人打小报告。我们需要认识到：unhealthy 也是一种 healthy。</p>
+<p>SLA 是跟客户约定的保障服务稳定运行的合约，违反了一般会有 Penalty。怎么算钱要跟客户实现说清楚。</p>
+<p>文章末尾建议</p>
+<ul>
+<li>如果从头构建系统的时候 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f3121669-3a12-407f-a30f-a09432f858e2.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5ba223ea-d9aa-4745-b95c-24c98c94e5ea.html" rel="bookmark"
+                                title="Permalink to 文档驱动开发 - 一种统一函数风格的方法"
+                                >文档驱动开发 - 一种统一函数风格的方法</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://250bpm.com/blog:119">查看原文</a></p>
+<p>本文作者提到了一个写代码文档时候的痛点：函数文档有很多重复的地方，不停地写会很烦。作者提出的方法是：找出共性，然后把这些公有的部分写入 JSON 作为 metadata。如果遇到了特例，那就很有可能遇到了风格不统一，那就把它修复。这样做以后，整个程序的风格也会一致起来。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5ba223ea-d9aa-4745-b95c-24c98c94e5ea.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/6050e091-1cff-45df-8f2e-651a4093e439.html" rel="bookmark"
+                                title="Permalink to Pymotw - http.server"
+                                >Pymotw - http.server</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://pymotw.com/3/http.server/">查看原文</a></p>
+<p>Python <code>http.server</code> 库提供了写 Web Server 的基础接口。</p>
+<ul>
+<li>继承 BaseHTTPRequestHandler 处理请求。</li>
+<li>继承的类中，定义 <code>do_GET</code>, <code>do_POST</code> 等方法用于处理 GET, POST 等请求</li>
+<li>状态码可通过 <code>self.send_response(200)</code> 设定</li>
+<li>响应头可通过 <code>self. send_header('Content-Type', 'application/json')</code> 设定</li>
+<li>内容可以通过 <code>self.wfile.write(content)</code> 设定</li>
+<li>url 可以通过 <code>urllib.parse.urlparse(self.path)</code> 得到解析后的数据</li>
+<li>表单需要通过 <code>cgi.FieldStorage(fp=self …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/6050e091-1cff-45df-8f2e-651a4093e439.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses30.html">&laquo;</a>
+    Page 31 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses32.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

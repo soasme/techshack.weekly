@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d6d1d069-7dfa-4856-b5fa-dc73eae7c988.html" rel="bookmark"
+                                title="Permalink to Python 文档阅读 - 内建 bin 函数"
+                                >Python 文档阅读 - 内建 bin 函数</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.python.org/3/library/functions.html#bin">查看原文</a></p>
+<p>Python <code>bin</code> 内建函数返回一个数字的二进制字符串。</p>
+<p>另外，可以用 <code>format(n, '#b')</code> 获得带 0b prefix 的字符串，用 <code>format(n, 'b')</code> 获得不带prefix的字符串，用 <code>f{n:#b}</code> 或 <code>f{n:b}</code> 这种 fstring 也能等价。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d6d1d069-7dfa-4856-b5fa-dc73eae7c988.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4c2c7b3c-ffa4-4c2c-9e58-391257a33c3f.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - asgiref.wsgi 模块"
+                                >源码阅读 - asgiref.wsgi 模块</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/django/asgiref/blob/master/asgiref/wsgi.py">查看原文</a></p>
+<p>WsgiToAsgi 是将 WSGI 适配到 ASGI 运行的实现。它的基本原理是是 为 WSGI 的 <code>__call__</code> 创建了 WsgiToAsgiInstance instance。这个 instance 只处理 type=http.request 事件，并将 asgi app 用 AsyncToSync 套上后等待其处理完成。处理的逻辑是调用 wsgi app, 将结果适配成 asgi 的标准后 send type=http.response.body 事件。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4c2c7b3c-ffa4-4c2c-9e58-391257a33c3f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/667a0787-1ec9-49d8-9bc5-125271f9e81c.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - asgiref.server 模块"
+                                >源码阅读 - asgiref.server 模块</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/django/asgiref/blob/master/asgiref/server.py">查看原文</a></p>
+<p>asgiref.StatelessServer 类实现了 server 的基类，处理 instance creation/ pooling, exception handling. 子类继承后覆盖 handle() 方法，调用 <code>get_or_create_application_instance(unique-id, scope)</code> 获取或新建 app instance, 你可以向这个 app instance put message.</p>
+<p>如果设定了 <code>max_application</code>, 且到达了上限，最老的那个会被干掉。</p>
+<p>有个 coroutine 默认每 100ms 找 error, 并打印到 console. 可以重写 <code>application_exception()</code>做其它的事情。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/667a0787-1ec9-49d8-9bc5-125271f9e81c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/6f52d4df-29c6-4d7c-9962-7fa529c85316.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - asgiref.sync 模块"
+                                >源码阅读 - asgiref.sync 模块</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/django/asgiref/blob/master/asgiref/sync.py">查看原文</a></p>
+<p>asgiref.sync 实现了 AsyncToSync / SyncToAsync 两种类，分别用于将同步和异步的方法和函数转换类型使用。</p>
+<ul>
+<li>AsyncToSync 的实现是 在 <code>__call__</code>  中调用 <code>loop.call_soon_threadsafe(f),</code>, 限制是只能在主线程中。</li>
+<li>SyncToAsync 的实现是在 <code>async def __call__</code> 中调用 <code>fut = loop.run_in_executor(...); return await asyncio.wait_for(fut)</code>.</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/6f52d4df-29c6-4d7c-9962-7fa529c85316.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5d7f16c7-65d6-4fdd-a914-c2f71439ebdf.html" rel="bookmark"
+                                title="Permalink to 协议阅读 - ASGI"
+                                >协议阅读 - ASGI</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/django/asgiref/blob/master/specs/asgi.rst">查看原文</a></p>
+<p>ASGI 全称是 Asynchronous Server Gateway Interface，它旨在为 Python 网络服务器程序提供一套标准接口。它规定了一套服务器交互和运行 app 程序的 API。</p>
+<p>它的前身是 WSGI，WSGI 只关注 HTTP 的请求响应模型，另外 WebSocket 也不包括在里面。ASGI 有着更大的野心。</p>
+<p>ASGI 有两个组件：Protocol Server &amp; Application。前者处理 sockets，转为 pre-event messages；后者存活在 protocol server, per socket 中，处理 event messages。app 不像 WSGI 那样是个 callable，而是一个 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5d7f16c7-65d6-4fdd-a914-c2f71439ebdf.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/afee000f-71c7-4898-b2af-3e80dfe033b1.html" rel="bookmark"
+                                title="Permalink to 数据库 2PL v/s MVCC"
+                                >数据库 2PL v/s MVCC</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://vladmihalcea.com/2017/01/31/a-beginners-guide-to-the-phantom-read-anomaly-and-how-it-differs-between-2pl-and-mvcc/">查看原文</a></p>
+<p>解决幻读 (Phantom Read) 的方法有两种：2PL 与 MVCC。</p>
+<p>幻读 = 范围查询出现了别的事务的数据。</p>
+<p>2PL (Two-Phase Locking) 是传统做法，通过 shared(read) 和 exclusive(write) lock 序列化事务调度。例如 MySQL（InnoDB），在底层它为每行或一段行获取 shared physical lock 。它使用的技术叫 next-key locking. 假设事务在 MySQL 中使用 Serializable isolation level，事务B 中的插入会因为事务A获得了锁，导致事务B等待（超时后回滚）</p>
+<p>MVCC 的假设是 Readers 和 Writers 互相不应该堵塞，所以它的方法是乐观的：冲突就让它发生 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/afee000f-71c7-4898-b2af-3e80dfe033b1.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/dac439c7-252a-45f6-8f40-28574c5a8cc1.html" rel="bookmark"
+                                title="Permalink to 协议阅读 - ASGI 如何处理 HTTP 和 WebSocket 数据"
+                                >协议阅读 - ASGI 如何处理 HTTP 和 WebSocket 数据</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/django/asgiref/blob/master/specs/www.rst">查看原文</a></p>
+<p>这篇 spec 规定了 ASGI 如何处理 HTTP 和 Websocket 数据。</p>
+<ul>
+<li>HTTP:<ul>
+<li>http connection scope 包含的信息：type=http, http_version=1.0/1.1/2, method, scheme, path, query_string, root_path, headers, client=[host, port], server=[host, port]</li>
+<li>http request: type=http.request, body, more_body=true/false.</li>
+<li>restart start: type=http.response.start …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/dac439c7-252a-45f6-8f40-28574c5a8cc1.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/dd2d3dce-2d34-4616-91f7-eae0fdf41908.html" rel="bookmark"
+                                title="Permalink to 没有完美的代码"
+                                >没有完美的代码</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://twitter.com/codewisdom/status/943127278917218305">查看原文</a></p>
+<p>历史上从来没有人写出过「完美的」代码，因此」代码，作为工程师，要有写不出完美代码的认知。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/dd2d3dce-2d34-4616-91f7-eae0fdf41908.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9478f8b3-7663-4416-8c82-d2dbfb4ccf96.html" rel="bookmark"
+                                title="Permalink to Up - 一款使用 Lambda 和 Gateway 的部署工具"
+                                >Up - 一款使用 Lambda 和 Gateway 的部署工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://up.docs.apex.sh/">查看原文</a></p>
+<p>Up 是 TJ 写的关于 Lambda 和 AWS Gateway 的部署工具。它安装简单，配置也只需要读取 <code>~/.aws/credetials</code>，和相关的 IAM 配置。简单地输入 <code>up</code> 即可部署到 dev stage，输入 <code>up url --open</code> 打开 url，输入 <code>up url --copy</code> 获得 url。它支持多种语言，各种语言的依赖也都遵从标准。不管是 API 设计和文档编写，都是典范。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9478f8b3-7663-4416-8c82-d2dbfb4ccf96.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/576d8346-50b8-40b2-bfd5-3df4b4d04aa8.html" rel="bookmark"
+                                title="Permalink to Runit 应用于桌面环境"
+                                >Runit 应用于桌面环境</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://nealey.github.io/papers/runit-as-init.html">查看原文</a></p>
+<p>这位仁兄将 runit 应用于桌面环境，除了 X11 有点不太好使，整体速度较之 systemd 快了有两三倍，配置也更简单。他认为自 X11 和 BSD Socket 之后，Unix 的哲学就一直有点崩塌，如果可以让 Plan9 这样的项目元素再多一些会更好。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/576d8346-50b8-40b2-bfd5-3df4b4d04aa8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses46.html">&laquo;</a>
+    Page 47 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses48.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

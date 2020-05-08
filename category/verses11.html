@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/dbca267e-99bb-4420-b114-9d7efaeb4fc3.html" rel="bookmark"
+                                title="Permalink to Elm Architecture"
+                                >Elm Architecture</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://guide.elm-lang.org/architecture/">查看原文</a></p>
+<p>Elm 的架构源自开发团队早期对他们各自项目研究找到的一个共有 pattern：定义 Model，编写 Update，编写 View - 基本上他们的任何需求都可以用这套写法来写。这套 Pattern 影响了诸如 Redux 之类的框架，它的思路可以用如下代码说明：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">Html</span> <span class="nn">exposing</span> <span class="p">(</span><span class="o">..</span><span class="p">)</span>
+
+<span class="o">--</span> <span class="n">MODEL</span>
+
+<span class="nb">type</span> <span class="n">alias</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="o">--</span> <span class="n">UPDATE</span>
+
+<span class="nb">type</span> <span class="n">Msg</span> <span class="o">=</span> <span class="n">Reset</span> <span class="o">|</span> <span class="o">...</span>
+
+<span class="n">update</span> <span class="p">:</span> <span class="n">Msg</span> <span class="o">-&gt;</span> <span class="n">Model</span> <span class="o">-&gt;</span> <span class="n">Model</span>
+<span class="n">update</span> <span class="n">msg</span> <span class="n">model</span> <span class="o">=</span>
+  <span class="n">case</span> <span class="n">msg</span> <span class="n">of</span>
+    <span class="n">Reset</span> <span class="o">-&gt;</span> <span class="o">...</span>
+    <span class="o">...</span>
+
+<span class="o">--</span> <span class="n">VIEW</span>
+
+<span class="n">view</span> <span class="p">:</span> <span class="n">Model</span> <span class="o">-&gt;</span> <span class="n">Html</span> <span class="n">Msg</span>
+<span class="n">view</span> <span class="n">model</span> <span class="o">=</span>
+  <span class="o">...</span>
+</code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/dbca267e-99bb-4420-b114-9d7efaeb4fc3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f551ade8-ef89-48ee-a0e3-32562e62c015.html" rel="bookmark"
+                                title="Permalink to Cooperative Principle Software"
+                                >Cooperative Principle Software</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://spin.atomicobject.com/2018/08/25/cooperative-principle-software/">查看原文</a></p>
+<p>本文讲述了写代码的一些常见要求：写函数名字要正确反应函数的实现；重复的Pattern要抽象，代码放对模块，代码风格要一致。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f551ade8-ef89-48ee-a0e3-32562e62c015.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/476deb8d-00ea-406f-b798-55b233fae680.html" rel="bookmark"
+                                title="Permalink to 分布式系统的健康检查"
+                                >分布式系统的健康检查</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/@copyconstruct/health-checks-in-distributed-systems-aa8a0e8c1672">查看原文</a></p>
+<p>本文对分布式系统的健康检查列出了很多个观点。有人认为 ping/cpu_load/error_rates 这些都不够，要发出真正的端对端测试才行；有人则认为健康检查要简单才行，ping 就很好。本文作者认为：</p>
+<ul>
+<li>健康检查是一条光谱，不是非黑即白。<ul>
+<li>健康检查通过 = 服务也许没问题, 看你怎么做的检查。</li>
+<li>健康检查没通过 = 有些地方可能出了问题。</li>
+</ul>
+</li>
+<li>Ping 能够检查出 up/down, e2e 能够检查出系统能否执行某些特定的功能。</li>
+<li>在分布式系统中, 就算 ping 没挂，也有可能因为别的原因没能执行一些计算，那跟服务挂了也没差了。</li>
+<li>服务彻底挂了很好判出来，但是服务到底有多健康这个见仁见智。</li>
+<li>健康检查是手段，我们要关注 quality-of-service, 即任务多久能执行完，以及能否执行出正确的结果。</li>
+<li>完全健康的服务根本就不存在，我们要承认的事实是：服务有个健康度，有可能这部分好的那部分是坏的。</li>
+<li>Orchestration 层可以只关心服务 up/down, 但是 Load Balancing 层需要更细的粒度并相应触发 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/476deb8d-00ea-406f-b798-55b233fae680.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/8e7422a1-e314-4884-9266-89cd7c1bb797.html" rel="bookmark"
+                                title="Permalink to Docopt - CLI description language"
+                                >Docopt - CLI description language</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://docopt.org/">查看原文</a></p>
+<p>Docopt 是一款用来编写命令行工具的库，与其写一堆 <code>parse("--option")</code> 代码，不如直接写出漂漂亮亮的文档来，然后根据这个文档来自动生成解析命令行参数的代码。这个库可以让你用写代码文档的方式定义接口，可读性提高了很多。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Naval Fate.</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">  naval_fate.py ship new &lt;name&gt;...</span>
+<span class="sd">  naval_fate.py ship &lt;name&gt; move &lt;x&gt; &lt;y&gt; [--speed=&lt;kn&gt;]</span>
+<span class="sd">  naval_fate.py ship shoot &lt;x&gt; &lt;y&gt;</span>
+<span class="sd">  naval_fate.py mine (set|remove) &lt;x&gt; &lt;y&gt; [--moored | --drifting]</span>
+<span class="sd">  naval_fate.py (-h | --help)</span>
+<span class="sd">  naval_fate.py --version …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/8e7422a1-e314-4884-9266-89cd7c1bb797.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0a5b7e1c-affe-4339-a500-10146ddd8b73.html" rel="bookmark"
+                                title="Permalink to Learn X in Y Minutes"
+                                >Learn X in Y Minutes</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/adambard/learnxinyminutes-docs">查看原文</a></p>
+<p>这个 GitHub 仓库给出了数十种语言的简明入门的语法教程，非常适合有志多学几门语言的同学们。举个例子，<a href="https://github.com/adambard/learnxinyminutes-docs/blob/master/python3.html.markdown">python3</a> 的示例中，从四则运算，类型，字符串格式化，列表字典使用，函数，控制结构，类，总数加起来 999 行。</p>
+<p>衍生思考：似乎最近学习笔记类的仓库很多人很喜欢。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0a5b7e1c-affe-4339-a500-10146ddd8b73.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/953b0730-274f-41e4-b465-26bd4c21f905.html" rel="bookmark"
+                                title="Permalink to Green Threads 100L 代码实现"
+                                >Green Threads 100L 代码实现</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://c9x.me/articles/gthreads/code0.html">查看原文</a></p>
+<p>Green Thread 是在语言运行时调度，而非由操作系统调度的线程。这意味着，有如下优缺点：</p>
+<ul>
+<li>优点</li>
+<li>几乎不能更快的新建 gthread 速度，比起 thread, process</li>
+<li>gthread 切换开销特别小，可能就只有几个字节</li>
+<li>内存花的更小</li>
+<li>缺点</li>
+<li>你只能写异步代码</li>
+<li>差不多只能运行在单核上，即便你有多处理器（有办法突破）</li>
+<li>你只能写异步代码, again. 调试代码挺麻烦</li>
+</ul>
+<p>GThread 一般要求你显示提供 yield 方法做上下文切换，调用 gthread 方法也必须套在一个 context 下面</p>
+<p>关于简介，查看 https://c9x.me/articles/gthreads/intro.html</p>
+<p>从代码上看，这份实现比较简单，能算是比较好的概念实现，离实用有不少距离。核心数据结构：<code>gt …</code></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/953b0730-274f-41e4-b465-26bd4c21f905.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ffa8d561-40cf-4dba-899e-536598fd7064.html" rel="bookmark"
+                                title="Permalink to Trello 从 RabbitMQ 转投 Kafka"
+                                >Trello 从 RabbitMQ 转投 Kafka</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://tech.trello.com/why-we-chose-kafka/">查看原文</a></p>
+<p>本文是 Trello 的工程博客，讲述为什么他们停止使用用了三年的 RabbitMQ, 而改用 Kafka。</p>
+<p>Trello 线上使用 15 个 RabbitMQ 示例承接 WebSockets 的推送更新。后端服务把数据推到 RabbitMQ，然后 WebSockets 的服务端应用处理连接，从队列中拉数据下来，给出响应推给浏览器端。</p>
+<p>后端服务推数据时，通过一个 3 实例的 rabbitmq-inbound cluster 把数据 shard 到 16 个队列中。WebSockets 服务端程序订阅所有队列拉取所需的数据。</p>
+<p>问题主要出在 Sharding 的时候，当 Cluster 坏掉或者出现脑裂，复制的数据可能会不一致，从而导致奇怪的客户端行为。额外的问题是，Rabbit 新建和删除 Queue Bindings 比较慢 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ffa8d561-40cf-4dba-899e-536598fd7064.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0b68eef8-bb35-424f-b9a3-2190d17201a7.html" rel="bookmark"
+                                title="Permalink to Multi-tenancy 应用程序架构"
+                                >Multi-tenancy 应用程序架构</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.linkedin.com/pulse/architecture-constraints-end-multi-tenancy-gregor-hohpe">查看原文</a></p>
+<p>Multi-tenancy 指的是应用程序为每个客户都跑一套示例。Salesforce 可能是在这套架构下跑的比较大的一家。它面临的挑战是：要去维护每套程序的配置，做数据升级时也更麻烦，如何更高效的在保证隔离性的同时共享一些资源。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0b68eef8-bb35-424f-b9a3-2190d17201a7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cf584c50-860a-4a1d-b6d4-4417ac190914.html" rel="bookmark"
+                                title="Permalink to 使用 Python Annotation 编写宏代码"
+                                >使用 Python Annotation 编写宏代码</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/zmitchell/annotation-abuse">查看原文</a></p>
+<p>这位同学通过滥用 python annotation 语法来完成动态编程。其基本原理是，Python annotations 的数据存储在实例的 <code>__annotation__</code> 这个 dict 中，而它其实并不限制类型数据一定要是类型，也可以是任何合法的 Python 表达式。例如</p>
+<div class="highlight"><pre><span></span><code><span class="err">@inrange</span>
+<span class="err">class MyClass:</span>
+<span class="err">    var: &quot;0 &lt; var &lt; 1&quot;</span>
+</code></pre></div>
+
+
+<p>这个 <code>var</code> 通常会需要写成一种类似 <code>var: ZeroToOneIntegerClass</code> 这样的语法，但是通过 <code>@inrange</code> 解析这个字符串动态生成了如下代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">MyClass</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;0 &lt; var &lt; 1&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@property</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">self …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cf584c50-860a-4a1d-b6d4-4417ac190914.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ecce4fd8-d6fb-41a8-ab25-deabdb8b2e41.html" rel="bookmark"
+                                title="Permalink to 为各种类型的场景使用优化的数据库"
+                                >为各种类型的场景使用优化的数据库</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.allthingsdistributed.com/2018/06/purpose-built-databases-in-aws.html">查看原文</a></p>
+<p>本文传达的观点是：数据库是为某种需求而生的，为特定场景适配特定的数据库可以写出高性能，可扩展的程序。目前比较常见的数据库类型包括：关系数据库，键值数据库，文档数据库，图数据库，内存数据库，搜索数据库，时间序列数据库等。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ecce4fd8-d6fb-41a8-ab25-deabdb8b2e41.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses10.html">&laquo;</a>
+    Page 11 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses12.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

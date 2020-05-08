@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly - GLB - 看看 GibHub 如何做负载均衡</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">GLB - 看看 GibHub 如何做负载均衡</h2>
+  </header>
+  <div class="entry-content">
+        <p><a href="https://githubengineering.com/introducing-glb/">查看原文</a></p>
+<p>本文是 GitHub  工程团队博客对他们的负载均衡器 GLB (GitHub Load Balancer) 做的简介。</p>
+<ul>
+<li>挑战<ul>
+<li>要同时支持 HTTP, SSH, Git 三种协议的流量。</li>
+<li>每天流量数十亿。</li>
+</ul>
+</li>
+<li>历史架构<ul>
+<li>跑在专用的，调优过，巨大的 Bare Metal （裸机）。</li>
+<li>Haproxy 做故障转移。</li>
+<li>硬件上支持 10G link 故障转移。</li>
+</ul>
+</li>
+<li>^ 遇到的问题<ul>
+<li>网络硬件，负载均衡的主机，硬件配置，三者都混写在一起，太痛苦。</li>
+<li>没法水平扩展。</li>
+</ul>
+</li>
+<li>描述期望<ul>
+<li>能跑在普通的商用硬件上。</li>
+<li>能水平扩展。</li>
+<li>支持高可用，故障转移时 abort TCP 连接。</li>
+<li>支持 connection draining （感觉是 graceful shutdown 的另一种说法）。</li>
+<li>支持服务级别的负载均衡（因为一台机器可能跑多个服务）。</li>
+<li>能像普通软件一样更新。</li>
+<li>能基于每一层做测试，而不仅仅是集成测试。</li>
+<li>能支持多个 POPs 和数据中心。</li>
+<li>抵御和减轻 DDos。</li>
+</ul>
+</li>
+<li>思考<ul>
+<li>如果只是用 DNS 负载均衡分流，会遇到的问题是：效果并不好。客户端 DNS 可能不遵守 TTL，用户也有可能硬编码 IP 地址。</li>
+<li>^ 对此引入的做法是：用  VIP。一个 IP 可以对应多个物理机。</li>
+<li>^ 再引入 Equal-Cost Multi-Path (ECMP)：对 packet 里的 source-ip-addr-port, destination-ip-addr-port 做哈希运算，将相同哈希的流量路由到同样的路径上。挂了一台物理机，哈希池子重新计算，有 1/N 的流量被重新分配到剩下的机器。小缺点是这 1/N 的流量连接可能不完全是原来那些 1/N 的连接；做维护的时候，这些 1/N 的流量也没法做到 graceful remove servers。</li>
+<li>L4/L7 两种路由器分别对应4层和7层的流量。L4 用 ipvs/LVS, 直接转发流量；L7 用 haproxy，给后端服务代理连接。我们可以用 LVS 同步连接状态给其它 L4 层的路由器，也可以转发流量给 L7 层的 Haproxy。</li>
+<li>^ 这样的设计好处是：L7 层这一层的配置更新更频繁，同时它可以维护连接，我们就能做到 graceful 移除节点。</li>
+<li>^ 问题在于 连接断开 在 git 的使用场景是个很费事的事情，因为 git 不会去重试。想想下了一大半的代码了，连接被重置那多不爽。</li>
+<li>于是 GitHub 主要在 L4 这一层下工夫。他们引入的做法是使用 Rendezvous hashing 的变种。具体来说，packet 被封装进入一个 Foo-over-UDP IP packet，内部 payload 除了原有的数据，还塞入了一组有序的 proxy servers 和 states。这样就算一台 proxy server 挂了，其它 server 还能处理这个请求。Proxy Servers 应用 DSR(Direct Server Return), 回响应的时候就直接丢给客户端，不经由 L4 的节点了。</li>
+</ul>
+</li>
+</ul>
+<p>衍生思考：本文并没有很深入地讲实现，而是从需求，和现有方案出发，层层分析，引出了自家的方案，非常有 GitHub 家做工程的风格。</p>
+
+  </div><!-- /.entry-content -->
+</section>
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

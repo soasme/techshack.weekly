@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9b3821f9-f5c8-4c0c-865f-dd2c27226172.html" rel="bookmark"
+                                title="Permalink to Microservices 的几个注意要点"
+                                >Microservices 的几个注意要点</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://blog.avenuecode.com/microservices101">查看原文</a></p>
+<p>Microservices 的注意要点：单一职责，松耦合，Conway 定律。</p>
+<ul>
+<li>单一职责：设计一个软件组件，使其做一件事情，做到最好。现在大多数 microservices 有两种类型：web services &amp; messaging workers。</li>
+<li>松耦合：软件组件之间的依赖关系尽可能低。这意味着组件挂了会降低对别的服务的影响。</li>
+<li>Conway 法则：一个自洽的组织，设计出来的服务也会像这个组织一样高度独立。服务可能会有自己的数据库，开发团队也可能不会有专职 QA &amp; DBA 来跟进。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9b3821f9-f5c8-4c0c-865f-dd2c27226172.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b4278111-fd7f-46ec-8149-4313b18ccbea.html" rel="bookmark"
+                                title="Permalink to Window Vista 项目失控的秘密"
+                                >Window Vista 项目失控的秘密</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.usejournal.com/what-really-happened-with-vista-an-insiders-retrospective-f713ee77c239">查看原文</a></p>
+<p>本文是关于软件复杂度的好文章，Vista 是个失败的系统，十年之后，在后续的开发中，微软吸取了很多经验。</p>
+<p>上千个工程师，测试，项目经理，安全，设计，销售跟进开发 Windows。Windows 内部有核心，服务器，客户端三个组，核心管内核供其它两组用，服务器管服务端市场，客户端管桌面系统。</p>
+<p>操作系统三年发版，但只有其中六到九个月真正在开发新代码，剩下都在集成测试测试测试。有些比较耗时的项目写完后才合进来，那个时候主干仓库几乎就是半瘫痪不能运行。每个组都有自己的日程，进度不一搞得很多组不得不在最后时刻冲刺调试。作者认为三年一版这样做根本跑不赢市场。解决方案就是要加速！像 cloud service 那样更快的将特性推到市场去。</p>
+<p>课后习题：文中的 Play schedule chicken 是啥意思？</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b4278111-fd7f-46ec-8149-4313b18ccbea.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/760d3bba-74c6-40d7-a1d8-117157908efc.html" rel="bookmark"
+                                title="Permalink to 部署时要注意哪些要点？"
+                                >部署时要注意哪些要点？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://airbrake.io/blog/devops/improve-deployments-devops">查看原文</a></p>
+<p>DevOps 很重要的关注领域是部署。部署关心以下这几件事情：调度，兼容，环境，回滚：</p>
+<ul>
+<li>如何调度部署</li>
+<li>部署的组件相互兼容</li>
+<li>部署的组件可以在各种环境里运行</li>
+<li>迅速回滚到前一版本</li>
+<li>错误检测和监控</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/760d3bba-74c6-40d7-a1d8-117157908efc.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c991d3df-ce50-4e02-9594-3564dc99a7e7.html" rel="bookmark"
+                                title="Permalink to 从 BGP 看整个互联网流量增长(2017)"
+                                >从 BGP 看整个互联网流量增长(2017)</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.potaroo.net/ispcol/2018-01/bgp2017.html">查看原文</a></p>
+<p>BGP 是互联网的路由基础技术，是基石，透过 BGP 承载的流量，我们可以窥见整个互联网的进化。简单来说，BGP 可以让路由器学习互联网的路由结构，然后路由信息的变更也会通过协议传导到所有相邻节点。每个节点会给一跳一跳的数据包挑最好的路线走。</p>
+<p>节点里的路由表的增长会让机器性能趋于极限。另外路由表内容的更新需要本地好几次数据查询，系统要保证有能力处理更新。自 1994 年有 BGP 系统的数据依赖，整个 IPv4 &amp; IPv6 路由表在过去的二十多年里每年都在变大。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c991d3df-ce50-4e02-9594-3564dc99a7e7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cce2d441-d86c-4896-8ed8-6bea6cef7d6a.html" rel="bookmark"
+                                title="Permalink to 从 Redux 学习系统设计"
+                                >从 Redux 学习系统设计</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.codementor.io/simonmakesstuff/when-do-i-know-i-m-ready-for-redux-fv78cm2t8">查看原文</a></p>
+<p>Redux 中的核心是 state（状态，数据），Redux 就是管理 state 的工具。我们在设计系统的时候，会有如下两种常见场景。</p>
+<ul>
+<li>全局 state 逐层注入到子组件中。</li>
+<li>子组件可能会有 state 回馈回父组件。</li>
+</ul>
+<p>由于系统组件像树一样组织，这个数据流向会扩散到到各个组件。想象一下，一旦这个流程超过三五级，系统中存在几十上百种这样的流程，那简直就是没法维护。那怎么解决呢？Redux 的方案是引入一个 message bus 和一个小数据库。引入这两个组件以后，系统的数据流只有一条，稍微好维护了一些。</p>
+<p><img alt="Example of Redux" src="https://cdn-images-1.medium.com/max/1600/1*f3gS9znOZvX8HfCLg7T--Q.gif"></p>
+<p>衍生思考：对数据流进行抽象，是简化系统设计的一个方法。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cce2d441-d86c-4896-8ed8-6bea6cef7d6a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0daffab0-dd73-467f-81a0-837e0733e13c.html" rel="bookmark"
+                                title="Permalink to 相同内容 Python 字符串什么时候在内存中是同一个对象？"
+                                >相同内容 Python 字符串什么时候在内存中是同一个对象？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.codementor.io/satwikkansal/do-you-really-think-you-know-strings-in-python-fnxh8mtha">查看原文</a></p>
+<p>CPython 中字符串是不可变对象，解释器有可能会将一些字符串指向相同的对象以节省内存。这里有一些 intern 的规则：</p>
+<ul>
+<li>长度为 0 或 1 的字符串是 interned 的。</li>
+<li>literal 的字符串是 interned 的，<strong>动态拼接</strong>的不是，例如 "WTF" 是，"".join(["W", "T", "F"]) 不是。</li>
+<li>对于第二条规则，加一个特例，字符串中只能出现字母数字和下划线，否则就不是，例如 "WTF~" 就不是。</li>
+<li>对于第三条规则，再加一个特例，在交互模式中，如果出现了 <code>a,b="a!","a!"</code>, 这个字符串又是 interned，原因是解释器优化。</li>
+</ul>
+<p>另外，文章提及了几个边界 case：</p>
+<ul>
+<li><code>r …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0daffab0-dd73-467f-81a0-837e0733e13c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9b9526d0-8ce9-47de-b0d3-5162635c8410.html" rel="bookmark"
+                                title="Permalink to 简洁就是美，但具体要怎么操作呢？"
+                                >简洁就是美，但具体要怎么操作呢？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://lawsofsimplicity.com/">查看原文</a></p>
+<p>简洁就是美是 Unix 的一个信条，这个网站归纳了一些具体操作的实践指南。</p>
+<ul>
+<li>砍！慎重丢掉不重要的功能。</li>
+<li>有条不紊地组织！系统通过坚持不断地将无序变为有序，从而走向简洁。整理组织的核心问题就俩：放在哪里，藏在哪里。</li>
+<li>想想怎么操作会省时间。</li>
+<li>深入学习&lt;磨刀不误砍柴工。</li>
+<li>参考复杂的设计，做出简单的设计。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9b9526d0-8ce9-47de-b0d3-5162635c8410.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/a1f99fd8-5509-4fa3-abf6-f792d46b4c32.html" rel="bookmark"
+                                title="Permalink to 做喜欢做的事情 | 工作注定痛苦？"
+                                >做喜欢做的事情 | 工作注定痛苦？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.paulgraham.com/love.html">查看原文</a></p>
+<p>小时候觉得长大比较好可以做各种好玩的事情，但很多人长大后发现要赚钱，不行，很多时候很痛苦一点也不好玩。但也有一些人工作地非常开心，不仅做的事情自己喜欢，成果也是同事们认可的。本文作者 Paul Graham 提出的观点是（也是借用别人的）：做一件让同事朋友觉得你很厉害的事情，同时坚持实践下去。如果工作一开始就不是自己喜欢的，那就让自己能力变强，到最后就是你挑工作，而非工作挑你。</p>
+<p>衍生思考：从心理学的角度考虑，正向反馈非常重要。也许财务自由并非是最快乐的事情，一直在做喜欢做的事情的那些人真是很羡慕。我的建议：搞清楚自己喜欢什么，然后一头扎进去做。就像我现在在做 Techshack 一样，做的很开心 :)</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/a1f99fd8-5509-4fa3-abf6-f792d46b4c32.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c218c432-969b-4bec-9051-c992ae570fae.html" rel="bookmark"
+                                title="Permalink to Airbnb 如何保证全球数十个支付网关的集成和数据一致性？"
+                                >Airbnb 如何保证全球数十个支付网关的集成和数据一致性？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/airbnb-engineering/measuring-transactional-integrity-in-airbnbs-distributed-payment-ecosystem-a670d6926d22">查看原文</a></p>
+<p>Airbnb 家的支付系统遭遇的挑战是全球化服务面临多币种多支付网关，核心问题在异步的，分布式的系统里保障事务的一致性。这个流程中需要注意的地方是要做好追踪，一旦断掉一环，就很有可能出现错误和数据丢失。他们解决方案第一保障数据链完整，第二一旦检测到不一致立马自动修复。</p>
+<p>整个交易流程中会遇到买卖方，银行，支付网关等等，每个实体都会往支付数据中注入自己的数据。支付系统需要保证的是帐要绝对算对。这里面遇到的支付方有些甚至奇葩到好几天才能帐目生效。也许网络不好，也许某方bug，也许其它原因，支付链条里只要有一方不响应或停止数据流动，整个事务就坏了（out-of-sync)。</p>
+<p>好在这类型系统每一方都提供事务报告（transaction reports），我们可以根据事务报告，源头的帐目文件，以及银行流水。在排除掉重复文件后，我们是有办法检测到是不是有一个事务的链条断掉了。</p>
+<p>Airbnb 还提供了一条流水线专门跟踪支付退款等数据，从监控的角度来看，他们基于支付的业务来监控整个系统的可用性。Operation 可以很容易将这种指标纳入监控从而进行快速事故响应。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c218c432-969b-4bec-9051-c992ae570fae.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0e69fbd7-702f-45b2-bbe1-4febbb3cde43.html" rel="bookmark"
+                                title="Permalink to 哪个 Web 框架最快？"
+                                >哪个 Web 框架最快？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/tbrand/which_is_the_fastest">查看原文</a></p>
+<p>给出这个命题，能给出一个不错的解答其实需要大量的涉猎，作者给出的答案是 router_cr(crystal) 最快，Python 框架中最快的是 Japronto，语言上 crystal &gt; rust &gt; python &gt; go, 但也得看具体框架的性能。测量的基准是 8 核 CPU 的 CPU，遵循的 Rule 是无逻辑，就是做 route 解析和响应生成。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0e69fbd7-702f-45b2-bbe1-4febbb3cde43.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses41.html">&laquo;</a>
+    Page 42 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses43.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

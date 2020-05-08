@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5e39ed78-2c7a-4648-babf-b097e6d8bba3.html" rel="bookmark"
+                                title="Permalink to 宁愿重复也不要抽象错了"
+                                >宁愿重复也不要抽象错了</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction">查看原文</a></p>
+<p>本文讲述了一种观点：prefer duplication over the wrong abstraction</p>
+<p>所谓的 wrong abstraction 指的是：在抽象一块代码后来了新需求，你要改巴该巴抽象好的代码？
+你很有可能会发现，随着需求的增加，代码会越来越难管理，直到成为 wrong abstraction.
+加一块需求会让代码变复杂，然后会让下一次加需求变得更困难。</p>
+<p>一种可行的解决方案是，放弃自尊和骄傲，放弃那种“多好的代码呀删了可惜”的想法，重新 inline 回重复的代码，然后重新开始想怎么抽象。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5e39ed78-2c7a-4648-babf-b097e6d8bba3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b0b27574-f20c-4b7f-993a-bf42ca11f0f6.html" rel="bookmark"
+                                title="Permalink to IPSec - Day 1"
+                                >IPSec - Day 1</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://jvns.ca/blog/2018/07/11/netdev-day-1--ipsec/">查看原文</a></p>
+<p>IPsec 是用来给 IP packets 加密的协议。VPN 可以用很多种加密协议，例如 OpenVPN, PPTP, SSTP, IPsec。 其中 IPsec 的好处是：它有 RFC 6071 定义了标准，并且在 Linux Kernel 中被实现了。TLS 是互联网加密的基石，而 IPsec 则被应用在 5G/LTE 手机网络中。</p>
+<p>IPsec 分成两部分：userspace + kernel. 用户态处理 IKA (internet key exchange) - 每次打开 VPN 连接都需要和 VPN Server 通讯获得加密的 key。内核部分处理真正的加密。</p>
+<p>kernel …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b0b27574-f20c-4b7f-993a-bf42ca11f0f6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ddef843c-1b9e-4ceb-84d4-8bf9656b4d1b.html" rel="bookmark"
+                                title="Permalink to Cheat sheet - 快速查找文档的利器"
+                                >Cheat sheet - 快速查找文档的利器</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/chubin/cheat.sh">查看原文</a></p>
+<p>这个工具可以帮助你找到任何语言的任何问题，有时候比直接查文档更快速。</p>
+<p><img alt="" src="https://camo.githubusercontent.com/b6ccef5a13c58f59163d966f0dc68ceac29e3ee3/687474703a2f2f63686561742e73682f66696c65732f6269672d6c6f676f2d76322e706e67"></p>
+<p><a href="https://asciinema.org/a/OfJDyTof3W0fxS2EPDZva6Vbh"><img alt="asciicast" src="https://asciinema.org/a/OfJDyTof3W0fxS2EPDZva6Vbh.png"></a></p>
+<p>可以直接用 curl 调用，也可以安装其客户端：<code>curl https://cht.sh/:cht.sh &gt; ~/bin/cht.sh &amp;&amp; chmod +x ~/bin/cht.sh</code></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ddef843c-1b9e-4ceb-84d4-8bf9656b4d1b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ec66ba4c-7990-4f5a-b6f6-dccee7a42b3e.html" rel="bookmark"
+                                title="Permalink to Lua FFI Library"
+                                >Lua FFI Library</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://luajit.org/ext_ffi.html">查看原文</a></p>
+<p>本文是 LuaJit 的 FFI 文档，这个库用于在 Lua 中调用 C 的函数和使用 C 的数据结构。基本使用是你要事先使用 <code>cdef</code> 把 c header 的内容复制进来，然后给予更底层的 ffi 接口封装函数 inline, jit, 回调函数绑定和垃圾收集。hello world:</p>
+<div class="highlight"><pre><span></span><code><span class="err">local ffi = require(&#39;ffi&#39;)</span>
+<span class="err">ff.cdef(&#39;int pref(const char *fmt, …);&#39;)</span>
+<span class="err">ffi.C.printf(&quot;Hello %s&quot;, &quot;world&quot;)</span>
+</code></pre></div>
+
+
+<p>如果要自定义 struct, 也可以用 cdef / new 来定义和添加 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ec66ba4c-7990-4f5a-b6f6-dccee7a42b3e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1429d6e1-24e5-4f44-9694-ab8a03f73fb3.html" rel="bookmark"
+                                title="Permalink to Web Architecture 101"
+                                >Web Architecture 101</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://engineering.videoblocks.com/web-architecture-101-a3224e126947">查看原文</a></p>
+<p>本文描述了常规 Web 设计的基本架构：</p>
+<ul>
+<li>DNS 域名访问</li>
+<li>Load Balancer 负载均衡流量</li>
+<li>Web App Servers 以无状态的应用集群提供服务</li>
+<li>数据库和缓存是数据来源</li>
+<li>耗时任务分配到 Job Server，Broker 是 Job Queue</li>
+<li>如果有搜索需求，使用 full text search service</li>
+<li>如果有外部服务依赖，也作为一种 backend resource</li>
+<li>产生的运行时数据可以通过 Data firehose 发送到 data warehouse 和 cloud storage.</li>
+<li>必要时，使用 CDN</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1429d6e1-24e5-4f44-9694-ab8a03f73fb3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2b51eb03-2a50-4aaf-8722-c1988144e52c.html" rel="bookmark"
+                                title="Permalink to XAR - 一款新的打包工具"
+                                >XAR - 一款新的打包工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/facebookincubator/xar">查看原文</a></p>
+<p>XAR 可以将一个应用打成一个单一的可以运行的包，有点像 PEX。<code>.xar</code> 文件是一个 read-only 的文件系统镜像，mount 之后就跟一个普通的程序的各种目录没差了。用例列举了两个：通过压缩减少大量文件占用的文件系统空间，另外一个就是像 PEX 一样自包含可运行。从给出的性能上看，比 Pex 大小笑了一半，启动时间也能降低 80～90% 左右。</p>
+<p>使用(需要依赖 squashfs-tools)：</p>
+<p>```
+$ pip install xar
+$ python setup.py bdist_xar --xar-compression-algorithm=zstd</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2b51eb03-2a50-4aaf-8722-c1988144e52c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/898f8785-646b-41a5-8b50-ad79d3efb56c.html" rel="bookmark"
+                                title="Permalink to MemSQL vs NoSQL"
+                                >MemSQL vs NoSQL</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://blog.memsql.com/nosql/">查看原文</a></p>
+<p>本文作者认为 NoSQL 在过去的一段时间做的很好，但引入了不少问题。未来的发展方向：组建被分布式 SQL 替代。</p>
+<ul>
+<li>一般 NoSQL 只能做到的是最终一致性，当时强一致性无论如何这个需求不会消失。</li>
+<li>Schemaless，其实有问题，我们总是需要 schema，你需要的可能只是可以存储类似 JSON 一样数据的能力。</li>
+<li>NoSQL Query 设计的，hmm，不咋样。</li>
+<li>MemSQL：性能好，可扩展，高可用的关系型数据库，能支持事务，跑在商用硬件上，能适配 cloud native 的系统。</li>
+<li>consistency v/s Performance: MemSQL 让用户自己调 replication 的模式。</li>
+<li>MemSQL 将 schema 存储在一个内部的小数据库里，同步地复制到其他节点上。DDL 完整性通过 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/898f8785-646b-41a5-8b50-ad79d3efb56c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cc742127-da33-4ef6-8a61-bfd17d6ca110.html" rel="bookmark"
+                                title="Permalink to Databases 101"
+                                >Databases 101</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://thomaslarock.com/2018/07/databases-101/">查看原文</a></p>
+<p>这篇文章给数据库做了一个导论。</p>
+<p>数据库只有两种，关系型数据库，和其他。</p>
+<p>数据库有百余种之多，头几名都是关系型数据库。数据库要实现的特性是 ACID - Atomicity, Consistency, Isolation, 以及 Durability。出处：http://jimgray.azurewebsites.net/papers/thetransactionconcept.pdf 当然，非关系型数据库可能只能做到 BASE - Basic Availability，Soft-state，Eventual Consistency。 CAP 理论是另外一个主流理论：Consistency，Availability，Partition Tolerance 只能尽力做到其中之二，并容忍另外一个特性稍欠一些。</p>
+<p>非关系型数据库可以分类成：kv 数据库，文档数据库，图数据库，时间序列数据库，以及搜索引擎。</p>
+<p>数据库选择主要从业务场景出发，根据特性作出最好的匹配，这些特性包括：ACID/BASE …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cc742127-da33-4ef6-8a61-bfd17d6ca110.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/fbf4d707-bde1-4cb7-ab72-c8bac3fe9b08.html" rel="bookmark"
+                                title="Permalink to Python CFFI Overview"
+                                >Python CFFI Overview</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cffi.readthedocs.io/en/latest/overview.html">查看原文</a></p>
+<p>CFFI 是 Python 和 C 交互的一个库，它有 ABI x in-line, ABI x out-of-line, API x in-line, API x out-of-line 四种接口。</p>
+<p>ABI 驳接的是已经编译好的 binary，API 更快，把 C 代码编译出来使用。 in-line 是在 Python 中每次使用都要 setup，out-of-line 则需要提前生成好模块，然后在主程序中调用。</p>
+<p>ABI x inline:</p>
+<div class="highlight"><pre><span></span><code><span class="err">ffi = FFI()</span>
+<span class="err">ffi.cdef(&quot;&quot;&quot;C SOURCE HERE&quot;&quot;&quot;)</span>
+<span class="err">C = ffi.dlopen …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/fbf4d707-bde1-4cb7-ab72-c8bac3fe9b08.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ffa7be19-bfcc-4bfb-9359-058f05c5007b.html" rel="bookmark"
+                                title="Permalink to 文档协同编辑的同步算法"
+                                >文档协同编辑的同步算法</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://neil.fraser.name/writing/sync/">查看原文</a></p>
+<p>本文是一篇老文章，讲了很多种 Differential Synchronization 算法 - 这种算法可以用于多人实时编辑的文档应用。文章有点老不晓得快10年过去了算法有没出新的，当时的技术有三种：ownership, event passing, three-way merges, 没有最好的算法，看场景.</p>
+<ul>
+<li>Locking: 加锁，任一时刻只能一个用户编辑</li>
+<li>Event Passing: 所有用户编辑通过事件发送到服务器，再转发给其他所有用户。通过 Operation Transformation 算法保障序列合并。这些序列包括：typing, editing, cut, paste, drag, drop, replacements, autocorrect. 如果编辑其更高级，这些序列可能会更多。</li>
+<li>Three-way merges: 类似 SVN：client 发送全文，服务器做一次 3way merge 找到 change, 合并后将新的全文发给其他 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ffa7be19-bfcc-4bfb-9359-058f05c5007b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses14.html">&laquo;</a>
+    Page 15 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses16.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

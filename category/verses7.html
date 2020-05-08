@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1d07dd9c-49be-4ee1-b69a-57dfab9cde91.html" rel="bookmark"
+                                title="Permalink to Termtosvg - Terminal 录制软件"
+                                >Termtosvg - Terminal 录制软件</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/nbedos/termtosvg">查看原文</a></p>
+<p>Termtosvg 可以将 term 敲下来的命令录成 svg 格式。比起录成 GIF，svg 的好处是，特别小，挺长的一段操作可能录出来的 svg 文件才几百 KB 大小。因为 svg 是矢量文件，比起 GIF 按照 frame 录制 文件大小就是会小很多。</p>
+<p>如果查看它的实现，可以看到底层使用了 pyte 捕获 tty 的标准输入和输出。程序本身作为父进程，敲的命令作为子进程。使用 select 等待可用的子进程的输入和输出并存下来。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1d07dd9c-49be-4ee1-b69a-57dfab9cde91.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4136d664-cd69-4137-9b57-ad637699bcc1.html" rel="bookmark"
+                                title="Permalink to LogDevice Concepts and architecture"
+                                >LogDevice Concepts and architecture</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://logdevice.io/docs/Concepts.html">查看原文</a></p>
+<p>LogDevice 是 Facebook 最近开源的一个分布式服务，用来为日志提供持久存储。它应用的新技术叫做 non-deterministic decentralized record placement, 目标是提供高可用+一致+低 write-latencies 的集群。与普通日志服务不同，LogDevice 的源自单位是 records，也就是一条日志记录。LogDevice 原生支持 SSD 和 HDD。</p>
+<p>每条日志都有递增的 LSN（序列号），用于排序。在脑裂的特殊情况下，LogDevice 选择可用性高于一致性。多 writers 可以并发地写日志到同一个地方。这些记录会被复制存储到多台机器去以保证数据不会丢失。就算单节点出故障或者磁盘不够了，整个集群还是可以提供写功能。这个流程 LogDevice 通过集群中运行 sequencer 用于给记录标上 LSN，然后存储到节点上。一批存储同一个记录的节点被称为复制集（copyset）。readers 可以根据随机或者权重挑选 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4136d664-cd69-4137-9b57-ad637699bcc1.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/6aa4fbd1-9f8d-47a0-830f-6bbef868e1b9.html" rel="bookmark"
+                                title="Permalink to Microservices in a Post-Kubernetes Era"
+                                >Microservices in a Post-Kubernetes Era</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.infoq.com/articles/microservices-post-kubernetes">查看原文</a></p>
+<p>本文探讨了在 Kubernetes 在变得成熟后微服务这个实践相应产生的变化。</p>
+<ul>
+<li>服务的 Observability 还不够，服务还得去实现健康检查，对 Signals 作出回馈，能主动声明资源消耗多少。因为服务观测其实有点变成伪命题了，哪有人那么费心去查问题，有问题杀掉重新起个新的 Pod 出来多省事。这就要求应用能够跟自动化一些地提供自己的健康情况，让平台自己检测出这些不正常的地方然后重新搞个健康的出来。</li>
+<li>应用成的断路器等逻辑慢慢式微，取而代之更流行的做法是用 Service Mesh。每个微服务都给起一个 sidecar container 用于 proxy，这种设计可以简化应用层。</li>
+<li>微服务得能被设计地面向 recovery：能很容易地杀掉，重启，然后一切恢复正常。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/6aa4fbd1-9f8d-47a0-830f-6bbef868e1b9.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/70977c9d-0925-4c4e-a29f-b189002abb80.html" rel="bookmark"
+                                title="Permalink to How auth works in EKS with IAM Users"
+                                >How auth works in EKS with IAM Users</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://marcinkaszynski.com/2018/07/12/eks-auth.html">查看原文</a></p>
+<p>本文介绍了 AWS EKS 是怎么做初始化的授权验证。AWS 提供了 IAM 用于权限验证，Kubernetes 初始化时需要 admin service account 才能进行管理。事实上，EKS 初始化时就使用了你本地的 <code>~/.aws</code> 配置，并会使用创建 EKS 的 IAM User 或者 IAM Role 作为 admin service account。这个 user 是不会出现在 aws cli / kubectl 的数据中的。如果有需要添加额外的 user，那你需要使用这个用户继续添加 ConfigMap，通过 <code>mapRole</code>, <code>mapUser</code> 添加管理用户。</p>
+<p>整套授权是通过一个叫做 <code>aws-iam-authenticator</code> 的 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/70977c9d-0925-4c4e-a29f-b189002abb80.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/39cde0ea-1da0-43b5-bbc3-9fd69e3d6aaa.html" rel="bookmark"
+                                title="Permalink to Netflix 点击按钮的背后"
+                                >Netflix 点击按钮的背后</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html">查看原文</a></p>
+<p>本文介绍了 Netflix 作为视频网站背后所涉及的客户端，服务端，网络等等相关的技术。</p>
+<ul>
+<li>一个看起来很简单的网站，在用户量级上去后就会变的非常有挑战。</li>
+<li>Netflix 工程博客记录了很多他们的技术架构文章。</li>
+<li>Netflix 使用混合云：AWS + Open Connect</li>
+<li>Netflix 的三大核心组件：客户端，服务端，CDN</li>
+<li>Netflix 跟 EC2 发布在同一年，所以那时候还得自搭数据中心。自建 DC 的问题主要就是效率特低。</li>
+<li>2008 年出过一次大事故，比起维护一个数据中心，工程师们觉得还是维护产品更重要更简单，所以全线切去 AWS。历经八九年经营，现在使用着上千台 EC2 实例。</li>
+<li>Netflix 需要比 AWS 更稳定，通过在 North Virginia，Oregon，Dublin 三地搭服务，可以做到某地出问题了就切流量去别的。作为客户端 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/39cde0ea-1da0-43b5-bbc3-9fd69e3d6aaa.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/792bad18-8b00-4a73-8e45-cdadbddfbff6.html" rel="bookmark"
+                                title="Permalink to Documenting Architecture Decisions"
+                                >Documenting Architecture Decisions</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">查看原文</a></p>
+<p>ADR 有点像 RFC，但是更多用于 Agile 项目。敏捷项目变动快，需要一种手段能够记录做过的项目技术决策，ADR 就是一种记录决策的小短文的模板。它的段落构成可以是：标题，上下文，决定，状态，以及后果。上下文记录当时的状态，决定记录要做的事情，状态标记这个决定做审定中还是已经执行完了，后果记录它做了以后会发生什么。其实不仅可以用于 Agile 项目，个人项目也都可以用 ADR 来记录。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/792bad18-8b00-4a73-8e45-cdadbddfbff6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/933aeb58-10e7-4f2f-a9ec-42ad9c881791.html" rel="bookmark"
+                                title="Permalink to Perkeep - permanently keep your stuff for life"
+                                >Perkeep - permanently keep your stuff for life</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://perkeep.org/">查看原文</a></p>
+<p>Perkeep 是一款用于存储个人数据的程序，CS 架构，客户端可以是手机，浏览器，或者 FUSE 文件系统。它的目标是尝试打造终生存储。它的本质是个基于多云存储的 blobserver，在客户端提供了不限于 dir/file/filename 这种基于文件的存储格式。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/933aeb58-10e7-4f2f-a9ec-42ad9c881791.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/22f93d99-0472-4f63-80f1-78d7a0cee113.html" rel="bookmark"
+                                title="Permalink to xonsh - python shell"
+                                >xonsh - python shell</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://xon.sh/tutorial.html">查看原文</a></p>
+<p>Xonsh 是一款 shell 工具，基于 Python 提供类似 bash + ipython 结合体验。一些基于 python 的语法改进</p>
+<ul>
+<li>支持环境变量，例如 <code>$HOME</code>, <code>${...}</code></li>
+<li>像 sh 一样运行命令：<code>cd xyz</code>, <code>git status</code></li>
+<li><code>$(ls -l)</code> 把输出流转为 Python 字符串</li>
+<li><code>!(ls nonexistent_directory)</code> 把输出和错误转为一个 <code>CommandPipeline(stdin, stdout, stderr, ...)</code> 的对象</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/22f93d99-0472-4f63-80f1-78d7a0cee113.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0a223fa3-10d2-40e7-8889-42b1c8800cdd.html" rel="bookmark"
+                                title="Permalink to Makefile Basics"
+                                >Makefile Basics</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://gist.github.com/isaacs/62a2d1825d04437c6f08">查看原文</a></p>
+<p>这段代码是 isaacs 的一段 gist，可以学到 make 的最基本知识，而关于更多的知识，可查看 gnu make man：http://www.gnu.org/software/make/manual/make.html</p>
+<ul>
+<li><code>make -f &lt;filename&gt;</code> 可以指定运行哪个 Makefile，默认使用 <code>./Makefile</code></li>
+<li>语法如下，target 是必须的，依赖和命令是可选的</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;target&gt;: &lt;prerequiresites&gt;...</span>
+<span class="err">    &lt;commands&gt;</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>@</code> 加在命令前面不输出命令</li>
+<li>多条 <code>&lt;commands</code> 之间不会互相共享环境变量</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">var-lost:</span>
+<span class="c">    export foo=bar</span>
+<span class="c">    echo &quot;foo=[$$foo]&quot; # 这里 $foo 不会被赋值上 …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0a223fa3-10d2-40e7-8889-42b1c8800cdd.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1c351c59-7377-45a1-8d59-8e6d649d44f1.html" rel="bookmark"
+                                title="Permalink to Tink - NPM Replacement"
+                                >Tink - NPM Replacement</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.npmjs.org/post/178027064160/next-generation-package-management">查看原文</a></p>
+<p>本文介绍了 Tink - 下一代 npm 的一种可能的替代品。运行 tink 不会像 npm install 一样把依赖安装到 <code>node_modules</code>, 而是缓存依赖的 hash，当不满足时才会下载并加载。</p>
+<p>它仍然可以跟 <code>node_modules</code> 并存，并优先使用 <code>node_modules</code> 而非缓存的依赖（为了更方便调试）</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1c351c59-7377-45a1-8d59-8e6d649d44f1.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses6.html">&laquo;</a>
+    Page 7 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses8.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

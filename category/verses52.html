@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/42042195-0a43-40b3-9329-7a683b5ac2cf.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - Requests 模块设计"
+                                >源码阅读 - Requests 模块设计</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/requests/requests/blob/master/requests/__init__.py">查看原文</a></p>
+<p><code>requests</code> 一直以来是 For Human 的教科书。我们可以通过 Package 入口文件看看在提供 For Human 的 API 最前面这个库是怎么做模块规划的。1. 检查兼容性，2. 导入各种包的元信息（例如版本，作者，证书等），3. 导出帮助函数，4. 处理兼容问题，5. 导出设计的主 API，6. 导出领域模型，7. 导出常量，8. 导出异常类，9. 设定日志。这几个步骤完全可以借鉴到我们的日常的模块设计去。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/42042195-0a43-40b3-9329-7a683b5ac2cf.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/463c05b7-a149-4075-9270-6d99e6927959.html" rel="bookmark"
+                                title="Permalink to Unix true v/s false 命令"
+                                >Unix true v/s false 命令</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://en.wikipedia.org/wiki/True_and_false_(commands)">查看原文</a></p>
+<p><code>true</code> 这个 bash 命令一个总是返回 0, 而 <code>false</code> 命令总是返回 1。一般来说 <code>true</code> 和 <code>false</code> 是 shell 的内建函数，可以通过 <code>$ which true</code> 和 <code>$which false</code> 验证，一般结果会是 <code>shell built-in command</code> 。少量系统会将这两个命令作为附加程序，那运行的速度就会慢下来。这个对应和 C 语言中的 1 是真而 0 是假是相反的，其实 true 返回 0 / false 返回 1 是 UNIX 一直以来的设定：0表示运行成功，1表示运行失败。例如 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/463c05b7-a149-4075-9270-6d99e6927959.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c298be6e-cb0e-4731-832f-13c1a8150523.html" rel="bookmark"
+                                title="Permalink to Bash test 命令"
+                                >Bash test 命令</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://tldp.org/LDP/abs/html/testconstructs.html">查看原文</a></p>
+<p>Bash 的比较 (test) 是必须掌握的技能。<code>[ true-condition ]</code> 会被解释为 0。方括号 [] 是命令 <code>test</code> 的语法糖。 <code>[[ ... ]]</code> 是升级版的比较，需要注意的是两个方括号里面不会扩展文件名，也不会分词，只会做参数的扩展， $variable 变量的替换，以及能用 <code>&amp;&amp;</code>, <code>||</code>, <code>&lt;</code>, <code>&gt;</code> 这些操作符。不过在 <code>if</code> 后面，像 <code>test</code>, <code>[]</code>, <code>[[]]</code> 这些都是可以省略的。不用 <code>if</code> 的时候方括号很适合做一些一行流的操作，例如： <code>[ -f $variable ] &amp;&amp; command-a || command-b</code>  能比较变量文件是否存在，是则执行 command-a, 否则执行 command-b。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c298be6e-cb0e-4731-832f-13c1a8150523.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d76c6ac2-5c30-4cf0-95f9-d7db5fe52c06.html" rel="bookmark"
+                                title="Permalink to 如何阅读一个开源项目"
+                                >如何阅读一个开源项目</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.justinweiss.com/articles/how-do-you-do-a-rails-deep-dive/">查看原文</a></p>
+<p>文中视图推荐如何深度阅读 Rails 项目，但其实也适用于所有你所依赖的库。当出 Bug 的时候，你可能会很深入库的代码去一探究竟。首先，相关领域的好书非常值得一读。例如想深入了解 Git，一本叫做 Pro Git 的书就不能错过。你不一定会成为专家，但是相关领域的知识会得到大大的扩充。其次，官方文档也是个切入点。例如，想深入了解 OAuth，就去看 RFC 文档。最后也最重要，也就是去阅读源码。看源码需要你有足够的经验和能力，最好有一定的能力了再去看。补充：直接问同事/牛人也不错！高手们一般都很乐意倾囊相授。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d76c6ac2-5c30-4cf0-95f9-d7db5fe52c06.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f13adfec-73c4-4353-bad8-22b47cd5a177.html" rel="bookmark"
+                                title="Permalink to 为何 Unix exit_code 0 表示成功"
+                                >为何 Unix exit_code 0 表示成功</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://stackoverflow.com/questions/2933843/why-0-is-true-but-false-is-1-in-the-shell">查看原文</a></p>
+<p>为什么 UNIX 设定 0 是运行成功呢？抛开历史原因，有一些可能的理由：一般 Bash 想知道一个程序的运行结果，要问上两个问题。1. 运行成功了么？2. 如果不成功那么原因是什么？理论上任何值都可以表示运行成功，但 0 相比而言是最方便的。不管在什么系统，使用了什么编码方式，使用了多长的字节表示数字，0 总是一样的。而像 1，在小端表示和大端表示两种风格下其实是不兼容的(10000000, 和 00000001)。一旦决定了用 0 表示成功，那除 0 以外的数字表示运行失败的原因就合乎情理了。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f13adfec-73c4-4353-bad8-22b47cd5a177.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/02043fb2-3a2a-4989-930d-d97a5dac4fa0.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - nohup"
+                                >源码阅读 - nohup</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://src.gnu-darwin.org/src/usr.bin/nohup/nohup.c.html">查看原文</a></p>
+<p>UNIX 程序 <code>nohup</code> 的源码相当简单，总共就几十行。它的功能是将标准输出和标准错误重定向到 <code>nohup.out</code> (默认）或者参数自定义的日志文件，然后调用 <code>execvp</code>，将 nohup 这个进程在操作系统里整个替换成参数定义的命令起的进程。最为特别的一行代码是 <code>(void)signal(SIGHUP, SIG_IGN);</code>。这行代码会导致进程忽略 HUP 信号，而这个信号按照惯例是终端退出时发送给进程。忽略这个信号将导致终端退出时进程仍然还在运行，从而达到背地里暗戳戳地运行。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/02043fb2-3a2a-4989-930d-d97a5dac4fa0.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5793d84c-11f5-46b2-b605-71306d32f2e3.html" rel="bookmark"
+                                title="Permalink to nice - 一款设定运行优先级的命令"
+                                >nice - 一款设定运行优先级的命令</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://linux.die.net/man/1/nice">查看原文</a></p>
+<p>Linux 命令  <code>nice</code> 是对同名的系统调用的简单包装。通过它我们可以启动一个进程，同时设定它进程调度的优先级。更高 niceness 值意味着更低的优先级。值域从 -20 到 19，只有超级用户可以设定负值。它的使用场景特别适合在有多个进程在请求 CPU 资源。高优先级的进程将得到更多的 CPU 时间分片。不过具体如何影响调度算法还取决于操作系统的具体实现，nice 只是给定了一个值而已。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5793d84c-11f5-46b2-b605-71306d32f2e3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d58b8a8c-80ac-424d-a9a7-530514deee0a.html" rel="bookmark"
+                                title="Permalink to Nohup 的使用简介"
+                                >Nohup 的使用简介</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://en.wikipedia.org/wiki/Nohup">查看原文</a></p>
+<p>来看一看 <code>nohup</code> 的使用。 <code>nohup command &amp;</code>  是最基本的用例，它起了一个 command 的进程，标准输出和标准错误重定向到 <code>nohup.out</code>，不响应 SIGHUP 信号。 <code>nohup nice command &amp;</code>  是让 <code>nohup</code> 与另一个 UNIX 应用 <code>nice</code> 混合使用，它是 command 这个进程的优先级变得非常低，占用更少的 CPU 时间。对于使用 ssh 的场景，有可能会因为执行了 <code>nohup</code> 后台任务而拒绝登出，因为 ssh 拒绝丢失后台任务的标准输入的数据。对于这种场景，我们可以加上 <code>&lt; /dev/null</code> 解决。原理是 stdin/stdout/stderr …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d58b8a8c-80ac-424d-a9a7-530514deee0a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d8412526-3b1e-42c6-a429-14964356895b.html" rel="bookmark"
+                                title="Permalink to URL v/s URI v/s URN"
+                                >URL v/s URI v/s URN</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://danielmiessler.com/study/url-uri/#gs.iVgzT44">查看原文</a></p>
+<p>术语 URL 还是 URI 很多人搞不清楚区别是什么。简单来说，URI 是比 URL 更大的集合。任何能用 URL 的地方都能用 URI 替代，反之不可以。具体来说，URL 是唯一地址，URN 是唯一名字。URI 的唯一标识，URI 包括 URL 和 URN。协议（访问方式）+ URN 组成了一个 URL。很确定能用某种设备或软件访问一个链接时，我们就能用 URL。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d8412526-3b1e-42c6-a429-14964356895b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/835acfad-bc26-432c-b204-308bc9aaa6e9.html" rel="bookmark"
+                                title="Permalink to SQL FIDDLE - 一款 SQL 模型测试工具"
+                                >SQL FIDDLE - 一款 SQL 模型测试工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://sqlfiddle.com/#!5/427a4/1">查看原文</a></p>
+<p>跟 JSFIDDLE 类似，SQL FIDDLE 这款工具也提供了即时验证数据库设计的功能。在进入正式开发之前，这样的工具对于想法验证的最终落地非常有帮助。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/835acfad-bc26-432c-b204-308bc9aaa6e9.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses51.html">&laquo;</a>
+    Page 52 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses53.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/3f877c85-caca-400a-b3d3-a52d45cb8c6e.html" rel="bookmark"
+                                title="Permalink to 使用 Travis 自动发布 GitHub Releases"
+                                >使用 Travis 自动发布 GitHub Releases</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.travis-ci.com/user/deployment/releases/">查看原文</a></p>
+<p>本文介绍了如何在 Travis 任务中配置将构建好的文件发布到 GitHub Releases 中。</p>
+<p>你可以：</p>
+<div class="highlight"><pre><span></span><code>$ travis setup releases
+</code></pre></div>
+
+
+<p>或者直接在 <code>.travis.yaml</code> 中配置：</p>
+<div class="highlight"><pre><span></span><code><span class="n">deploy</span><span class="o">:</span>
+  <span class="n">provider</span><span class="o">:</span> <span class="n">releases</span>
+  <span class="n">api_key</span><span class="o">:</span> <span class="s2">&quot;${GH_TOKEN}&quot;</span>
+  <span class="n">file</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">file1</span>
+    <span class="o">-</span> <span class="n">file2</span>
+  <span class="n">skip_cleanup</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="n">on</span><span class="o">:</span>
+    <span class="n">tags</span><span class="o">:</span> <span class="kc">true</span>
+</code></pre></div>
+
+
+<p>为了安全起见，可以在任务的配置中添加 environ variable <code>GH_TOKEN</code>，使其不会被暴露。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/3f877c85-caca-400a-b3d3-a52d45cb8c6e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/90e206e0-dbd3-4afa-a066-b6bf78e701f6.html" rel="bookmark"
+                                title="Permalink to 论文阅读 - ORM 反模式"
+                                >论文阅读 - ORM 反模式</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://hyperloop-rails.github.io/220-HowNotStructure.pdf">查看原文</a></p>
+<p>这篇论文通过分析 12 款 ORM 软件的很多修复性能问题的 BUGS / ISSUES，得出了 9 种造成低性能的反模式。测试方法很简单，灌大量数据，看性能。半数是 ORM 内部 API 没调用对，比如 Ruby 中把 <code>any?</code> 替换成 <code>empty?</code> 可以更快，添加了不必要的 LIMIT 1，一些计算可以不用再 DBMS 中做，一些不适合在应用中做。一些问题是产生了不必要的 Queries，或者没做 Batch，或者 Batch 了太多数据，或者索引没搞对。问题都是出在细枝末节的地方，但林林总总加起来，会导致很客观的性能提升。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/90e206e0-dbd3-4afa-a066-b6bf78e701f6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4502c6e1-74d5-436c-90a1-31d8fc903a63.html" rel="bookmark"
+                                title="Permalink to libuv basics"
+                                >libuv basics</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://nikhilm.github.io/uvbook/basics.html">查看原文</a></p>
+<p>libuv 的基本原理是维护一个持续运行的事件循环，当收到 I/O 通知的时候，运行与该 I/O 有关的回调函数。对于网络 I/O 由于有跨平台的的 aio 接口，所以可以直接在事件循环内调度。对于文件 I/O, 没有跨平台的 I/O 接口，所以替代方案是起一个线程池，将 I/O 操作提到另外的线程去执行，保证 I/O 操作不会影响当前线程（这需要额外分配 cpu 资源用于线程切换）。</p>
+<p>事件循环的限制是：</p>
+<ul>
+<li>回调函数如果包含 Blocking I/O 那么整个事件循环都会被堵塞</li>
+<li>CPU 密集运算不适合放在事件循环进程里运行，否则也会影响事件调度。</li>
+</ul>
+<p>libuv 中的几个重要概念：</p>
+<ul>
+<li>request: 代表一个只会执行一个回调的任务 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4502c6e1-74d5-436c-90a1-31d8fc903a63.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e2c9e0fa-3971-4277-9c08-c0c87942f8f7.html" rel="bookmark"
+                                title="Permalink to 源码阅读 - picol - 一个 500line 的 TCL Script 解释器"
+                                >源码阅读 - picol - 一个 500line 的 TCL Script 解释器</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://antirez.com/picol/picol.c.txt">查看原文</a></p>
+<p>这是 Redis 的作者 antirez 在无聊的时候写的一个健脑锻炼 - 写了一个大约 500 行左右的解释器，可以运行 TCL 脚本代码。代码看起来很优雅，没有用什么奇奇怪怪的技术，实打实地用好了字符串解析，内存分配这些技巧。</p>
+<ul>
+<li><code>main</code>: 根据参数进入 REPL 模式或者执行脚本</li>
+<li><code>picolInitInterp</code>: 初始化解释器，解释器的数据结构是栈帧的链表和TCL语言内部函数的链表。</li>
+<li><code>picolRegisterCoreCommands</code>: 将用 C 实现的函数注册为 TCL 语言的内部函数 - 体现了 SICP 中介绍的语言抽象</li>
+<li><code>picolEval</code>: 解释执行 TCL 字符串形式的代码。</li>
+<li><code>picolGetToken</code>: 将 TCL 字符串形式的代码变为有语法意义的 Token。</li>
+</ul>
+<p>从实现上看，Picol 简化了解释器实现，省略掉了 OPCODE 的编译，直接将 token 用于解释执行 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e2c9e0fa-3971-4277-9c08-c0c87942f8f7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e89a70c6-7267-42d3-a8dc-be00b376761a.html" rel="bookmark"
+                                title="Permalink to Protothread 的一种实现 - zserge-pt"
+                                >Protothread 的一种实现 - zserge-pt</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/zserge/pt">查看原文</a></p>
+<p><a href="https://github.com/zserge/pt">zserge/pt</a> 使用不到两百行实现了 protothread。其核心接口:</p>
+<ul>
+<li><code>pt_init</code></li>
+<li><code>pt_begin</code></li>
+<li><code>pt_end</code></li>
+<li><code>pt_wait</code></li>
+</ul>
+<p>对 Dr. Dunkels 的原始实现有一些改进：多加了 pt_loop, pt_sys 以及赠送了一整个 queue 的实现。</p>
+<p>尝试用 Protothread 实现了一个很小的 Actor Model，见代码 <a href="https://gist.github.com/soasme/da3b7b7b7b0317194bf593bd0f262094">gist</a>, 使用体验还挺不错。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e89a70c6-7267-42d3-a8dc-be00b376761a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0fef34b2-f30d-4c08-9f81-1706ae8d7b64.html" rel="bookmark"
+                                title="Permalink to Protothreads - lightweight stackless threads"
+                                >Protothreads - lightweight stackless threads</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://dunkels.com/adam/pt/">查看原文</a></p>
+<p>本文介绍了 Protothread 这种无栈线程的小众实现，由于不需要线程或者多进程就能实现多任务协程，它被用于 Arduino / 感应器这种嵌入式设备中。每个 PT 仅占用两个 bytes 大小，理论上你可以创建比 Actor 模型还多两个数量级的并发任务出来。由于仅仅是几个 C 的宏，它极具迁移性，甚至可以在无 OS 的环境运行。它的核心实现就下面几行代码：</p>
+<div class="highlight"><pre><span></span><code><span class="err">struct pt { unsigned short lc; };</span>
+<span class="err">#define PT_THREAD(name_args)  char name_args</span>
+<span class="err">#define PT_BEGIN(pt)          switch(pt-&gt;lc) { case 0:</span>
+<span class="err">#define PT_WAIT_UNTIL(pt, c)  pt-&gt;lc = __LINE__; case …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0fef34b2-f30d-4c08-9f81-1706ae8d7b64.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c2cc99c0-2c5b-4f2c-bab3-04a1c7059ad3.html" rel="bookmark"
+                                title="Permalink to theBeamBook - The Erlang Runtime System"
+                                >theBeamBook - The Erlang Runtime System</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://happi.github.io/theBeamBook/">查看原文</a></p>
+<p>本文是一本尚未完工的书，讲了 Erlang 底层是如何实现它的调度和解释器的。</p>
+<ul>
+<li>Erlang 的最底层是 ERTS, 它掌管进程调度（Erlang 自己重写了整个专属于自己运行时的进程，有别于系统进程）</li>
+<li>BEAM 是 Erlang 的虚拟机，用来执行指令。</li>
+<li>Process 的本质是大约几百个 bytes 的数据结构，包含了进程控制的一些字段(PCB) 外加 Stack, Heap, Mailbox.</li>
+<li>Mailbox 的本质是一个无锁消息队列。</li>
+<li>Scheduling 的策略是抢占式调度，任一时刻 CPU 只执行一个进程，时间片花完了就推后去执行别的进程。它的内部维护了两个队列，一个专门维护被 receive message 堵塞的进程，另外一个维护可执行的进程。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c2cc99c0-2c5b-4f2c-bab3-04a1c7059ad3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0e3dbc9f-5496-4a16-9ebd-aabca9743f4e.html" rel="bookmark"
+                                title="Permalink to 如何使用 Wireshark"
+                                >如何使用 Wireshark</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://jvns.ca/blog/2018/06/19/what-i-use-wireshark-for/">查看原文</a></p>
+<p>Julia Evans 的新文章，讲怎么做网络数据包的诊断分析。</p>
+<ul>
+<li>这个工具可以图形化查看网络数据包。如果生产环境上诊断不方便，用 tcpdump 下来到 local 来查。</li>
+</ul>
+<p>原文是在 debian-based distros 上使用 <code>sudo apt install wireshark</code>。我尝试了下，在 macOS 上可以用 brew install wireshark 得到命令行工具，使用 <code>brew cask install wireshar</code> 获得图形界面工具。</p>
+<p>打开 tcpdump 的数据包中, 可以看到 ACK, SYN 等 TCP 包具体发来发去的那些 packet。</p>
+<p>举个例子，connection reset 是个常见的问题。我们可以查这个序列，如果 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0e3dbc9f-5496-4a16-9ebd-aabca9743f4e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1afeed3c-8791-4851-91e1-30edb69de2fd.html" rel="bookmark"
+                                title="Permalink to 程序员日常使用的 Bash Tricks"
+                                >程序员日常使用的 Bash Tricks</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://opensource.com/article/18/5/bash-tricks">查看原文</a></p>
+<p>本文介绍了 Bash 使用的不少小窍门。</p>
+<ul>
+<li>设定 <code>export CDPATH=~/works:~/code:~/playground</code>, 不论在哪里都能快速用 <code>cd dir</code> 这样的语法跳到那个目录去。</li>
+<li>使用 <code>!!</code> 运行上一条命令。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ py.test tests
+$ !!
+</code></pre></div>
+
+
+<ul>
+<li>使用 <code>!*</code> 扩展前一条命令的参数到本命令</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ touch filea fileb filec
+$ chmod <span class="m">777</span> !*
+</code></pre></div>
+
+
+<ul>
+<li>ctrl+r 从历史里面去找</li>
+<li><code>shopt -s cdspell</code> 可以自动纠正错误的 cd 路径</li>
+<li>使用 <code>cd -</code> 在两个路径之间来回切换</li>
+<li>用 bind -p 查看 bash 内置的快捷键</li>
+</ul>
+<p>衍生思考：很不错的总结，我再补几个我常用的：</p>
+<ul>
+<li>上条命令有 typo …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1afeed3c-8791-4851-91e1-30edb69de2fd.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2a9d0684-d7d6-43db-9c12-b7e8afc5d56d.html" rel="bookmark"
+                                title="Permalink to Pulumi - 一个 serverless 平台"
+                                >Pulumi - 一个 serverless 平台</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://joeduffyblog.com/2018/06/18/hello-pulumi/">查看原文</a></p>
+<p>本文介绍了一个全新的 serverless 平台 - Pulumi。缘起是 serverless 程序中要去维护很多 json / yaml 配置，管理 etcd 集群，配置网络。Kubernetes 做掉了很多事情，不过维护起来是个大问题，因为是个很大的系统。这个新系统有个 NoYAML 的愿景。这个平台想要做多语言和多云平台支持。</p>
+<p>非要说的话，这个应用像是代码版的 Terraform 加上了 Serverless 的使用体验，满独树一帜的。它企图为应用程序封装尽可能多的云平台的概念，让你开箱即用。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2a9d0684-d7d6-43db-9c12-b7e8afc5d56d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses16.html">&laquo;</a>
+    Page 17 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses18.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

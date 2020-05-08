@@ -1,0 +1,112 @@
+/*@import url("pygment.css");*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1.5
+}
+
+html,body {
+  color: #555;
+  margin: 0;
+  padding: 0
+}
+
+html {
+  font-family: "Libre Baskerville","Times New Roman",Times,serif;
+  font-size: 14px
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size:16px
+  }
+}
+
+body {
+  -webkit-text-size-adjust: 100%
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #353535;
+  font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
+  line-height: normal;
+}
+
+a {
+  color: #4a9ae1;
+  text-decoration: none
+}
+
+a:visited {
+  text-decoration:none;
+}
+
+blockquote {
+  border-left: 0.25rem solid #e5e5e5;
+  color: #979797;
+  margin: .8rem 0;
+  padding: .5rem 1rem
+}
+
+blockquote p:last-child {
+  margin-bottom: 0
+}
+
+@media (min-width: 600px) {
+  blockquote {
+    padding:0 5rem 0 1.25rem
+  }
+}
+
+img {
+  display: block;
+  margin: 0 0 1rem;
+  max-width: 100%
+}
+
+td {
+  vertical-align: top
+}
+
+pre,code {
+  font-family: Menlo,Monaco,monospace
+}
+
+code {
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  color: #bf616a;
+  font-size: 85%;
+  padding: .25em .5em
+}
+
+pre {
+  margin: 0 0 1rem
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 100%;
+  padding: 0
+}
+
+/*
+body { margin:0px; padding:20px 0px; color:#585858;  }
+a, a:visited { text-decoration:none; color: #1abc9c;  }
+a:hover { color:#1abcb7; text-decoration:none; }
+h1, h2, h3, h4, h5, h6, h7 { margin:0px; text-transform:uppercase;   color: #353535; font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif; line-height: normal;
+}
+h4, h5, h6 { font-size:14px;  }
+h1 { padding:0px 0px 15px; margin:0px 0px 15px 0px;  }
+blockquote { font-style:italic; background:#EAEAEA; margin:20px; padding:5px 10px;  }
+blockquote cite { display:block; padding:10px 20px 0 0; text-align:right;  }
+input, textarea { padding:5px; border:1px solid #8A8A8A; background:#EAEAEA;  }
+input:hover, textarea:hover, blockquote:hover { background:#E5E5E5;  }
+hr{ border: 0; margin: 1.4em 0; color: #1abc9c; height: 1em; }
+hr:before {content: '...'; display: block; width: 100%; letter-spacing: 2em; text-indent: 2em; z-index: 1; line-height: .5; text-align: center;}
+*/
+#container { margin: 20px; }
+.entry-title {  color: #353535; font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif; margin: 1rem 0; text-align: center;}
+.entry-content p { text-align: justify; }

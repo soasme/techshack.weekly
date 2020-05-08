@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly - Monitoring  和 Observability 的区别</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Monitoring  和 Observability 的区别</h2>
+  </header>
+  <div class="entry-content">
+        <p><a href="https://medium.com/@copyconstruct/monitoring-and-observability-8417d1952e1c">查看原文</a></p>
+<p>有人开玩笑，开发不喜欢 Monitoring ，就造了个新名词 Observability 让开发们觉得这事就是潮流得跟上！曾经其实所有 Ops 监控的东西，都叫 Monitoring，从视觉上看那就是 Nagios 面版，没啥技术含量。但后来人们发现，这个面版上只是 up/down 完全不够用了，那些简单的 pings 根本看不出问题出在哪里。测个节点挂没挂，服务进程死没死其实已经不足以保证服务的正常运行了。我们真正要登录到服务器去看报错日志和实时的打点数据才有可能找到根因，这就引入了 APM。</p>
+<p>Google SRE 一书中将 Monitoring System 认定为要解决两个问题：什么坏了，为什么坏了：既要发现病症，也要发现病灶。当然，前提是，你需要先发制人知道系统在某个域里面可能会发生什么问题，然后做到相关监控，进而做到 Whitebox Monitoring。例如说，对于存储系统最关注 disk-space，对于代理最关注 fd-count，对于分布式kv服务最关注 error-rate, query-latency, repl latency。对于某个服务，我们在上线之初就要为其定出内部的 SLA，为其定制如何衡量 Availability 的规则。不仅如此，系统里面最好还要做到能监控的地方就监控，将 unknown-unknowns 的东西变得尽可能少。在有很多监控指标后，又要好好分析，减少噪音，这是另外一个挑战。我们要知道，系统失效是必然的，监控不会减少它的发生，它只是提供了系统健康的近似模拟，让我们可以尽快处理。这里有几个简单的规则设定这样的规则：</p>
+<ul>
+<li>指标能够捕获真正的事故，它应当是尽可能简单，可预测，可靠的。</li>
+<li>定期清理：如果数据收集，聚合，报警配置很多人碰都不碰一下的，那就清掉。</li>
+<li>同上，没被纳入面版的，或没设置报警的信号也都清掉。</li>
+<li>核心规则：监控指标必须是 actionable 的，它必须能在系统出问题的时候，立即指出哪里出问题了。</li>
+</ul>
+<p>Observability 要处理的问题可以是 detailed system profiling, single-process debugging, tracking details about exceptions or crashes, load testing, log collection and analysis, or traffic inspection 中之一，它不一定要是跟 outage 有关系。如果将这些东西混入 Monitoring，那就违反了它简单，迅速定位的初衷。Observability 想要在高层次提供复杂系统行为，并给出能用于 debug 的上下文，从这个角度看，Sentry，Log 这些都能提供一定的 Observability。这个特性要求我们的系统本身是可以被 Debug 的。Observability 关注的东西：</p>
+<ul>
+<li>Monitoring</li>
+<li>Alerting/visualization</li>
+<li>Distributed systems tracing infrastructure</li>
+<li>Log aggregation/analytics</li>
+</ul>
+<p>对于系统失败，我们可以简单理解为 Monitoring 是针对已知的系统失效，而 Observability 则是一种对已有系统的性能和行为的观测（甚至不一定要是跟 outage 有关）。从定义的广度，Observability 是 Monitoring 的超集。</p>
+
+  </div><!-- /.entry-content -->
+</section>
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

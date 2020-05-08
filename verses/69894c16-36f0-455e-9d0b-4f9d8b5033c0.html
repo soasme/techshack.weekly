@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly - Stack Overflow 如何监控之 2018 版</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Stack Overflow 如何监控之 2018 版</h2>
+  </header>
+  <div class="entry-content">
+        <p><a href="https://nickcraver.com/blog/2018/11/29/stack-overflow-how-we-do-monitoring/">查看原文</a></p>
+<p>本文介绍了 Stack Overflow 当下（2018）的监控技术栈。</p>
+<ul>
+<li>监控是什么？是裸眼时不时扫头上那三五台大电视屏幕，是被开发搞的飞起的上线事故应急响应，如此种种。得操心监控阈值设定，高了不行，低了不行，节假日要换个阈值，有时候又没法自动化。</li>
+<li>监控什么？三大类：日志，健康检查，监控指标。<ul>
+<li>日志: 主程序错误丢到 Windows 套餐的 Opserver，其他服务像 Redis，Elasticsearch，SQLServer 做本地 disk logging + log rotation。HAProxy 会把负载均衡的服务的总体流量和响应时间记下来，排查问题时很有用。默认的 HAProxy 日志中会有以下四个数据：</li>
+<li>TR: Time a client took to send us the request (fairly useless when keepalive is in play)</li>
+<li>Tw: Time spent waiting in queues</li>
+<li>Tc: Time spent waiting to connect to the web server</li>
+<li>Tr: Time the web server took to fully render a response</li>
+<li>健康检查。绿色（ok），红色（not-ok），红色（不正常了），灰色（不晓得啥事情）。负载均衡会根据这个分派流量到健康的节点去。健康检查有可能会做的很频繁，几秒或者一分钟一次不等。每个数据中心有两个 ISP 用来做冗余，一个主，一个备。他们使用 Pingdom 做全球 ping 监控。</li>
+<li>监控指标：time series data。</li>
+</ul>
+</li>
+<li>Alert：一个内部的告警平台Bosun，外加 PagerDuty 找 OnCall</li>
+<li><a href="https://github.com/bosun-monitor/">Bosun</a>: 用 Go 写的 agent 程序，使用 OpenTSDB 做后端时间序列存储。他们会把一个 alert 近期的监控 pattern 记录下来，这样子会很容易发现这个 pattern。</li>
+<li>Grafana：监控面板。</li>
+<li>网站加载：https://teststackoverflow.com/</li>
+<li>MiniProfiler：对每个请求做低精度的 profile，看哪个函数调用耗时</li>
+<li>接下来的优化<ul>
+<li>做一个服务的健康依赖链条。</li>
+</ul>
+</li>
+</ul>
+<p>衍生思考：这位作者正在做的事情其实就是我在公司做的事情。对于存在依赖链条的多服务的监控，一个树形的服务健康面版对于 Ops 的重要性不言而喻。他的 HealthResult/HealthStatus 定义的没问题，HealthResult 里面可以再带上些 Playbook，Pagerduty 什么的还可以加速异常的处理。</p>
+
+  </div><!-- /.entry-content -->
+</section>
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

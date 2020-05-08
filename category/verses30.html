@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/29b79be2-c780-49f2-9cf0-9b7c2186ab99.html" rel="bookmark"
+                                title="Permalink to 如何选用合适的 DevOps 工具"
+                                >如何选用合适的 DevOps 工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://techbeacon.com/how-find-right-devops-tools-your-team">查看原文</a></p>
+<p>本文总结了选用合适的 DevOps 工具，包括：版本控制，持续集成，构件管理，持续交付流水线，自动化测试，环境自动化和配置，发布管理，日志合并查询，监控指标，团队沟通等等。</p>
+<ul>
+<li>选择能够增加合作效率的。例如，也许团队里有人就是用不来命令行工具，可以考虑 browser-based 工具。</li>
+<li>选择有带 API 的工具。如果能在内部运行工具的 prototypes／demo 验证其可行性更佳。</li>
+<li>选择能将配置保存在版本控制中的。</li>
+<li>选择有多种方式使用的工具，成员可以用各自喜欢的方式学习。</li>
+<li>选择能够在多环境部署的。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/29b79be2-c780-49f2-9cf0-9b7c2186ab99.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/bd63462f-2baa-46c5-9fc2-fb107af23ee7.html" rel="bookmark"
+                                title="Permalink to Kubespray Getting Started"
+                                >Kubespray Getting Started</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/kubernetes-incubator/kubespray/blob/master/docs/getting-started.md">查看原文</a></p>
+<p>Kubespray Getting Started 文档介绍了如何在机器上安装一个集群，使用它你不需要对 kubernetes 本身有什么深入了解，就是敲几下命令就能开出集群来了。这套程序是一堆 ansible 配置组成的。在文档中描述的步骤基本上很清晰：1) 从 sample 复制出一套基本配置 2) 生成 ansible hosts 配置文件 3) 检查配置 4) 使用 ansible-playbook 运行 cluster.yml 命令集。</p>
+<p>使用体验：</p>
+<ul>
+<li>文档中的 Requirements 没有提到机器的最小性能要求，在试图安装在 1GB 内存的小机器上时失败了一下。</li>
+<li>机器上 nameserver 的数量超出 3 个结果报错，需要戳戳 3) 中的配置</li>
+<li>默认开了 dashboard，裸跑在公网上安全有隐患，记得防火墙掐掉 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/bd63462f-2baa-46c5-9fc2-fb107af23ee7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d6b488e7-6ff0-4156-9399-c619700a30a8.html" rel="bookmark"
+                                title="Permalink to Linode Kubernetes 使用入门"
+                                >Linode Kubernetes 使用入门</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://linode.com/docs/applications/containers/manage-a-docker-cluster-with-kubernetes/">查看原文</a></p>
+<p>本文介绍了使用三个 Linode 节点搭建 Kubernetes 集群的入门教程。它假设你已经搭建好了一个 kubernetes master，以及两个 worker nodes。</p>
+<ul>
+<li>文章从 pods 的一句话简介开始：Pod 是对外暴露同一个服务的一个/多个容器组成的逻辑实体，共享网络和存储；操作 Pod 的时候，其中的容器会当作一个组一起被启动或停止。</li>
+<li>使用 YAML 创建 Deployment，有了这个应用才能部署到集群中。<ul>
+<li><code>kubectl create -f nginx.yaml --record</code> 创建部署，record 可以记录后续的部署变更。</li>
+<li><code>kubectl get deployments</code> 查看部署。</li>
+<li><code>kubectl get pods</code> 查看 pods。</li>
+<li><code>kubectl scale deployment nginx-server …</code></li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d6b488e7-6ff0-4156-9399-c619700a30a8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0a08aaea-9776-43de-88ae-6d25a2c590f6.html" rel="bookmark"
+                                title="Permalink to Linux 上如何开启 IP 转发功能"
+                                >Linux 上如何开启 IP 转发功能</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux">查看原文</a></p>
+<p>IP 转发是一项操作系统的基础功能，当将服务器用作内网私有服务器对外联系的网关的时候，网关需要有 IP 转发功能才能将数据报文转发到内网的私有服务器。</p>
+<ul>
+<li>可以通过命令 <code>sysctl net.ipv4.ip_forward</code> 查看输出 <code>net.ipv4.ip_forward = 1</code>，1 代表开启。</li>
+<li>可以通过命令 <code>cat /proc/sys/net/ipv4/ip_forward</code> 查看输出 <code>1</code>。</li>
+<li>可以通过命令 <code>sysctl -w net.ipv4.ip_forward=0</code> 将此功能关闭。</li>
+<li>可以通过命令 <code>echo 0 &gt; /proc/sys/net/ipv4/ip_forward</code> 将此功能关闭。</li>
+<li>^ 以上只是暂时关闭，可以通过配置文件 <code>/etc/sysctl.conf …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0a08aaea-9776-43de-88ae-6d25a2c590f6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/13403001-4176-43dc-a398-95503a8db084.html" rel="bookmark"
+                                title="Permalink to TimescaleDB 的架构设计"
+                                >TimescaleDB 的架构设计</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.timescale.com/v0.9/introduction/architecture">查看原文</a></p>
+<p>TimescaleDB 是基于 PostgreSQL 的插件，能够在提供 PostgreSQL 接口的同时提供 Timescale 数据库的功能。这样它就兼具二者的优点：稳定，安全，可靠的连接管理，数据点容量大。</p>
+<ul>
+<li>TimescaleDB 的表叫做 Hypertables，存放的数据叫做 chunks。</li>
+<li>所有的 Hypertables 都根据时间 + 定制的 key 来 partition，这种区分可以形象地称为 time+space。</li>
+<li>Hypertable 可以用普通的 database schema 定义，定义时可以指定 column names &amp; types，通过 CREATE TABLE 来新建。一定要有一个 column 是时间类型，另外可以有一个可选的 additional partitioning key …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/13403001-4176-43dc-a398-95503a8db084.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1c146de1-051b-4d77-9b0c-c15d28b2e1d0.html" rel="bookmark"
+                                title="Permalink to 有哪些 API 设计的很好的 Python 库"
+                                >有哪些 API 设计的很好的 Python 库</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.reddit.com/r/Python/comments/83oza0/what_are_the_most_welldesigned_python_apis/">查看原文</a></p>
+<p>这个帖子提到了一些被认为是接口设计的很不错的库。当然，有些是大众觉得都很好，有些萝卜青菜各有所爱。</p>
+<ul>
+<li>sk-learn 这个库接口设计的不错。文档既有库自己的东西，也有机器学习的起步知识（有人觉得好有人觉得不好）。</li>
+<li>django 的配置，orm，插件都是很不错的设计。</li>
+<li>flask 的 request/g 有人觉得好有人觉得不好。</li>
+<li>requests 的 API 设计的很好，就算跟 php/nodejs 里的库比较也好很多。</li>
+<li>pendulum 是个管理时间的库。</li>
+<li>Sqlalchemy 要解决的问题很复杂的问题，所以它的接口也会相应的的复杂起来。</li>
+<li>pathlib 通过重载操作符将 API 往路径格式上去贴近。</li>
+<li>logging 整体设计都很好没啥错误，除了 API 很不好。做到这样也够了，大部分库都使用 logging 做日志，想成为 requests for logging 的库几乎都失败了 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1c146de1-051b-4d77-9b0c-c15d28b2e1d0.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/706d6511-0c69-4edb-917a-58fd533e25ce.html" rel="bookmark"
+                                title="Permalink to Linux 文档阅读 - Logrotate"
+                                >Linux 文档阅读 - Logrotate</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://linux.die.net/man/8/logrotate">查看原文</a></p>
+<p>Logrotate 是操作系统中用于管理日志文件的小工具。Rotate 是指一种日志滚动存储的策略，日志文件要是不管理就会越来越大最后导致磁盘空间没掉了，有了 Rotate，会按照一些规则把曾经打过的日志转储到另外一个文件去，并按照日期或者什么的规则来命名。这样我们就能按照时间去查看以前的备份。超过限制的日志 logrotate 也会自动丢掉，不用操心磁盘不够用。</p>
+<ul>
+<li>规则上，时间可以是按天，周，月。</li>
+<li>格式上，rotate 后的文件可以做普通的文本存储，也可以用 gz 压缩。</li>
+<li>一般 logrotate 不会一天碰日志文件多次，除非规则是基于文件大小，并且一天通过 cron job 运行多次。</li>
+<li>logrotate 支持传进来多个配置文件，后面会覆盖前面。</li>
+<li>配置文件默认是 <code>/etc/logrotate.conf</code>。可以在 <code>/var/lib</code> 下面找到最近的 logrotate 运行的状态更新，内容会是日志模式及其对应的运行时间。</li>
+<li>配置文件格式：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">compress</span>
+<span class="err">/var …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/706d6511-0c69-4edb-917a-58fd533e25ce.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f1ba35aa-1544-456c-8e44-8c7010cef216.html" rel="bookmark"
+                                title="Permalink to Chaos Engineering 的基本原则"
+                                >Chaos Engineering 的基本原则</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://principlesofchaos.org/">查看原文</a></p>
+<p>这个网站描述了 Chaos Engineering 的一些基本原则。</p>
+<ul>
+<li>Chaos Engineering 的定义：是一种对分布式系统做线上的测试的实践，手段是在一个隔离的生产环境中人为制造一些极端环境。</li>
+<li>意义：即便每个组件都是好的，他们通讯出问题了，系统还是一样照挂；或者服务降级是配置有问题，超时不合适导致过多重试，服务要承受太多流量，单点故障导致雪崩。分布式系统会出现的情况实在太多了。预期等着出现，不如主动出击。主动制造问题，如果制造出的问题怎么搞系统都不会崩，那系统看起来还蛮可靠的。</li>
+<li>Chaos 四个步骤：<ul>
+<li>定义系统正常时的一些指标，收集监控数据。</li>
+<li>假设在 control group 和 experiment group 两个都处于正常状态。</li>
+<li>制造事故，模拟出 server crash，硬盘故障，网络连接故障等等。</li>
+<li>尝试找出 control group 和 experiment group 的状态的不同。如果有不同，那就找到了可以改进的地方 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f1ba35aa-1544-456c-8e44-8c7010cef216.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c6b2b246-d7a3-4f2a-9882-b2a2e110b5cf.html" rel="bookmark"
+                                title="Permalink to Kubernetes 初学者超级简单入门帖"
+                                >Kubernetes 初学者超级简单入门帖</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.sourcerer.io/a-kubernetes-quick-start-for-people-who-know-just-enough-about-docker-to-get-by-71c5933b4633">查看原文</a></p>
+<p>Kubernetes 是 helmsman / pilot 的希腊语，用来做自动部署和容器程序的扩展和管理。它的前身是 Google 内部的类似系统 Borg。将程序放在容器里面简化了运维操作，但是部署还有一箩筐的事情要处理，这就是 Kubernetes 存在的意义。这篇文章介绍了什么是 Kubernetes，什么是 Clusters，如何创建本地 cluster，如何创建生产环境的 cluster，如何部署到 Kubernetes 中，以及一个例子。</p>
+<ul>
+<li>你不用操心应用实例是不是在运行，如果挂了，Kubernetes 会自动新建实例。</li>
+<li>掌握一些 Kubernetes 的核心概念：<ul>
+<li>Cluster: 一个容器网络，它们之间可以互相通信。</li>
+<li>Nodes: Cluster 里面跑的的节点。</li>
+<li>Master：可以控制其他节点，所有操作命令跑在 master 上，Master 决定 Cluster 里面的哪个节点跑应用 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c6b2b246-d7a3-4f2a-9882-b2a2e110b5cf.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9337ec19-20df-43dd-b985-6b47b656e839.html" rel="bookmark"
+                                title="Permalink to Kubernetes Master-Node 通信"
+                                >Kubernetes Master-Node 通信</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://kubernetes.io/docs/concepts/architecture/master-node-communication/">查看原文</a></p>
+<p>本文档描述了在 Kubernetes 中，Master 和 Cluster 是如何通信的，其中 Master 指的是 k8s apiserver, Cluster 指的是 k8s 集群。知道它们之间如何通信有助于构建出安全的网络配置，即便运行在不信任的网络上。</p>
+<ul>
+<li>所有 Cluster 到 Master 的通讯都会发给 apiserver，一个监听 443 + 配置了 virtual ip 地址 + 开启了 authentication 的 https service。Cluster Nodes 启动时必须配置 public root certificate，这样他们才能安全地链接上 apiserver。</li>
+<li>Master 到 Cluster 的通信分为两种：1) apiserver- …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9337ec19-20df-43dd-b985-6b47b656e839.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses29.html">&laquo;</a>
+    Page 30 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses31.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

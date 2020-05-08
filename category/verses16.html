@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/062d210c-0167-4d22-aa02-fbe136473c4f.html" rel="bookmark"
+                                title="Permalink to Distroless Images"
+                                >Distroless Images</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/GoogleContainerTools/distroless/">查看原文</a></p>
+<p>Distroless Images 指的是整个镜像里面只有你的应用和运行时依赖，不要把其他任何包括 package manager，shell，其他可以在标准 Linux Distribution 里面找到的程序丢进去。这是很多大公司的实践，好处是可以减少 CVE 噪音，减少镜像源头。</p>
+<ul>
+<li>由于 Distroless 没带 shell，所以你要在 Dockerfile 中指定一个  ENTRYPOINT</li>
+<li>格式：<code>ENTRYPOINT ['myapp']</code>, 如果用 <code>ENTRYPOINT myapp</code> 会被 container runtime prefix 一个 shell</li>
+<li>使用 multi-stage build 的小技巧来丢掉构建过程的产物，只留下构建结果。</li>
+<li>其实还是建议保留一个 <code>sh</code> 在镜像里面万一真要查问题时死活进不去会很麻烦。<code>docker run --entrypoint=sh -it …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/062d210c-0167-4d22-aa02-fbe136473c4f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1478a513-b14b-412e-b2c4-8feaaab12971.html" rel="bookmark"
+                                title="Permalink to 使用 LXD 创建 Linux Containers"
+                                >使用 LXD 创建 Linux Containers</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://bash.cyberciti.biz/virtualization/shell-script-to-setup-an-lxd-linux-containers-vm-lab-for-testing-purpose/">查看原文</a></p>
+<p>本文展示了如何通过 lxd 创建容器。</p>
+<ul>
+<li>lxd init: 设置 storage 和 network</li>
+<li>lxc init 创建 vm</li>
+<li>lxc network attach 将 vm 连上网卡</li>
+<li>lxc start $image 启动 vm</li>
+<li>lxc config set $image boot.autostart true 设置自动启动</li>
+<li>lxc list 显示 vm 列表</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1478a513-b14b-412e-b2c4-8feaaab12971.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/244daa31-e7ea-4607-95ac-c0bc159d3c28.html" rel="bookmark"
+                                title="Permalink to LXD 简介"
+                                >LXD 简介</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://linuxcontainers.org/lxd/introduction/">查看原文</a></p>
+<p>本文是 LXD Introduction。LXD 是 system container manager, 使用 linux container 提供类似 virtual machine 的使用体验。可用的镜像可在 https://images.linuxcontainers.org/ 查看，常见版本的 alpine, cents, ubuntu, debian, gentoo 什么都有。</p>
+<p>LXD 的核心就是一个 daemon, 通过 unix socket 或者网络 提供 REST API 服务。这个 REST API 服务的功能由 LXC 提供, 它通过 liblxc 和 go …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/244daa31-e7ea-4607-95ac-c0bc159d3c28.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e745af16-abf5-43f7-9edd-7293d571e6c8.html" rel="bookmark"
+                                title="Permalink to VueJS 的优缺点"
+                                >VueJS 的优缺点</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/@Pier/vue-js-the-good-the-meh-and-the-ugly-82800bbe6684">查看原文</a></p>
+<p>本文作者对 VueJS 给出了自己的看法：双向数据绑定，内建 State Manager, 快，普通 HTML 模板但也支持 JSX，轻量，可扩展，文档好，新时代的 jQuery，单文件可做完 HTML，CSS，JS 的整个组件</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e745af16-abf5-43f7-9edd-7293d571e6c8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2578155d-11d3-4f61-9096-ca127046e1bb.html" rel="bookmark"
+                                title="Permalink to Python 实现 BitCoin BlockChain"
+                                >Python 实现 BitCoin BlockChain</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/">查看原文</a></p>
+<p>本文实践了如何从头构建一个 Blockchain 网络。</p>
+<ul>
+<li>基础知识：<ul>
+<li>Double-Spending 难题：在点对点网络上，一笔钱怎么确保只能消费一次?</li>
+<li>BitCoin 解决方案：打包 10 分钟内的多个交易到一个块，矿工给块签名（Proof of Work），第一个算出 nonce 的矿工将其广播到网络。只要好矿工多于半数，就能确保不会出现 Double-Spending。<ul>
+<li>解决冲突：如果有人同时算出来，我们通过再下一个块的矿工决定。</li>
+</ul>
+</li>
+<li>ECDSA: 基础的加密算法。目前来看比较安全。Alice 把她的块用自己的私钥签名，别人用她附带的公钥确信这确实是她的块。</li>
+<li>Block 有父节点的哈希地址，所以这些 Block 一个一个串起来组成了 BlockChain。</li>
+<li>BlockChain 可能会遭到的攻击：Race Attack, Finney Attack, Majority Attack。<ul>
+<li>Race Attack: 建议收到至少一个 …</li></ul></li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2578155d-11d3-4f61-9096-ca127046e1bb.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/705ebaee-2c51-4c0d-82c6-8d2b77621f22.html" rel="bookmark"
+                                title="Permalink to Python PEP 0572 - Assignment Expressions"
+                                >Python PEP 0572 - Assignment Expressions</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.python.org/dev/peps/pep-0572/">查看原文</a></p>
+<p>PEP 0572 草案：实现类似这样的语法：<code>if (match := pattern.search(data)) is not None:</code>, <code>while chunk := file.read(8192):</code>.</p>
+<p>这样的语法在 C 中很常见，在 Python 中之前还无法做到，因为 = 操作不是表达式，所以它不能赋值后返回值。</p>
+<p>衍生思考：除去偏见，我觉得它似乎让代码变工整了。让 <code>x = xxxxxx; if x:</code> 这样的代码变紧凑了。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/705ebaee-2c51-4c0d-82c6-8d2b77621f22.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ba142695-5c2a-4d2e-9a40-bf686388e083.html" rel="bookmark"
+                                title="Permalink to Source Control 简介"
+                                >Source Control 简介</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.fullstackpython.com/source-control.html">查看原文</a></p>
+<p>本文对版本控制做了一下简介：</p>
+<ul>
+<li>其必要性：不会丢失代码变更的历史</li>
+<li>Monorepo v/s Multirepo: 一个大仓库还是很多小仓库，具体还是看团队的需求，偏好什么的。</li>
+<li>部署：有一种部署方式很适合小项目的部署，直接拉下来代码，然后重启。不然还得研究打包啊，构建啊什么的，杀鸡焉用牛刀？</li>
+<li>常见工具: git, svn, hg.</li>
+<li>常见服务：GitHub, GitLab, BitBucket, 我补一下喜欢的 Gerrit</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ba142695-5c2a-4d2e-9a40-bf686388e083.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c0860256-a197-4b88-8334-5f69b724d965.html" rel="bookmark"
+                                title="Permalink to Python calendar.timegm 与 time.mktime 的区别"
+                                >Python calendar.timegm 与 time.mktime 的区别</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://stackoverflow.com/questions/2956886/python-calendar-timegm-vs-time-mktime">查看原文</a></p>
+<p><code>time.mktime()</code> 和 <code>calendar.timegm()</code> 都接受一个 timetuple 返回一个时间戳，不过前者假设传进来的值是本地时间，后者假设传进来的是 GMT/UTC 的时间。</p>
+<p><a href="https://docs.python.org/3/library/calendar.html#calendar.timegm">calendar.timegm</a> 的文档表明，这个函数其实是 <code>time.gmtime()</code> 的逆函数。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c0860256-a197-4b88-8334-5f69b724d965.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ca0835ec-e7ce-4420-b40a-f2c7952d02c4.html" rel="bookmark"
+                                title="Permalink to Jib - Java Docker Images Builder"
+                                >Jib - Java Docker Images Builder</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2018/07/introducing-jib-build-java-docker-images-better.html">查看原文</a></p>
+<p>Jib 是一个 Java 的构建工具。目前比较常见的 Java 程序构建是将其打包为一个 Jar，丢到一个 Java Docker Image 里面，琐碎事情不少，要写 Dockerfile 什么的。这个工具简化了这个流程，直接和 Maven / Gradle 集成，添加依赖后可以通过 <code>mvn compile jib:build</code> + <code>mvn compile jib:dockerBuild</code> 或者 <code>gradle jib</code>, <code>gradle jibDockerBuild</code> 直接将镜像丢进 Registry。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ca0835ec-e7ce-4420-b40a-f2c7952d02c4.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d64d7146-7251-4b04-8186-1a2703bac12f.html" rel="bookmark"
+                                title="Permalink to PostgreSQL 不要做这些事情"
+                                >PostgreSQL 不要做这些事情</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://wiki.postgresql.org/wiki/Don't_Do_This">查看原文</a></p>
+<p>本文介绍了 PostgreSQL 的一些不建议做的事情：</p>
+<ul>
+<li>不要 psql -W or psql --password</li>
+<li>不要用 timestamp 存时间戳，用 timestamptz, 除非你不需要计算时间戳，只是单纯存储这个值。</li>
+<li>不要用 timetz，用 timestamptz.</li>
+<li>不要用 Money 存钱，用 Numeric, 除非你只处理一种货币并且只加减钱不乘除钱。</li>
+<li>表名或者列名不用大写, 真有需求 Select 的时候 <code>select character_name as "Character Name" from foo</code>。</li>
+<li>不用 char(n), 用 text, 前者会打空格给缺的部分。</li>
+<li>不用  varchar(n)， 用 varchar 或者 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d64d7146-7251-4b04-8186-1a2703bac12f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses15.html">&laquo;</a>
+    Page 16 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses17.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

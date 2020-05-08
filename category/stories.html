@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.soasme.com/techshack.weekly/stories/0002-original-idea.html">Tech Shack</a></h1> 
+                    <h2>简介</h2>
+<p>Tech Shack 是一个博客，聚合了 @soasme 个人技术阅读和心得体会。
+既定目标是每天阅读篇数不定的技术文章，做一些摘要，可能有衍生思考。</p>
+<ul>
+<li><a href="https://techshack.soasme.com">查看最近的阅读</a></li>
+<li><a href="https://techshack.soasme.com/archive.html">查看所有的阅读</a></li>
+</ul>
+<h2>底层技术</h2>
+<p>Show me the code: <a href="https://github.com/soasme/techshack.io">soasme/techshack.io</a></p>
+<ul>
+<li>本地使用 ssh 部署 Python Slackbot script 到服务器。</li>
+<li>服务器使用 Nginx 设定静态目录的 root path。</li>
+<li>Slackbot 发出一些命令完成数据录入，网站编译，和 SNS 分享。</li>
+</ul>
+<h2>工作流</h2>
+<p>每天要做的事情写成伪代码，可以是这个样子：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> src in <span class="s2">&quot;feedly manpage pythondocs onlinebook etc&quot;</span><span class="p">;</span>
+<span class="k">do</span>
+    getpocket &lt; <span class="nv">$src</span>
+<span class="k">done</span>
+
+getpocket <span class="p">|</span> head -n <span class="m">5</span> <span class="p">|</span> <span class="nb">read</span> <span class="p">|</span> slackbot --publish
+</code></pre></div>
+
+
+<ul>
+<li>看到比较晚，还没有到达五篇，一天也就不读了。</li>
+<li>看得超过了五篇，觉得酣畅淋漓，也就多读些。</li>
+</ul>
+<h2>内容</h2>
+<ul>
+<li>翻译大致内容。提升自己的英语，也帮助别人不会因为语言障碍错过好文章。也鼓励大家看原文，一来会有与我不同的想法或许可以讨论，二来不致被我带歪思路。</li>
+<li>把一些正程序员三观的观点写下来。</li>
+<li>记录手册文档中觉得对工作会有帮助的地方。</li>
+<li>学习一些奇淫巧技。</li>
+</ul>
+<h2>难点</h2>
+<p>只有一个：坚持做下去。</p>
+<p>工作五年，还没有一个能持续运行下去的项目。</p>
+<p>想了一下：</p>
+<ul>
+<li>既然自己的博客关于工作，学习，生活能写十年，那博客中技术阅读那部分分拆出来有很大概率也能坚持做下去。</li>
+<li>这些年技术阅读记录的比较散，博客中记得多是整理好的，那些看过一遍的好文章可能就没个索引，比较可惜。</li>
+</ul>
+<h2>开销</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Service</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>Linode 1GB</td>
+<td>$5/mo</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>Share with personal id domain</td>
+<td>$0/mo</td>
+</tr>
+<tr>
+<td>CDN</td>
+<td>Rawgit</td>
+<td>$0/mo</td>
+</tr>
+<tr>
+<td>SSL</td>
+<td>Letsencrypt</td>
+<td>$0/mo</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Slack</td>
+<td>$0/mo</td>
+</tr>
+</tbody>
+</table>
+                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

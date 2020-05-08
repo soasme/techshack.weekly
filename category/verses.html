@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.soasme.com/techshack.weekly/verses/2e20fc99-76ba-4286-b1a4-fa9984504934.html">Rumps - Mac os x Python Statusbar apps</a></h1> 
+                    <p><a href="https://rumps.readthedocs.io/en/latest/examples.html">查看原文</a></p>
+<p>Rumps 是一个写 MacOS 的 Statusbar 的应用。使用 py2app 进行打包，打包出来的 .app 应用可以直接运行。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">rumps</span>
+
+<span class="k">class</span> <span class="nc">AwesomeStatusBarApp</span><span class="p">(</span><span class="n">rumps</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AwesomeStatusBarApp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;Awesome App&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Preferences&quot;</span><span class="p">,</span> <span class="s2">&quot;Silly button&quot;</span><span class="p">,</span> <span class="s2">&quot;Say hi&quot;</span><span class="p">]</span>
+
+    <span class="nd">@rumps.clicked</span><span class="p">(</span><span class="s2">&quot;Preferences&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">prefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+        <span class="n">rumps</span><span class="o">.</span><span class="n">alert</span><span class="p">(</span><span class="s2">&quot;jk! no preferences available!&quot;</span><span class="p">)</span>
+
+    <span class="nd">@rumps.clicked</span><span class="p">(</span><span class="s2">&quot;Silly button&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">onoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="n">sender</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">sender</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="nd">@rumps.clicked</span><span class="p">(</span><span class="s2">&quot;Say hi&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">sayhi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+        <span class="n">rumps</span><span class="o">.</span><span class="n">notification</span><span class="p">(</span><span class="s2">&quot;Awesome title&quot;</span><span class="p">,</span> <span class="s2">&quot;amazing subtitle&quot;</span><span class="p">,</span> <span class="s2">&quot;hi!!1&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">AwesomeStatusBarApp</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4a413faa-86f4-4ae1-91c2-a4d4cde394a3.html" rel="bookmark"
+                                title="Permalink to CNAB Spec"
+                                >CNAB Spec</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/deislabs/cnab-spec">查看原文</a></p>
+<p>CNAB （Cloud Native Application Bundles） 是关于打包，安装，管理分布式应用的规约。</p>
+<ul>
+<li>https://github.com/deislabs/cnab-spec/blob/master/100-CNAB.md<ul>
+<li>它可以打包多种运行时的安装工具，例如 Helm，Terraform。</li>
+<li>他可以支持打包到多种后端，各个云平台，甚至离线的环境。例如，openstack, azure, kubernetes, nomad, local docker, aci, 甚至 IoT。</li>
+<li>bundle.json 中定义了元信息，invocation image（简单来说，有点像桌面系统的安装器），可让用户自定义的参数，executable images，以及镜像们所需要的环境变量和密钥。</li>
+<li>bundle.json 是未签名的，bundle …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4a413faa-86f4-4ae1-91c2-a4d4cde394a3.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/7c7e4ef2-53ca-4472-b23a-f3ed6e929efc.html" rel="bookmark"
+                                title="Permalink to Docker App and CNAB"
+                                >Docker App and CNAB</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.docker.com/2018/12/docker-app-and-cnab/">查看原文</a></p>
+<p>Docker App 可用于部署应用到 docker 中。它基于 CNAB Spec。应用开发者可以将应用打包成 CNAB bundles，其中包含了一些metadata，需要的 image，运行的 service 等等。应用使用者使用 <code>docker-app install</code> 安装应用。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/7c7e4ef2-53ca-4472-b23a-f3ed6e929efc.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e7dc89fd-5012-44c6-b6c8-9a91b6455589.html" rel="bookmark"
+                                title="Permalink to Loki - like Prometheus, but for logs"
+                                >Loki - like Prometheus, but for logs</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.google.com/document/d/11tjK_lvp1-SVsFZjgOTr1vV3-q6vBAsZYIQ5ZeYBkyM/view">查看原文</a></p>
+<p>本文是Grafana Loki service的设计文档。</p>
+<ul>
+<li>解决的问题：Metrics 和 Alerts 只能揭示预定义的问题，未知的问题还得从 Log 里面去细细查找。常见的 Incident Response 流程是：alert -&gt; metric dashboard -&gt; adhoc query -&gt; log -&gt; distribution tracing -&gt; fix。 日志和 Metric 分在两个系统，这增加了 Operations 的 Context Switch。</li>
+<li>现存方案：full-text search systems to index logs。缺点：不好 scale，运维复杂。</li>
+<li>解决方案：预装 agent 到各个节点，收集日志，将 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e7dc89fd-5012-44c6-b6c8-9a91b6455589.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/650a9371-3054-483f-9066-87c3d4fb3083.html" rel="bookmark"
+                                title="Permalink to 使用 Deep Learning 做时间序列分析"
+                                >使用 Deep Learning 做时间序列分析</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/@alexrachnog/deep-learning-the-final-frontier-for-signal-processing-and-time-series-analysis-734307167ad6">查看原文</a></p>
+<p>本文介绍了哪些数据是时间序列数据，以及如何使用深度学习做时间序列分析。</p>
+<ul>
+<li>时间序列数据可以是来自外太空的能量信号，也可以是股票，销售数据等等。人体本身也是产生时间序列数据的很好的数据源：心跳，体温等等。</li>
+<li>Classic Approach：测量时间序列如何基于时间发生值的大小变化，频率变化，邻近时间点数据变化，(S)AR(I)MA(X) models（基于linear self-dependence计算相关度），非线性变化等等。</li>
+<li>Deep Learning：从操作上来说，堆叠几个喜欢的 Framework 层层计算，小心 overfitting。（近年来的使用发现这种方法适用非常多的场景，包括时间序列分析）<ul>
+<li>Recurrent neural nets: 这个方法这一找出时间序列中的隐藏状态，并给予时间找到它们的依赖。缺点是只适合短时间序列（10-100 time steps）</li>
+<li>Convolutional neural nets: 一般它用于寻找 3D 或图像数据的 pattern，但它也可以用于处理 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/650a9371-3054-483f-9066-87c3d4fb3083.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/69894c16-36f0-455e-9d0b-4f9d8b5033c0.html" rel="bookmark"
+                                title="Permalink to Stack Overflow 如何监控之 2018 版"
+                                >Stack Overflow 如何监控之 2018 版</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://nickcraver.com/blog/2018/11/29/stack-overflow-how-we-do-monitoring/">查看原文</a></p>
+<p>本文介绍了 Stack Overflow 当下（2018）的监控技术栈。</p>
+<ul>
+<li>监控是什么？是裸眼时不时扫头上那三五台大电视屏幕，是被开发搞的飞起的上线事故应急响应，如此种种。得操心监控阈值设定，高了不行，低了不行，节假日要换个阈值，有时候又没法自动化。</li>
+<li>监控什么？三大类：日志，健康检查，监控指标。<ul>
+<li>日志: 主程序错误丢到 Windows 套餐的 Opserver，其他服务像 Redis，Elasticsearch，SQLServer 做本地 disk logging + log rotation。HAProxy 会把负载均衡的服务的总体流量和响应时间记下来，排查问题时很有用。默认的 HAProxy 日志中会有以下四个数据：</li>
+<li>TR: Time a client took to send us the …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/69894c16-36f0-455e-9d0b-4f9d8b5033c0.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4451d8b1-2ce7-4b85-941c-e97fa0258788.html" rel="bookmark"
+                                title="Permalink to Sops - an editor of encrypted files"
+                                >Sops - an editor of encrypted files</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/mozilla/sops">查看原文</a></p>
+<p>Sops 可以对 YAML，JSON，BINARY 加密，使用 AWS KMS, GCP KMS, Azure Key VAult 以及 PGP。</p>
+<p>需要提前配置云平台的验证信息。</p>
+<p>可以在保留文件数据结构的情况下，对部分字段加密解密。</p>
+<div class="highlight"><pre><span></span><code><span class="err"># file.yaml is in cleartext</span>
+<span class="err">$ sops -e -i /path/to/existing/file.yaml</span>
+<span class="err"># file.yaml is now encrypted</span>
+<span class="err">$ sops -d -i /path/to/existing/file.yaml</span>
+<span class="err"># file.yaml is back …</span></code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4451d8b1-2ce7-4b85-941c-e97fa0258788.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/dc8d97cc-4e31-4eae-9dba-7d1382bc65d5.html" rel="bookmark"
+                                title="Permalink to Kubernetes Logging Architecture"
+                                >Kubernetes Logging Architecture</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">查看原文</a></p>
+<p>Kubernetes 没有内建的日志收集组件，需要自行安装。对于服务器端程序，日志收集的重要性不言而喻。
+在 k8s 的环境中，有一个特殊的需求：container/pod/node 挂了，我们还需要看到它们的日志。
+这就要求我们需要在 cluster 内部实现 cluster-level-logging，外部配置一个 logging 后端。</p>
+<p>日志分两种，容器日志和非容器日志（例如 kubelet），
+所有系统日志都会通过 stdout，stderr 输出到 <code>/var/log</code> (glog 库)。
+所有容器日志都会输出到 logdriver. Kubernetes 本身不负责 logrotate，Logdriver 例如 Docker 会有 log-opt 这样的工具来做。</p>
+<p>一些 Cluster-level logging architectures 的解决方案 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/dc8d97cc-4e31-4eae-9dba-7d1382bc65d5.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1c98db78-e60a-42e4-a3d8-dffc518e5e4f.html" rel="bookmark"
+                                title="Permalink to Kind - Kubernetes IN Docker - local clusters for testing Kubernetes"
+                                >Kind - Kubernetes IN Docker - local clusters for testing Kubernetes</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/kubernetes-sigs/kind/blob/master/docs/design/design.md">查看原文</a></p>
+<p>Kind 是一个运行在本地的 k8s 测试工具，每个 docker container 都可视作单独的node。</p>
+<ul>
+<li>宿主机运行 kind cli 管理 docker.</li>
+<li>"node" container: 安装了 systemd, kubelet, kube-proxy 等等组件。</li>
+</ul>
+<p><img alt="" src="https://github.com/kubernetes-sigs/kind/blob/master/docs/images/diagram.png"></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1c98db78-e60a-42e4-a3d8-dffc518e5e4f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/235a91f7-e807-4972-b923-b644aeb261e4.html" rel="bookmark"
+                                title="Permalink to Hawk - HTTP Holder-Of-Key Authentication Scheme"
+                                >Hawk - HTTP Holder-Of-Key Authentication Scheme</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/hueniverse/hawk">查看原文</a></p>
+<p>Hawk 是一个使用 MAC 对 HTTP 请求头，请求参数进行加密校验的算法。
+Hawk 的主要用例是进行服务端和客户端的 two-legged 授权验证。</p>
+<p>范例：</p>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/resource/1?b=1&amp;a=2</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">example.com:8000</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Hawk id=&quot;dh37fgj492je&quot;, ts=&quot;1353832234&quot;, nonce=&quot;j4h3g2&quot;, ext=&quot;some-app-ext-data&quot;, mac=&quot;6R4rV5iE+NPoym+WwjeHzjAGXUtLNIxmo1vpMofpLAE=&quot;</span>
+</code></pre></div>
+
+
+<p>它需要客户端和服务端都有一个 加密用的 key。协议本身不提供获取和传送密钥的手段，一般需要使用者使用 TLS 先行建立一个传输层的安全连接。协议只是验证请求头和部分请求参数没被篡改，所以不可以就把敏感数据放进去 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/235a91f7-e807-4972-b923-b644aeb261e4.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+    Page 1 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses2.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

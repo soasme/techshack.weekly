@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/3de10796-e05d-480e-9db7-18f7e896de32.html" rel="bookmark"
+                                title="Permalink to 如何将 nohup 的输出打到 Docker logs 中查看？"
+                                >如何将 nohup 的输出打到 Docker logs 中查看？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://stackoverflow.com/questions/44744188/how-to-see-the-logs-of-running-application-inside-docker-container">查看原文</a></p>
+<p>在 Docker Container 里面，可以将服务的日志写到 <code>/dev/stdout</code> 以及 <code>/dev/stderr</code> 里，这样进程日志就能通过 docker logs 来查看。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/3de10796-e05d-480e-9db7-18f7e896de32.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9676995c-3c6d-41d8-97b8-a79990c58a44.html" rel="bookmark"
+                                title="Permalink to TSDB 起步知识"
+                                >TSDB 起步知识</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.influxdata.com/time-series-database/">查看原文</a></p>
+<p>TSDB (Time Series Database) 是一种专为时间戳或时间序列的数据优化的数据库。如果非要想象的话，它存储的是 <code>[[timestamp, value], [timestamp, value], ...]</code> 这样的数据，额外加上一些标签啊，名字啊，索引啊之类的特性。它使用的场景是监控，各种类型的监控：Host / APM /Network / User Behaviors / Sales, etc。如果不优化，数据库的 IO 很有可能出现瓶颈，CPU 做聚合运算的时候出现运力不足；你当然可以通过攒机器扩展来解决，但有了 TSDB，单机可以解决很大一部分问题。</p>
+<p>TSDB 并不是什么新东西，它的概念也很简单，只是后端服务进入服务化阶段，各种指标都会冒出来，有来自应用的，有来自业务的，也有来自机器或网络本身。我们需要一个现代的 TSDB 来优化存储，已经查询这些监控得到的数据点。</p>
+<p>TSDB 的使用体验相比关系型数据库简单多了，灌数据进去 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9676995c-3c6d-41d8-97b8-a79990c58a44.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d1d20035-0d21-4ea2-904e-c38871724b36.html" rel="bookmark"
+                                title="Permalink to CRUD != Services, Behaviors = Services"
+                                >CRUD != Services, Behaviors = Services</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.michaelnygard.com/blog/2018/01/services-by-lifecycle/">查看原文</a></p>
+<p>这篇文章中作者不建议写 Entity Service (指的是那种提供数据增删改查的服务），想对比数据，更应该从用户行为开始着手设计系统。</p>
+<p>作者介绍了一种构建系统的简易方法："Tell, Don't Ask."。它其实源于我们在大学里面学到的经典软件开发流程：整理 Use Case，抽象领域模型，然后构建系统。具体操作方法是这样：假设你扮演一个你要实现的系统，要处理一个用户请求。系统中的每个服务不向外问信息，只给请求增加信息，然后传递给下一个系统。</p>
+<p>它生成的系统设计，会使将一套行为封装进服务中，服务对外发布仅能自己这个服务给出的消息，其它服务或订阅消息或被主动触发。事实上，这些消息最合适被推到的地方，就是 a message bus。</p>
+<p>一致性问题仍然会出现，解决方法作者下期给出来。</p>
+<p>衍生思考：</p>
+<ul>
+<li>我觉得接触过 Redux 的前端同学都会笑而不语，后端们怎么在纠结这么简单的问题。你们的 Message Bus 就是 Redux 里面的 Store，这个消息就是 Redux 里面的 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d1d20035-0d21-4ea2-904e-c38871724b36.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f26408bc-4913-498e-b92f-6052f2d4df39.html" rel="bookmark"
+                                title="Permalink to InfluxDB 系统设计 Pros v/s Cons"
+                                >InfluxDB 系统设计 Pros v/s Cons</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.influxdata.com/influxdb/v1.4/concepts/insights_tradeoffs/">查看原文</a></p>
+<p>本文是 InfluxDB 自家写的 Pros v/s Cons，看看这款工具的权衡利弊。</p>
+<ul>
+<li>同一时间点上的指标数据会被合并。好处是简化了冲突增加了性能，坏处是无法存储冗余数据，可能有数据丢失。</li>
+<li>删除数据不友好。好处是读写性能都增强，坏处是不太好删数据。</li>
+<li>修改数据不友好。好坏与上面类似。</li>
+<li>数据按时间序线性入库。好处是性能高，坏处是数据点时间随机入库的话性能就差了。</li>
+<li>数据库第一优先是处理大量数据读写。好处是系统 Brandwidth 好，坏处是性能会降一些。</li>
+<li>写数据和查数据优于数据一致性。好处是多客户端高负载的情况下依然工作地很好，坏处是性能差的时候查询最近的点可能不会被包含进来。</li>
+<li>时间序列生命周期很短。好处是可以处理不连续的数据，坏处是不支持schema,join这些关系操作。</li>
+<li>一个数据点不太重要。好处是可以引入聚合等功能，坏处是数据点没有 ID 这种东西，纯粹靠时间戳来认。</li>
+</ul>
+<p>衍生思考：我们可以看到每个假定部分都是监控领域的场景：监控服务，产生出大量基于时间序列的数据，灌进数据库，产生出很高的 IO；我们一般只关心最近发生的事件，发生过的事情就丢了不要了。经常做采样聚合切换精度来查看系统行为。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f26408bc-4913-498e-b92f-6052f2d4df39.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0ff7aec1-4bb8-4a98-abea-99c3006bf02c.html" rel="bookmark"
+                                title="Permalink to Explain Shell - 一个解释命令的好工具"
+                                >Explain Shell - 一个解释命令的好工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://explainshell.com/explain?cmd=:(){ :|:&amp; };:">查看原文</a></p>
+<p>Explain Shell 是一款非常好用的 Shell 命令解读工具，更具体的说，它解析命令的结构，对每一个有效语法成份找出其对应的文档。以这个例子来说，<code>:(){ :|:&amp; };:</code> 对应的解释有：</p>
+<ul>
+<li>shell function 是什么？- 是一个组合命令成的像单个命令的对象</li>
+<li><code>:</code> 在这里是什么？ - 四个 <code>:</code> 都是函数</li>
+<li><code>|</code> 是什么？ - 是 Pipeline</li>
+<li><code>&amp;</code> 是什么？ - 是运行在 background 的意思</li>
+<li><code>;</code> 是什么？- 是分隔符</li>
+</ul>
+<p>思考下，这个函数运行后会发生什么？</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0ff7aec1-4bb8-4a98-abea-99c3006bf02c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4fa309de-2273-43ed-827f-e637afef2a69.html" rel="bookmark"
+                                title="Permalink to 如何从监控指标中评定系统行为符合预期？"
+                                >如何从监控指标中评定系统行为符合预期？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://queue.acm.org/detail.cfm?id=3178371">查看原文</a></p>
+<p>后端的计算资源这几年在剧烈变更，DevOps 们应该意识到很多 Monitoring 的基本概念也应该要跟上了！</p>
+<p>Monitoring 的核心是观察和监测系统行为，如何界定系统行为是正确的。我们的部署和开发流程以天，小时的速度在迭代，变更让系统变的很脆弱，也使其正确性更难界定。各种后端服务的引入让系统混入网络问题的复杂性。节点死死生生，架构动态扩容缩容，监控应该如何面对这些挑战呢？</p>
+<ul>
+<li>自顶向下地梳理业务，核心组件必须监控到位。</li>
+<li>系统不是非好即坏，数字或者延时是更好的指标。这里面的挑战是，即便是每分钟采点，大量的指标也会产生大量的数据。怎么分析呢？统计学可以是解决系统行为的好工具。</li>
+<li>对过去发生的事故仔细分析，从数据点中找出关联，从而监控到位。</li>
+<li>设定 SLI/SLO/SLA，从服务级别去思考服务的监控（跟第一点很像）。</li>
+</ul>
+<p>衍生思考：从裸的监控指标中抽取出有意义的，面向服务或商业的解读正是我个人目前的主要工作内容。这篇文章讲到的这几点确实是我目前工作中遇到的难点。尽管讲的很虚，但又觉得梳理地很到痛点。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4fa309de-2273-43ed-827f-e637afef2a69.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/50fa5eaa-f61b-4754-82d4-81cde35862f6.html" rel="bookmark"
+                                title="Permalink to JWS X5C 是什么？"
+                                >JWS X5C 是什么？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://tools.ietf.org/html/rfc7515#section-4.1.6">查看原文</a></p>
+<p>在 JWS(JSON Web Signature) 中 X5C (X.509 证书链，X.509 Certificate chain) 是数据的一个 Header Parameter，这个参数以 JSON array  of string 的形式存储这个证书，用于数字签名一个 JWS Token。证书需要 base64encode。验证 JWS 的客户端需要用密钥签名数据，验证和这个 X5C 一致，从而得出数据没有被篡改的结论。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/50fa5eaa-f61b-4754-82d4-81cde35862f6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9a0da686-e2b9-4f49-bdc9-a93225745727.html" rel="bookmark"
+                                title="Permalink to PGP 必须死，为什么？"
+                                >PGP 必须死，为什么？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.cryptographyengineering.com/2014/08/13/whats-matter-with-pgp/">查看原文</a></p>
+<p>PGP 是一个加密程序，提供数据通信需要的密码支持。互联网的早期，为了保障邮件内容不被泄漏，人们开发了加密软件 PGP，尽管它被用的很广泛，但它难用隐患又多。不好用的点在于：</p>
+<ul>
+<li>PGP keys 对机器友好，对人类不友好，其传输和验证过程需要引入组件 key servers 和 public key fingerprints。这个过程其实还是蛮容易被恶意攻击者抓到漏洞从而被攻破：从 key server 根据  fingerprint 取回 key 的过程一来从公网走泄漏了请求，二来可能被中间人篡改成了假 key。</li>
+<li>PGP key 管理不好用。在 WebMail 领域，解决方案可以是 "Web of trust": 每个人都互相签署对方的 Key，尽管这个方案并不多人用。另外的解决方案是信任 Google / Yahoo / Keybase …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9a0da686-e2b9-4f49-bdc9-a93225745727.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/de17e570-f3f9-4601-96d6-e60fe2516236.html" rel="bookmark"
+                                title="Permalink to 从 inode 出发了解文件系统的大部分概念"
+                                >从 inode 出发了解文件系统的大部分概念</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.linfo.org/inode.html">查看原文</a></p>
+<p>本文从 inode 开始解释所有文件系统的概念，是对新手来说很好的文章，每个概念都只花了大约一句话，像 main 函数调用触发了所有子函数一样精美，如果用两个词来描述这篇文章，那就是 very cool。</p>
+<ul>
+<li>inode 是数据结构，由 Linux 和其它 Unix-like 操作系统里的文件系统提供，存储除了文件名和文件内容外的所有信息。</li>
+<li>数据结构是 c struct，可以存储多种数据类型（例如整型，浮点，等等）。</li>
+<li>文件系统是关于目录的层级结构， 也叫目录树，这些目录用于组织文件。</li>
+<li>文件是一个有名字的，用户层面上看数据是连续块的，在存储器(storage)里被持久化存储的信息。</li>
+<li>文件的元信息是关于文件非内容部分的信息，包括文件大小，物理位置（存储器块的地址），文件 owner，group，权限，几种时间戳，以及指向 inode 的硬链接的引用计数。</li>
+<li>存储器是长时间存储数据的中介，例如硬盘和磁带 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/de17e570-f3f9-4601-96d6-e60fe2516236.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/513c2c2f-ca3e-489b-a4dd-05dc8976fbe0.html" rel="bookmark"
+                                title="Permalink to 程序员们更偏爱 Exiting Early 的代码风格"
+                                >程序员们更偏爱 Exiting Early 的代码风格</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://softwareengineering.stackexchange.com/questions/18454/should-i-return-from-a-function-early-or-use-an-if-statement">查看原文</a></p>
+<p>有一种写代码风格叫 Exiting Early, 基本上写代码的时候，非法的 case 先处理，提前 return 或抛错，最后才写正常流。与之相对应的是先写正常流，然后逐个处理异常流。大部分程序员更偏向 Exiting Early (也叫 Early Return, Guard Clauses, the Bouncer Pattern)。</p>
+<ul>
+<li>这里面可能涉及到一个认知问题：Base Cases 越想越少，越来越接近 Good Case。</li>
+<li>Early Return 能让你轻易写出没有嵌套的代码。一系列的 if 可能很丑，但决定比 if 里面套 N 个 if 来的好读。这里面也藏着一个设定：到达了一个 Dead End 分支 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/513c2c2f-ca3e-489b-a4dd-05dc8976fbe0.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses42.html">&laquo;</a>
+    Page 43 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses44.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

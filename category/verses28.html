@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b87d84c6-b022-4ee3-b773-e79927ad6c64.html" rel="bookmark"
+                                title="Permalink to Deep C - Programming is hard"
+                                >Deep C - Programming is hard</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.slideshare.net/olvemaudal/deep-c">查看原文</a></p>
+<p>这个 Slide 讲述了很多关于 C 的值得深度学习的点。很多程序员写出的代码并不好，为什么呢？因为大部分程序员对他们使用的编程语言并没有足够深入的了解。他们可能知道怎么工作的，但不知道为什么要那么做。举例来说，一个简单的 print hello world 的程序，你可以知道它怎么编译出来，但你也可以深入挖掘下去编译的流程，不同编译器的行为等等。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b87d84c6-b022-4ee3-b773-e79927ad6c64.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c3e7a288-e6b7-4c24-a27a-8c713ebaa008.html" rel="bookmark"
+                                title="Permalink to Linux Primitives"
+                                >Linux Primitives</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.google.com/presentation/d/10vFQfEUvpf7qYyksNqiy-bAxcy-bvF0OnUElCOtTTRc/edit">查看原文</a></p>
+<p>这份 Presentation 文档在 High Level 纵览了 Linux 的诸多概念，很推荐阅读。</p>
+<ul>
+<li>Linux 就是一个 GNU user space，而程序则是和 GNU libc 与其它用户态的 libraries 交互的东西。当然，还有很多种 libc 的实现，我们可以选择一种 libc 的实现放在容器里面。</li>
+<li><code>容器</code> 本身不是内核的概念，它只是一组进程，有相同的 namespaces / cgroups 等等。</li>
+<li>进程 &amp; 线程在内核中有相同的数据结构 task, 这货有千余个字段，大约 1k, 一般比较经常用到的是 user, pid, tgid 等字段。</li>
+<li>至于用户和组，内核才不关心谁的名字是什么，说到底就是几个数字：ruid …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c3e7a288-e6b7-4c24-a27a-8c713ebaa008.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9bbcb989-994b-49d9-8c28-2e9077970a25.html" rel="bookmark"
+                                title="Permalink to The joy of max"
+                                >The joy of max</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://lwn.net/Articles/750306/">查看原文</a></p>
+<p>这篇文章给出了最近的一次 Linux 内核的 <code>max()</code> 宏的实现，我们可以看到它和我们在 C 语言教材上入门的实现有多大的区别。</p>
+<ul>
+<li>这段代码视图解决的问题在这个的 Patch 中可以查看: <a href="https://lwn.net/Articles/750307/">PATCH v6 kernel.h: Retain constant expression output for max()/min()</a>，简单来说，是想要让 <code>max(a, b)</code> 返回常量表达式，而非常量值。</li>
+<li>关于 <a href="https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html">__builtin_choose_expr</a>, 这是 GCC 的一个 builtin funcion，可以在 <code>__builtin_choose_expr (const_exp, exp1, exp2)</code> 的 <code>const_exp</code> 值为 整型常量时返回 <code>exp1</code>，否则 <code>exp2</code>.</li>
+<li>评论区有人给出了 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9bbcb989-994b-49d9-8c28-2e9077970a25.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/05b343b4-dbde-4da6-9105-e668883d3ec4.html" rel="bookmark"
+                                title="Permalink to Bit - 一款管理 copy-paste 代码的工具"
+                                >Bit - 一款管理 copy-paste 代码的工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/teambit/bit">查看原文</a></p>
+<p>除了使用 npm 管理代码依赖，事实上程序员们也复制粘贴代码到仓库里，Bit 就是这么一款管理这种代码的工具。</p>
+<ul>
+<li>使用 Bit 你不需要把组件从代码库中剥离出来，写一大堆 publish metadata，然后上传到包管理中心。</li>
+<li>你要做的事情是 <code>bit add src/your-components/*; bit export username.scopename</code></li>
+<li>其它代码库想用这块代码<ul>
+<li>仍然可以用 npm install; </li>
+<li>或者使用 <code>import padLeft from '@bit/bit.examples.string.left-pad'</code> 这样的方法导入；</li>
+<li>或者直接运行 <code>bit import username.scopename</code> ，参考 <a href="https://docs.bitsrc.io/docs/importing-components.html">Importing Components</a></li>
+</ul>
+</li>
+</ul>
+<p>衍生思考：这门语言雄心很大，想成为通用的工具。目前这个工具只能支持 js …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/05b343b4-dbde-4da6-9105-e668883d3ec4.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1cdd563c-3eb0-4b96-a02a-0644e719211e.html" rel="bookmark"
+                                title="Permalink to 分布式系统的特性 - Resilience"
+                                >分布式系统的特性 - Resilience</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.gojekengineering.com/resiliency-in-distributed-systems-efd30f74baf4">查看原文</a></p>
+<p>本文介绍了分布式系统的特性之一：Resilience。</p>
+<ul>
+<li>有必要搞清楚 Fault v/s Failure 的区别：Fault 指的是系统错误，例如说存储层速度慢，内存泄漏，线程堵塞，依赖错误，错误数据等等；而 Failure 则是系统完全无法正常工作了，例如豆瓣开小差。Fault 可能会导致 Failure；Failure 会使系统的 uptime &amp; availability 降低。一般而言，Failure 可能会导致向客户赔钱什么的（违反了 SLA）。</li>
+<li>使系统 Resilience 有几个很困难的基本点：网络层是不可靠的，依赖总可能会失效，用户行为无法预测。但是基于一些原则，Resilience 是可以做到的。</li>
+<li>少写代码！</li>
+<li>在客户端配置 timeout，可以防止雪崩。一般 timeout 值可以设置成依赖的 99 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1cdd563c-3eb0-4b96-a02a-0644e719211e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/670c1ed4-b26b-47a7-8a82-aa22318e972e.html" rel="bookmark"
+                                title="Permalink to Adaptive Concurrency Limits @ Netflix"
+                                >Adaptive Concurrency Limits @ Netflix</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/@NetflixTechBlog/performance-under-load-3e6fa9a60581">查看原文</a></p>
+<p>本文是 Netflix 工程师团队产出的关于如何配置服务负载的博客，他们的产出是一个 Java 库 concurrent-limits。保障服务稳定的手段有：断路器，并发控制，Chaos 测试等等，本文关注自适应的并发控制（adaptive concurrency limits）。查看<a href="https://github.com/Netflix/concurrency-limits">代码库</a>。</p>
+<ul>
+<li>理论储备：并发是在某个时间点系统能同时处理请求的能力，根据 Little's Law, 平均服务时间乘以平均服务调用率可以得到并发量。如果超量，要么进入队列等待，要么被拒绝访问。一个系统如果不设限制，这个队列将会不断增长直到所有请求都开始超时直到系统内存溢出到崩溃。这个系统的超时甚至可能引发整个系统的层叠崩溃（雪崩）。问题的核心在于这个限制该设置多少。</li>
+<li>Netflix 的做法是自动调整，limit = 在性能开始降级时的系统承受的并发量（inflight request，即 concurrency + queue）。如果手动调，一段时间内可能比较合理，但现实容易变。他们的预设目标是：无需人工干预，不需要询问别的服务，不需要对系统其它组件有了解，能根据系统流量适配变更 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/670c1ed4-b26b-47a7-8a82-aa22318e972e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9d1af59e-4fca-4f41-a4d6-108383ae30ad.html" rel="bookmark"
+                                title="Permalink to Warehouse: All New PyPI is now in beta"
+                                >Warehouse: All New PyPI is now in beta</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://pyfound.blogspot.co.nz/2018/03/warehouse-all-new-pypi-is-now-in-beta.html">查看原文</a></p>
+<p>这则公告宣布了从 2018年4月起，所有 Python Package Index 将会由 pypi.org 中进行 Beta 测试（终于！）。</p>
+<ul>
+<li>在此之前，我们使用的是 pypi.python.org。在古代，Python 界还没有 Web 框架的时候这个网站就上线了，经过了 N 年，现在我们有了新的代码库 <a href="https://github.com/pypa/warehouse/">pypa/warehouse</a>，使用 docker 进行开发，部署在云上。</li>
+<li>值得注意的变更：<ul>
+<li>不再推荐 setup.py upload, 而使用 twine 上传代码包。</li>
+<li>macOS/OS X users 需将 pip 升级到 9 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9d1af59e-4fca-4f41-a4d6-108383ae30ad.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5be32927-f1f2-45af-bc82-b8d52188d5d2.html" rel="bookmark"
+                                title="Permalink to Python Enum"
+                                >Python Enum</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python">查看原文</a></p>
+<p>Python Enum：</p>
+<ul>
+<li>最标准的做法是 Python 大于 3.4 使用标准库中的 enum 库；低于 3.4 安装 enum34 或 aenum 库，使用方法基本等同 PEP435 的描述。</li>
+<li>如果不使用额外的库，可以通过 <code>def enum(**enums): return type('Enum', (), enums)</code> 编写快捷的 enum 生成函数。</li>
+<li>^ 稍加修改即可获得自动生成 enum 值的功能。</li>
+<li>再简单地做法是 <code>a, b, c = range(3)</code>。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5be32927-f1f2-45af-bc82-b8d52188d5d2.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9b1fde16-dc78-42fb-899e-d6d25cbb9caa.html" rel="bookmark"
+                                title="Permalink to LISP1-interpreter"
+                                >LISP1-interpreter</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://stackoverflow.com/questions/3482389/how-many-primitives-does-it-take-to-build-a-lisp-machine-ten-seven-or-five/">查看原文</a></p>
+<p>LISP1-interpreter 只需要简单的 9 个基本元素就能构建出来。McCarthy 的 S 表达式和谓词有 5 个：</p>
+<ul>
+<li>atom 需要这个是因为 car 和 cdr 都是应用于列表，而你不可能将 car 应用于单一元素来获取信息。</li>
+<li>eq 用于测试元素的相等性。</li>
+<li>car 返回 cons cell 的第一个。</li>
+<li>cdr 返回 cons cell 的第二个。</li>
+<li>cons 创建一个新的 cons cell，cell 有两个元素。</li>
+</ul>
+<p>而要想运行 s 表达式，我们还需要 4 个元素：</p>
+<ul>
+<li>quote 用于表示一个表达式，而非求值</li>
+<li>cond 用于条件分支</li>
+<li>lambda …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9b1fde16-dc78-42fb-899e-d6d25cbb9caa.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ca63e4a1-ad90-4185-acdb-95140f823461.html" rel="bookmark"
+                                title="Permalink to nologin 帐号运行命令的后门"
+                                >nologin 帐号运行命令的后门</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://serverfault.com/questions/333321/executing-a-command-as-a-nologin-user">查看原文</a></p>
+<p>出于安全原因，系统的一些可能账号可能会被设定为 nologin。我们不能切换（su）成这个用户执行程序。但其实有一个后门可以做到：<code>sudo su -s /bin/bash -c 'command here'</code>。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ca63e4a1-ad90-4185-acdb-95140f823461.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses27.html">&laquo;</a>
+    Page 28 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses29.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

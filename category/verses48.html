@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/71060cfc-ea23-468b-a549-34e6210adac5.html" rel="bookmark"
+                                title="Permalink to Runit - 监管服务的应用"
+                                >Runit - 监管服务的应用</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://smarden.org/runit/benefits.html">查看原文</a></p>
+<p>Runit 的好处：监管服务，管理状态，日志，可移植，容易打包，代码少。</p>
+<ul>
+<li>每个服务都和一个服务目录相关联。</li>
+<li>监管进程是 runsv，服务 daemon 作为 runsv 的子进程运行。</li>
+<li>runsv 可通过各种信号通知子进程</li>
+<li>sv 用于发送命令给 runsv，以及获取服务信息</li>
+<li>默认服务状态是 up，如果死了，会重新 restart</li>
+<li>runit 确保服务运行的进程状态，包括环境，资源，文件描述符等等<ul>
+<li>init.d 存在一个问题，那就是环境变量会污染进程；但系统重启时配置的服务可能会和上次的不一样。runit 解决方法是清空，完全重设。</li>
+</ul>
+</li>
+<li>runsv 配置日志后，会通过管道将标准输出和标准错误取走写入配置的地方。</li>
+<li>runit 有个日志 daemon：svlogd</li>
+<li>仅有数百行源代码</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/71060cfc-ea23-468b-a549-34e6210adac5.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d7127f91-7b58-4f34-b6ee-f9405dd2f228.html" rel="bookmark"
+                                title="Permalink to Runit 应用于 Ruby 程序的开发"
+                                >Runit 应用于 Ruby 程序的开发</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://rubyists.github.io/2011/05/02/runit-for-ruby-and-everything-else.html">查看原文</a></p>
+<p>Runit 是一个进程监管程序，附带了一系列监管有关的工具集。它可以作为 sysvinit 的替代品，也可以和 init 并行运行维护监管程序层级。</p>
+<ul>
+<li>可以通过 <code>sv s /service/*</code> ($SVDIR) 查看所有的服务，以及其日志。</li>
+<li><code>/service/*</code> 的服务被链接到 <code>/etc/sv/</code> 目录，服务只需含有一个 run 文件即可。</li>
+<li>run 可执行文件应该将程序 exec 到前台，stderr 转到 stdout: <code>exec 2&gt;&amp;1; exec yourapp</code>. 这也是 Runit 对你的应用程序的唯一要求：前台，日志</li>
+<li>Runit 将各种功能封装进 c 写的小工具集里面。</li>
+<li><code>/etc/sv/xxx/log …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d7127f91-7b58-4f34-b6ee-f9405dd2f228.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/62b77803-e6cd-4791-9330-b419b3596f73.html" rel="bookmark"
+                                title="Permalink to Python 高阶函数的一种写法"
+                                >Python 高阶函数的一种写法</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://mathieularose.com/function-composition-in-python/">查看原文</a></p>
+<p>Python 中函数的嵌套调用写长了容易不太易读，毕竟我们习惯从左到右读: a(b(c(d()))) 可以换种写法： comp(d, c, b, a)()。
+我们可以通过一个小函数定义这个链式组合的高阶函数：<code>def comp(*fns): return functools.reduce(lambda f, g: lambda x: f(g(x)), fns, lambda x: x</code></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/62b77803-e6cd-4791-9330-b419b3596f73.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/375dd4c8-77ef-4c17-b1a7-5ec7e64cac3f.html" rel="bookmark"
+                                title="Permalink to 使用 SO_REUSEPORT 可以重用端口"
+                                >使用 SO_REUSEPORT 可以重用端口</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://speakerdeck.com/joewalnes/linux-port-sharding">查看原文</a></p>
+<p>Linux 在 3.9 以后可以使用 SO_REUSEPORT 重用端口。这个选项可以在新建 socket 时候用 setsocketopt 设定。设定之后，多个进程可以一起监听同一个端口。不设定的话，会抛出端口 Conflict 的错误。这个功能特别适合用于处理滚动升级：版本1监听端口，上线版本2也监听这个端口，停掉版本1，完成上线。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/375dd4c8-77ef-4c17-b1a7-5ec7e64cac3f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/1bd4c78f-dc82-4dff-a3ea-60da25bc735b.html" rel="bookmark"
+                                title="Permalink to Python 打包 - entry_points"
+                                >Python 打包 - entry_points</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://chriswarrick.com/blog/2014/09/15/python-apps-the-right-way-entry_points-and-scripts/">查看原文</a></p>
+<p>在 Python 中提供 bin 程序的一个好方法是为项目的 setup.py 提供 entrypoint。具体方法是提供一个 main 方法，然后在 setup.py 的 setup 中加入 <code>entry_points={'console_scripts': ['your-cli=path.to.module:main']}</code>。特别的，如果开发的是 GUI 程序，相应的改为 gui_scripts。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/1bd4c78f-dc82-4dff-a3ea-60da25bc735b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0de6d8a1-e31e-4af9-8800-b1a57a7c86a8.html" rel="bookmark"
+                                title="Permalink to 提高网站的可访问性"
+                                >提高网站的可访问性</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.stridenyc.com/blog/why-site-accessibility-matters">查看原文</a></p>
+<p>网站可访问性专注于使网站的内容的可以被所有人访问到，特别是残障人士。</p>
+<ul>
+<li>人口里面残障的比例其实非常高。</li>
+<li>要考虑交互，认知，视觉。</li>
+<li>要考虑缺少单肢，双肢时的使用体验。</li>
+<li>能否只用键盘就能交互？</li>
+<li>页标题和 H1 有么？</li>
+<li>有没有定期维护和检查可访问性？</li>
+</ul>
+<p>更好地可用性：</p>
+<ul>
+<li>非文本内容有文本提示</li>
+<li>多媒体有 caption</li>
+<li>内容连续且有意义</li>
+<li>有页标题</li>
+<li>有 heading &amp; labels 描述内容主题</li>
+</ul>
+<p>可以用 w3 提供的可访问性工具检查：<a href="https://www.w3.org/WAI/ER/tools/">https://www.w3.org/WAI/ER/tools/</a></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0de6d8a1-e31e-4af9-8800-b1a57a7c86a8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e1d6b017-3ea1-4ec9-875a-0c02b3b8a4fc.html" rel="bookmark"
+                                title="Permalink to 使用 Tox 测试"
+                                >使用 Tox 测试</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.ionelmc.ro/2015/04/14/tox-tricks-and-patterns/">查看原文</a></p>
+<p>Tox 可以用来运行应用程序在 Python 多个版本下的测试。用法是添置 <code>tox.ini</code>，设定要测试的版本，和测试语句即可。原理是自动创建 virtualenv，用特定语言版本运行测试。
+* 可以用 <code>{posargs:}</code> 当作命令，这样可以在运行的时候替换运行的命令。 例如<code>tox -e py34 -- python</code>, <code>tox -e py27 -- django-admin runserver</code>。
+* 可以用 conditional settings 为每个 env  定制多条命令。多条命令可以共享一个 env.</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e1d6b017-3ea1-4ec9-875a-0c02b3b8a4fc.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/cc6d68f1-2ad0-4f24-8051-7073e327624d.html" rel="bookmark"
+                                title="Permalink to Find -ok"
+                                >Find -ok</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.networkworld.com/article/3233305/linux/using-the-linux-find-command-with-caution.html">查看原文</a></p>
+<p>一个 find 删除文件的保险：加上 <code>-ok</code> 命令，这样批量删除文件的时候会 prompt 出提示回答完才能删除。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/cc6d68f1-2ad0-4f24-8051-7073e327624d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/edaaa858-caa1-4203-ba50-51e29897ba60.html" rel="bookmark"
+                                title="Permalink to GitHub 数据中心网络设计"
+                                >GitHub 数据中心网络设计</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://githubengineering.com/evolution-of-our-data-centers/">查看原文</a></p>
+<p>最近一次 Github 数据中心升级的设计目标是提高冗余和全球可用性。</p>
+<p>他们的基础设施要承载 PB 级别的用户存储数据，以及 100G 级别的网络流量。在 Seattle 和 Northern Virginia 的入网点提供光纤来保证延迟和带宽。入网点 (POP) 就是一组网络设备，用途是接入区域互联网。每个入网点连接一个数据中心。两个独立的数据中心还使用 metro waves 传递 DWDM 数据。</p>
+<p>新项目启动，需要考虑容量和计算量，一般要么用已经配置好的机柜，要么设计一个新的。网络配置一般也是预先生成设置好的，机柜层级需要的 rack 单元等等数据从 gPanel 导入。整套初始化的部署流程都是高度可重复操作的，应该节省了不少人力。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/edaaa858-caa1-4203-ba50-51e29897ba60.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/a73ac72f-699c-4cf1-84c3-52ee9403fde9.html" rel="bookmark"
+                                title="Permalink to Python yield v/s return"
+                                >Python yield v/s return</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://stackabuse.com/python-generators/">查看原文</a></p>
+<p>Python yield 和 return 最大的区别在于栈的保留与否。</p>
+<p>在 yield 切出控制权后，解释器依然保留函数的栈，直到下次 next() 调用重新换入控制权。在有 yield 的函数中结束执行需要用 <code>return</code>：这个关键词不带返回值时表示我执行结束了，并且不关心任何返回值(PEP 255)。PEP 289 中引入了列表推导，形如 (x for x in xs)，它返回的就是 generator。另外可以知道的小窍门是 gen.send() 方法将数据传入 yield；以及 Python3 中 yield from 可以将 yield 委托给另外一个 generator。
+生成器给我们带来的最大的好处是简化代码，让一小块代码专注于怎么生成数据；另外一个好处是性能提升 － 不用把大把数据塞入内存 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/a73ac72f-699c-4cf1-84c3-52ee9403fde9.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses47.html">&laquo;</a>
+    Page 48 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses49.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

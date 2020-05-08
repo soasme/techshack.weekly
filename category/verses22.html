@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/a484bf59-2a9b-433a-bdd6-4381f4fe1c29.html" rel="bookmark"
+                                title="Permalink to Clean Coder — Robert Martin"
+                                >Clean Coder — Robert Martin</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://gaston.life/books/clean-coder/">查看原文</a></p>
+<p>本文是关于 Clean Coder 的一篇读书笔记。</p>
+<ul>
+<li>学会处理 bug：因为不可避免会写出 bug，所以要负责，修复它，学习到经验。</li>
+<li>多写测试和文档。</li>
+<li>一直去改代码。如果遇到一块代码很难修改，那就重新设计，好让下次修改好过一些。</li>
+<li>要学习理解自己正在做的这个领域的一些 solutions。</li>
+<li>谦逊，带新人，不要嘲笑别人。</li>
+<li>累了困了就别写代码了，糟心。</li>
+<li>不要参加浪费时间的会议。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/a484bf59-2a9b-433a-bdd6-4381f4fe1c29.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/062e842a-0b1e-4e4b-85a1-71be5f2c7f10.html" rel="bookmark"
+                                title="Permalink to Redis 数据持久化"
+                                >Redis 数据持久化</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://redis.io/topics/persistence">查看原文</a></p>
+<p>本文是 Redis Persistence 的 tech spec，是一篇每个 Redis 用户都建议读的文章。</p>
+<ul>
+<li>RDB 是定时存储快照</li>
+<li>AOF 是增量添加写操作的日志（append-only fashion）</li>
+<li>两个都是可选关掉的，或者同时打开。AOF 优先用于重启时的数据恢复</li>
+</ul>
+<p>比较：</p>
+<ul>
+<li>RDB<ul>
+<li>单文件，压缩好，适合备份做灾难恢复，恢复速度快，备份进程不影响提供服务的父进程的性能。</li>
+<li>可能会丢数据（总不能每秒都 dump 吧？一般隔几个分钟小时的），备份时 fork 会可能卡住父进程一会会儿。</li>
+<li>基本流程：Redis fork, 子进程把数据全量写到 rdb 文件，写完后替换老的 rdb 文件。</li>
+</ul>
+</li>
+<li>AOF<ul>
+<li>优点：性能好！能在日志太大时自动 rewrite, 也不会影响现有的插入 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/062e842a-0b1e-4e4b-85a1-71be5f2c7f10.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/09f9891c-3ea7-4c8e-84e5-3887dcf0d32d.html" rel="bookmark"
+                                title="Permalink to Python 代码打包必知必会"
+                                >Python 代码打包必知必会</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://packaging.python.org/tutorials/packaging-projects/">查看原文</a></p>
+<p>本文是 Python 打包的官方文档，介绍了如何打包一个最简单的 Python 代码库，是几乎每个 Python 开发工程师都要掌握的技能。</p>
+<ul>
+<li>首先得有一个可以被打包的模块，或者包。</li>
+<li>然后写一个 setup.py, 其中有固定的模板写上 name, version, description, packages 等必须要填的信息。</li>
+<li>跟上 LICENSE，README.md</li>
+<li>运行 <code>python3 setup.py sdist bdist_wheel</code>, 查看 dist/</li>
+<li>测试上传包到 pypi 上：<code>twine upload --repository-url https://test.pypi.org/legacy/ dist/*</code><ul>
+<li>去 https://test.pypi.org …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/09f9891c-3ea7-4c8e-84e5-3887dcf0d32d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9591e169-6a3a-4844-b1db-ba061d787bcd.html" rel="bookmark"
+                                title="Permalink to Python 包 ssh-decorator 有后门"
+                                >Python 包 ssh-decorator 有后门</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.reddit.com/r/Python/comments/8hvzja/backdoor_in_sshdecorator_package/">查看原文</a></p>
+<p>这篇是 Reddit 上关于 ssh-decorator 这个有后门包的讨论。这个垃圾 Python 包居然堂而皇之地写了 <code>urlopen('http://ssh-decorator.cf/index.php')</code> 这样的代码，甚至尝试将扫描到的服务器的用户密码什么的发送到后台服务器去。就指着万一哪天有人不小心下了这个包就钓大鱼了。这个包的技术还是很低劣的，甚至没用上混淆什么的技术，太容易让人查出来。由于 PIP 不关心包的安全，应用开发的时候一定要注意每个包都要安全审核一下。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9591e169-6a3a-4844-b1db-ba061d787bcd.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ab94f400-668d-4c94-badc-011d2b914670.html" rel="bookmark"
+                                title="Permalink to DO NOT SUDO PIP"
+                                >DO NOT SUDO PIP</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://pages.charlesreid1.com/dont-sudo-pip/">查看原文</a></p>
+<p>这个可爱的网站谆谆告诫程序员们，不要 <code>sudo pip install russian_roulette</code>, EVER! 因为太危险了啊，想想万一安装包的时候出事了怎么办，python 安装包可是实打实地运行代码的，万一有安全漏洞呢？就算你再怎么小心，typo 也是有可能打出来的：<code>sudo pip install uincode</code> 这个包可是认证的钓鱼包！总之，不要 sudo pip, 运行到 virtualenv 里面，或者用 <code>pip install --user package-x</code>.</p>
+<p>不要忘记：setup.py can run system commands.</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ab94f400-668d-4c94-badc-011d2b914670.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e338ce2d-06c3-4516-bc79-308ed074f431.html" rel="bookmark"
+                                title="Permalink to WHAT IS SUID AND HOW TO SET SUID IN LINUX"
+                                >WHAT IS SUID AND HOW TO SET SUID IN LINUX</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.linuxnix.com/suid-set-suid-linuxunix/">查看原文</a></p>
+<p>Linux 权限管理不是只有 rwx 三个这么简单，还有 SUID, SGID, Sticky Bit, ACL’s, SUDO 等等。本文简单介绍了 SUID - Set owner User ID up on execution 这个概念，它可以让获得权限的程序运行的时候获得 file owner 的权限，获得 owner UID，GID。听起来很危险，但它是 passwd, ping, crontab 等程序的基本原理。譬如说，passwd 将会修改密码，数据写入 /etc/passwd, /etc/shadow，而这两个文件owner都是 root。</p>
+<div class="highlight"><pre><span></span><code>$ ls -al …</code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e338ce2d-06c3-4516-bc79-308ed074f431.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/ee94f819-f0ec-4263-a6e5-2476dfb4d2c8.html" rel="bookmark"
+                                title="Permalink to Productivity x Simplicity"
+                                >Productivity x Simplicity</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://twitter.com/mjpt777/status/997587637857898497">查看原文</a></p>
+<p>这则推文及以下的讨论的话题是系统保持简单能帮助提高生产力。</p>
+<ul>
+<li>系统拆成一个个简单地组件，可能会导致组件间的交互变得很复杂。</li>
+<li>复杂无法避免，尝试在接口层保持简单，让客户端容易调用，把复杂度隐藏在接口后面。</li>
+<li>有人认为如果将系统解读为软件，可以通过隔离来做到简化；如果将系统解读为一个组织，那可以通过简化层级和跨组协作来完成。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/ee94f819-f0ec-4263-a6e5-2476dfb4d2c8.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f5163e93-20bc-4c26-931d-e10d8bcf702e.html" rel="bookmark"
+                                title="Permalink to Kubernetes 文档 - Application Introspection and Debugging"
+                                >Kubernetes 文档 - Application Introspection and Debugging</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/">查看原文</a></p>
+<p>本文是 Kubernetes 叫你怎么 debug application 的文档。简单来说记住两条命令：<code>kubectl get pod -o yaml</code> 和 <code>kubectl describe pod name-of-your-pod-xxxxxxxxxx-yyyy</code>。Kubernetes 很复杂，甚至于在教完你各种概念后教你怎么 debug，这篇还是 debug 中最简单的一篇，还不涉及 service，deployment，logging 等。</p>
+<ul>
+<li><code>kubectl describe pod nginx-deployment-1006230814-6winp</code>：类似这样的命令可以列出 pod 所有的状态，我们查看不同寻常的状态来找病灶。根据不同的 state （ Waiting, Running, or Terminated ）来看更多信息。比如说 ready 表示是否可以接受流量了，Restart Count …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f5163e93-20bc-4c26-931d-e10d8bcf702e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4e5bfc6d-faf8-4cb7-beb7-dcfe69eed7d7.html" rel="bookmark"
+                                title="Permalink to Pyre - Python 静态检查工具"
+                                >Pyre - Python 静态检查工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://pyre-check.org/docs/guided-tour.html">查看原文</a></p>
+<p>Pyre 可以为 Python 3.5+ 程序提供静态检查，前提是代码中标注了 type hint，由于 Python 的类型只是标记，要想真正检查出问题还得上这类工具。</p>
+<p>使用：</p>
+<div class="highlight"><pre><span></span><code>$ pip install pyre-check
+$ <span class="nb">cd</span> /path/to/proj
+$ pyre init
+$ pyre check
+</code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4e5bfc6d-faf8-4cb7-beb7-dcfe69eed7d7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/602a0615-24f5-4109-b83a-ffed41c1da7a.html" rel="bookmark"
+                                title="Permalink to EdgeDB - 下一代对象关系型数据库"
+                                >EdgeDB - 下一代对象关系型数据库</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/edgedb/edgedb">查看原文</a></p>
+<p>这个工具旨在解决的问题应该是将原先软件层的逻辑挪到数据库层面来，数据库不再是行列关系，而是对象驱动的数据，这让我们也许在实现业务逻辑时可以用更少代码解决问题。它内建 GraphQL 支持，这个文档对于尝鲜的人来说非常容易理解。</p>
+<p>这篇 Quick Start 简述了实现简单的 PullRequest 业务。</p>
+<ul>
+<li>Migration 是个好玩的设计，鉴于大部分数据库框架都让程序员可以用 <code>xyz-framework run migrations</code> 这种方法建表，删表，改表，EdgeDB 直接提供了 Migration 来做任何表模式的变更，在数据库层面帮我们解决表模式的迁移，体验蛮好的。使用时，感受到了运行一次 Migration 耗时比较长，应该是有锁库，可能现在还处于早期试验阶段，实现还不完善。</li>
+<li>INSERT 的同时可以带上 SELECT， FILTER ，这个跟 SQL 能做的事情没有差太多。</li>
+<li>SELECT 使用 GraphQL 的语法来查数据。</li>
+</ul>
+<p>翻看 <a href="https://github.com/edgedb/edgedb/">源码 …</a></p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/602a0615-24f5-4109-b83a-ffed41c1da7a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses21.html">&laquo;</a>
+    Page 22 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses23.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

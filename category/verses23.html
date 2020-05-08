@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/bb57054e-c1b1-4db3-880c-f75ed82de528.html" rel="bookmark"
+                                title="Permalink to RQ 可以替代 Celery"
+                                >RQ 可以替代 Celery</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://frappe.io/blog/technology/why-we-moved-from-celery-to-rq">查看原文</a></p>
+<p>本文是一篇经验总结贴，总结了他们为什么从 Celery 切换到 RQ，简单来说，就是 RQ 简单到爆，只有一种方式做一件事情，可以避免 over-complicated, over-engineer。作者觉得 Celery 是个很优秀的工具，可以提供各种 Broker 还有很多很棒的 Feature。但是如果看使用场景，很多时候我们只需要能从 web 进程中 enqueue job 到队列去，然后 worker 执行。就这么简单，如果非要再加一些需求进来，队列监控，限速什么的也不是不可以。但是过度工程到构建 workflow 什么都就有点跟 80% 需求偏差有些大了。RQ 使用 Pickle 做序列化，Redis 做 Broker 和 Backend，os …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/bb57054e-c1b1-4db3-880c-f75ed82de528.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e5c3500a-a98c-429c-bef6-72817bdcf53d.html" rel="bookmark"
+                                title="Permalink to Readiness 和 Liveness 检查的区别"
+                                >Readiness 和 Liveness 检查的区别</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2018/05/Kubernetes-best-practices-Setting-up-health-checks-with-readiness-and-liveness-probes.html">查看原文</a></p>
+<p>本文介绍了两种 Health Check: Readiness &amp; Liveness，前者用于让负载均衡知道什么可以指派流量给应用，后者用于让负载均衡直到什么时候应该将应用移除出 Pool。</p>
+<ul>
+<li>Readiness 的使用场景：应用即便已经正在运行了，它仍然需要一定时间才能 serve 服务，这段时间可能用来加载数据，可能用来构建缓存，可能用来选举 Leader，总之 Readiness 检查通过前是不会有流量发给应用的。</li>
+<li>Liveness 的使用场景：应用可能运行到一半崩溃了，死锁了，CPU100%了，总之没法响应请求了。这时候 Livenss 能够检察出应用无法再处理请求了，就会将其从 Pool 中挪走，或者更聪明的工具可以重启应用或者干脆起新的应用加到 Pool 中。</li>
+<li>在 Kubernetes 中有三种 Probe 可以使用，HTTP / Command / TCP。<ul>
+<li>HTTP 200~300 响应码的情况下 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e5c3500a-a98c-429c-bef6-72817bdcf53d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5e48b1a1-284c-48f4-ba22-4c6dcfd370ae.html" rel="bookmark"
+                                title="Permalink to Bash 使用需要避免掉坑的地方"
+                                >Bash 使用需要避免掉坑的地方</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://mywiki.wooledge.org/BashPitfalls">查看原文</a></p>
+<p>本文列出了五十多项在使用 Bash 的时候需要注意的地方，Bash 是如此强大但又非常容易出错，一不小心就会删干净你计算机中没备份的文件。如果说人在不停地试错中学习，本文给出了绝佳的避免犯错的清单。</p>
+<ul>
+<li>通配符(*)，空格( ), 有 leading-dash (-打头的文件), 有 <code>!</code> 是很多错误的本源。这些东西让 bash 很魔法，也很魔幻。每一行 sh 代码都要好好想想字符串或者变量中是否会存在被转义的可能，如果会，配置好环境变量或者加上 quote。<ul>
+<li>for i in 后面要用通配符 或者使用 find -exec.</li>
+<li>cp 的时候 <code>"./$file"</code> 这样比较靠谱。</li>
+<li><code>[[ $var ==</code> <code>[[</code> 比较人性能识别 <code>$var</code> 的空格</li>
+<li><code>[ "$var" =</code> <code>[</code> 就比较不人性了，得加 <code>"$var"</code> quote.</li>
+<li>很多人没有注意到 <code>if [ a = b …</code></li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5e48b1a1-284c-48f4-ba22-4c6dcfd370ae.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/7c529fb1-4a8c-45a4-b05d-8f5c148f9e2f.html" rel="bookmark"
+                                title="Permalink to Bash test and new test command"
+                                >Bash test and new test command</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://mywiki.wooledge.org/BashFAQ/031">查看原文</a></p>
+<p>本文介绍了 <code>[</code> 和 <code>[[</code> 这两个命令的各种细微区别。简单来说 <code>[</code> 是命令 <code>/bin/[</code>, 而 <code>[[</code> 是则是 keyword，二者都用于比较，前者可以在任何 POSIX shells 中运行，后者只能在特定 shell 如 bash zsh ksh 等中运行。 你可以认为 <code>[</code> 是 <code>test</code> 的语法糖，除了它必须在命令的末尾加上 <code>]</code>. <code>[[</code> 是 <code>[</code> 的改良版，是一个 keyword 而不是 program =&gt; 设想 bash 在解析 <code>[[</code> 前会有一个单独的 parsing context 处理其中的参数，这使我们在使用时可以绕开 wordsplitting, glob 等自动扩展，从而避免掉各种 quote。</p>
+<p>一般来说如果考虑到可移植性，要移植到全 POSIX 平台 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/7c529fb1-4a8c-45a4-b05d-8f5c148f9e2f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b34f254c-d945-479b-b228-d82791b0a707.html" rel="bookmark"
+                                title="Permalink to SlackHQ 使用 Kafka 和 Redis 处理数十亿任务"
+                                >SlackHQ 使用 Kafka 和 Redis 处理数十亿任务</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://slack.engineering/scaling-slacks-job-queue-687222e9d100">查看原文</a></p>
+<p>本文是 Slack 工程博客关于如何扩展他们的任务队列的分享，他们的任务队列具体来说运行任何不在 web request 中执行的任务，例如推送提醒，unfurl，账单计算等，高峰时期队列 qps 可达到 33k/per second，任务时长从毫秒到数分钟不等。初版设计在公司上古时代就在用了，还用了很多年。Scaling 的契机是遇上了一次生产环境的大故障，就出在这个任务队列系统上，简单来说数据库资源争抢导致任务执行时间变长直到 Redis 内存超限，Boom。恢复时还屋漏偏逢连夜雨的碰上了任务没法 dequeue。所以，事故后，他们的重新设计的目标是：在核心系统最小故障时间的前提下，做到不停机的升级。</p>
+<ul>
+<li>初版设计：[www1 www2 www3] =&gt; [redis1 redis2 redis3 redis4] =&gt; [worker1 worker2 worker3 worker4], www 可以任意发布任务到 redis，每个 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b34f254c-d945-479b-b228-d82791b0a707.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f0c768f1-5c36-4e80-9ea5-588d8bcbd6d6.html" rel="bookmark"
+                                title="Permalink to Poetry or Pipenv"
+                                >Poetry or Pipenv</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.reddit.com/r/Python/comments/8jd6aq/why_is_pipenv_the_recommended_packaging_tool_by/">查看原文</a></p>
+<p>这篇 Reddit 帖子中包含了一些有趣但蛮激烈的讨论。原 po 批评 Pipenv 品味差 接口不好 核心问题没解决好 还有很多特性缺失，不如使用另一款工具 poetry。@theavalkyrie 认为原 po 还好，讨论戾气太重，社区中大家都是贡献自己的余力在做事情，社区氛围应该是帮忙把软件写的更好，而不是简单一句 <code>bad</code>, <code>terrible</code> 去指点江山。Pipenv 的作者 @kennethreitz 认为两个工具都很年轻，但是没有必要搞什么竞赛。Poetry 的作者 @SDisPater 认为开发者好好开发就好，至于社区的人想用什么就让他们自己决定好了。</p>
+<p>衍生思考：目前来说两个工具看场景，如果写一个库，我会用 poetry，因为省掉写 setup.py, MANIFEST.in, setup.cfg 变成几行 toml 真的是体验好很多 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f0c768f1-5c36-4e80-9ea5-588d8bcbd6d6.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/839ccaf1-0d3e-410a-b3a6-f3b6f3ad5992.html" rel="bookmark"
+                                title="Permalink to Basics of the Unix Philosophy"
+                                >Basics of the Unix Philosophy</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html">查看原文</a></p>
+<p>本文是 TAOCP 的第一章，讲的是 十几条 Unix 哲学。Unix 哲学的目标是设计出小而有用的操作系统，同时服务接口还特别干净。Unix 哲学是 bottom-up 的，如果用一句话来概述，那边是 KISS: keep it simple, stuipd.</p>
+<p>这篇文章介绍了好几套说法，包括 Doug McIlroy, Rob Pike，以及作者自己(Eric Steven Raymond)整理的说法。</p>
+<ul>
+<li>Doug McIlroy: <strong>做一件事，做好它。</strong> 程序应该只关注一个目标，并尽可能把它做好。让程序能够互相协同工作。应该让程序处理文本数据流，因为这是一个通用的接口。</li>
+<li>Rob Pike: 不要优化代码除非经过测量找到了瓶颈；简单的算法和数据结构在小数据场景下又好用有快，即便你用的是穷举。尽早创建原型。</li>
+<li>Eric Steven …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/839ccaf1-0d3e-410a-b3a6-f3b6f3ad5992.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/8ca16457-a951-49c0-8bed-cd626a17a370.html" rel="bookmark"
+                                title="Permalink to goSDL - Slack Secure Team 发布的安全评估工具"
+                                >goSDL - Slack Secure Team 发布的安全评估工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://slack.engineering/moving-fast-and-securing-things-540e6c5ae58a">查看原文</a></p>
+<p>本文是 Slack 的一篇工程博客，讲述他们内部推行的一个关于 Security Development Lifecycle (SDL) 的工作流，旨在帮助安全团队更好地评估业务代码。简单来说，就是通过 goSDL 这个工具在 slack / jira 这些工具中间回答问题，勾掉 checklists，这些问题和任务都是和安全相关的注意要点。这个工具本身也在帮助安全团队更好地调整选项和问题，用来提升开发效率和安全评估。</p>
+<p>衍生思考：其实比较想拿到他们评估的那些问题都有哪些，这个工具本身并没有太大的技术难点。很多企业做开发前后都有安全评估的环节，其实程序员们并不是不想搞安全，只是要注意的细节实在是比较不容易想到。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/8ca16457-a951-49c0-8bed-cd626a17a370.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9b7d54a8-abe5-4a7c-98ec-da98055f0c82.html" rel="bookmark"
+                                title="Permalink to Is K8s Too Complicated"
+                                >Is K8s Too Complicated</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://twitter.com/jbeda/status/993978918196531200">查看原文</a></p>
+<p>这是 @jbeda 发布的一系列推文，作者想要探讨的问题是 kubernetes 是不是真的太复杂了。tldr；简单来说，不是！尽管 k8s 是个复杂的系统，但是它引入了非常多有价值的抽象。</p>
+<ul>
+<li>确实在某个小领域中，你可以用更简单的工具来比 k8s 做得更好。</li>
+<li>你可以自己从头从 jenkins/bash/puppet/chef/salt/ansible/terraform... 什么的开始搭自己的平台，你可能会觉得用这套技术很很舒服。你不觉得复杂，只是因为你伴随着它一起成长。。。但只要来个新人，要适应这些工具，真的得适应大半天。// 就是说，你自己写出来的软件的复杂度，跟你学到的软件的复杂度，就算差不多，你也会觉得别人写的更复杂。</li>
+<li>^ 这就是 K8s 所创造的价值。它为一个领域的问题提供了一系列的抽象（deployment, configmap, service, statefulset, secret, pod, ...)。尽管学习的曲线抖了一点，但一旦适应了 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9b7d54a8-abe5-4a7c-98ec-da98055f0c82.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/34dcf0e9-6906-4f95-9147-9dc4226820eb.html" rel="bookmark"
+                                title="Permalink to 程序的哪些部分适合写成配置"
+                                >程序的哪些部分适合写成配置</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.catb.org/esr/writings/taoup/html/ch10s01.html">查看原文</a></p>
+<p>本文是 TAOUP 第 10 章 的节选，答案是：任何东西都应该成为配置，应该考虑的问题是：什么不要成为配置。一般来说，能自动算出来的东西不写配置，除非花了很长时间才能算出来。如果别的程序能做的东西，本程序就别去做了。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/34dcf0e9-6906-4f95-9147-9dc4226820eb.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses22.html">&laquo;</a>
+    Page 23 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses24.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

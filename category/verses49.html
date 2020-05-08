@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/37bfc7f6-aeb3-4562-a935-633f6f7a0646.html" rel="bookmark"
+                                title="Permalink to 如何 mock 系统高负载"
+                                >如何 mock 系统高负载</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://bash-prompt.net/guides/create-system-load/">查看原文</a></p>
+<p>要想测试系统在高负载情况下的行为，能够稳定造出高负载就很需要，有时候不需要安装特定的工具也能造出来。</p>
+<ul>
+<li>造出 CPU 繁忙的景象：<ul>
+<li>压缩随机数据流: <code>cat /dev/urandom | gzip -9 &gt; /dev/null</code></li>
+<li>更大，更大，更大：<code>| gzip -9 | gzip -d | gzip -9 | gzip -d &gt; /dev/null</code></li>
+</ul>
+</li>
+<li>造出内存不够用：<ul>
+<li>在内存中 mount 一个 ramfs 文件系统，然后写文件 <code>dd if=/dev/zero of=z/file bs=1M count=128</code> 设定块大小和多少块。</li>
+</ul>
+</li>
+<li>造出磁盘不够用：<ul>
+<li>把上面产生的文件复制几份。</li>
+</ul>
+</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/37bfc7f6-aeb3-4562-a935-633f6f7a0646.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/a4623551-0efe-4e73-958d-c34a79de76ea.html" rel="bookmark"
+                                title="Permalink to Chef 的最佳实践"
+                                >Chef 的最佳实践</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.chef.io/2017/09/28/chef-101-the-road-to-best-practices/">查看原文</a></p>
+<p>Chef 的最佳实践一文，即便只是看作 devops 的一些范式，也很有参考意义。</p>
+<ul>
+<li>常见的部署模型有 推(ansible)和拉(chef) 两种风格。对于 chef 这种拉式部署，需要解决的问题是怎么快速在 host 上搞起来 agent。一个方案是 master 上提供 bootstrap 的方案，将 agent 的部署使用 ssh / WinRM 推到 slave 上。</li>
+<li>配置和代码分离是部署的一个重要步骤。配置的几个关键点：代码中的默认配置，基于 role 的配置，基于环境的配置。由于环境可能差异比较大，配置设定应该要做到提供尽可能细的粒度以应对不同的场景。</li>
+<li>将配置版本化存入一个中心设施，部署时可以选定选定的版本。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/a4623551-0efe-4e73-958d-c34a79de76ea.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/3db6e5d3-4049-4ac1-bb4f-ca040ce8277d.html" rel="bookmark"
+                                title="Permalink to Python 文档 - memoryview"
+                                >Python 文档 - memoryview</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.python.org/3/library/stdtypes.html#memory-views">查看原文</a></p>
+<p>Python 类<code>memoryview</code> 可以从一个支持 buffer protocol 的对象中不加拷贝地拿到原子内存单位 (atomic memory unit)，例如 bytes 可以获取单字节，列表可以获取单元素。它支持 slice 语法：<code>mv=memoryview(b'abc'); print(bytes(mv[1:2]))</code>。不用 copy 主要就是为了提升效率。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/3db6e5d3-4049-4ac1-bb4f-ca040ce8277d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e12ad265-73cc-48d1-8084-714d7440497b.html" rel="bookmark"
+                                title="Permalink to 通配符 glob 语法简介"
+                                >通配符 glob 语法简介</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://man7.org/linux/man-pages/man7/glob.7.html">查看原文</a></p>
+<p>在很久以前，glob 是 UNIX V6 的一个程序，后来就被整合进 shell 成为内建功能。Globbing，就是将一些通配符扩展为一个路径的列表。跟正则表达式不同的是，<code>?</code> 表示任何单一字符，<code>*</code> 表示包括空格在内的任何字符。
+* <code>[]</code> 中间一定要有东西，用于表示字符集。 例如 <code>[][!]</code> 表示的其实是 <code>[</code>, <code>]</code>, <code>!</code> 这三种字符。
+*  <code>[]</code> 中间可以用短横线表示范围，例如 <code>[a-ZA-Z0-9]</code> 表示字符数字，<code>[--0]</code>  表示 <code>-</code>, <code>.</code>, <code>0</code>;  <code>[]-]</code> 表示 <code>]</code>, <code>-</code>。
+* <code>[]</code> 中间用反斜杠 <code>\</code> 做转义。
+* 两个设定：
+    * '/' 不会被 <code>*</code> 或者范围识别出来，因为这个程序是用来识别路径的。
+    * <code>.</code> 开头的文件需要显式指定出来，例如 <code>rm *</code> 是不会删除 .profile 的。
+* 没有任何东西识别出来，对应的是空列表。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e12ad265-73cc-48d1-8084-714d7440497b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/a1b24f8e-68d3-4b6f-bef7-f5c0e84ea62f.html" rel="bookmark"
+                                title="Permalink to PyPI 钓鱼包"
+                                >PyPI 钓鱼包</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/">查看原文</a></p>
+<p>PyPI 上出现过钓鱼包，开发者可能只是输错了一个字符就导致安装了带了后门的包。被抓包是因为没做好 Python3 的兼容，不然可能还能潜伏更久。由于 PyPI 在最开始设计的时候就不做安全校验，任何人都可以将任何包丢到 PyPI 上，因此安全防护需要开发者自己格外小心。防范措施：安装包前一定要再三确认这个包是正确的包，另外不安装来自不信任源的包。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/a1b24f8e-68d3-4b6f-bef7-f5c0e84ea62f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/7c5b4a4a-8a0e-4523-8a1f-4d13954b5e9c.html" rel="bookmark"
+                                title="Permalink to AOSA Book - VTK"
+                                >AOSA Book - VTK</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://aosabook.org/en/vtk.html">查看原文</a></p>
+<p>The Architecture of Open Source Applications - VTK。
+* VTK 项目选用的基本上都是很成熟的工具。
+* 使用工厂模式，可以承载多种类型的实现，甚至在运行时允许替换实现以提升性能
+* 项目有处理大量数据的需求，所以使用引用计数，在性能上很高效。缺点是会有臭名昭著的循环应用，解决办法是通过改善算法定位出这样的类。
+* 在子系统的黏合上，采用了流水线的处理方法：一个模块处理完后，将输出串到下个模块的输入上。
+* 渲染系统使用 command/observer 设计模式。组件监听特定事件，渲染出数据。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/7c5b4a4a-8a0e-4523-8a1f-4d13954b5e9c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/d7ab2930-3eb3-4f1b-b821-317510ca5e2e.html" rel="bookmark"
+                                title="Permalink to Python 标准库 - rpcompleter"
+                                >Python 标准库 - rpcompleter</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.python.org/2/library/rlcompleter.html">查看原文</a></p>
+<p>Python rlcompleter 模块可以改善 Python shell 的使用体验，它使用户可以通过 tab 完成关键字和变量的自动补全。我们可以贴几行代码，定义 PYTHONSTARTUP 环境变量来启用它。使用前提是要有 readline 库，Linux/OS X 都应该预装了。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/d7ab2930-3eb3-4f1b-b821-317510ca5e2e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/040f59bb-3e59-413c-b504-76fa4c70940f.html" rel="bookmark"
+                                title="Permalink to Man 文档的三种主要 License"
+                                >Man 文档的三种主要 License</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.kernel.org/doc/man-pages/licenses.html">查看原文</a></p>
+<p>Linux Man 文档的 License 推荐使用三种款式: 'Verbatim", GPLv2, BSD。不使用更多 License 主要是为了把证书的量控制的尽可能小。这选定的三个证书一个比一个宽松。Verbatim 证书的要求主要是分发的时候发布内容包括证书要逐字复制。GPLv2 约定了自由(copyleft)软件派生后也必须是自由软件-可自由运行和公开再发布。BSD 规约可以不受限制地修改。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/040f59bb-3e59-413c-b504-76fa4c70940f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/122d1575-2cb9-4620-9814-693531e451ab.html" rel="bookmark"
+                                title="Permalink to Unix tools - tee"
+                                >Unix tools - tee</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://unix.stackexchange.com/questions/28503/how-can-i-send-stdout-to-multiple-commands">查看原文</a></p>
+<p>Unix 程序 tee 特别在适合管道任务中，保持管道到下个任务的同时，把输入同时打到另外的任务里。这形同在直线管道上开了一个 T 字形的分流节点。</p>
+<div class="highlight"><pre><span></span><code><span class="err">cat file.txt | tee &gt;(cmd1) &gt;(cmd2) | cmd3</span>
+</code></pre></div>
+
+
+<p>而在管道分流出来的那条分支中其实还可以继续开管道下去:</p>
+<div class="highlight"><pre><span></span><code><span class="err">tee &gt; (cmd1 | cmd2) | cmd3</span>
+</code></pre></div>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/122d1575-2cb9-4620-9814-693531e451ab.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/0b949b34-94ec-43fa-9718-645826f10475.html" rel="bookmark"
+                                title="Permalink to 用 Select 之前想清楚"
+                                >用 Select  之前想清楚</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://use-the-index-luke.com/blog/2013-08/its-not-about-the-star-stupid">查看原文</a></p>
+<p>不要傻里傻兮地不分场合地用 <code>select *</code>。出于性能原因，只要一块代码不是需要所有字段的数据，那么就不要用 <code>select * from table</code> 来获取数据，转而应该选定特定的字段 <code>select field1, field2 from table</code>。
+* 想想数据库怎么给你数据：通过index定位一行的地址，然后加载那一行所有的数据。如果索引优化的好，~~这个效率，efficiency~~数据库从索引就得到了所有信息，也就不需要再需要加载那一步了。一般索引一页存放100条记录，如果省去了一行一行加载，速度也就上去了100倍。
+* 如果 SQL 语句里面有排序，那么数据库也需要更大的内存用于排序。最恶劣的场景里，数据要被转储到硬盘上做外部排序。
+* 也要考虑 GC (垃圾收集) 的进程。
+需要强调的是，你问我滋磁不滋磁 <code>select *</code>，我当然是要滋磁啦。重要的是，不要无脑用，要考虑场景，想好了再用。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/0b949b34-94ec-43fa-9718-645826f10475.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses48.html">&laquo;</a>
+    Page 49 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses50.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

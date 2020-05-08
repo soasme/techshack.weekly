@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/aaa8775f-8430-48aa-aa01-854dc7f33196.html" rel="bookmark"
+                                title="Permalink to Secure HTTP Headers and Cookies"
+                                >Secure HTTP Headers and Cookies</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/cakinney/secure">查看原文</a></p>
+<p><a href="https://github.com/cakinney/secure">https://github.com/cakinney/secure</a> 这个库列出了一些应当被妥当设置的安全相关的请求头：</p>
+<ul>
+<li>Server: 默认设为 NULL，避免暴露服务器的信息</li>
+<li>Strict-Transport-Security (HSTS): 服务不允许被降级为 HTTP 运行。<code>max-age=63072000; includeSubdomains</code></li>
+<li>X-Frame-Options (XFO)：防止 clickjacking。<code>SAMEORIGIN</code></li>
+<li>X-XSS-Protection: <code>1; mode=block</code>: 防止扩展脚本运行</li>
+<li>X-Content-Type-Options：<code>nosniff</code>：不允许 MIME-sniffing</li>
+<li>Content-Security-Policy (CSP): <code>script-src 'self'; object-src 'self'</code> 防止跨域注入</li>
+<li>Referrer-Policy： <code>no-referrer, strict-origin-when-cross-origin</code></li>
+<li>Cache-control / Pragma: <code>no-cache, no-store, must-revalidate / no-cache</code></li>
+<li>Feature-Policy …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/aaa8775f-8430-48aa-aa01-854dc7f33196.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e417c8ba-39a6-4f2e-b9fa-0a6df299d616.html" rel="bookmark"
+                                title="Permalink to Vega - A Visualization Grammar"
+                                >Vega - A Visualization Grammar</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://vega.github.io/vega/docs/">查看原文</a></p>
+<p>Vega 是一个试图对可视化进行规范的语法。它通过定义一个描述式的语言来定义可交互的图表。这个语言可使用 JSON 定义，生成 Canvas 或者 SVG。
+通过它可以定义 transformation，scale，map projection，axes，legends，graphical marks 等等。</p>
+<p><a href="https://vega.github.io/vega/tutorials/bar-chart/">Tutorial</a> 有一个 vega 的概览。
+[vega v/s chart.js](https://js.libhunt.com/compare-vega-vs-chart-js）：这个项目目前流行度还不太高。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e417c8ba-39a6-4f2e-b9fa-0a6df299d616.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/208d1102-a710-4e9f-bef1-cbc460dec98e.html" rel="bookmark"
+                                title="Permalink to Pyparsing - A Python Parsing Module"
+                                >Pyparsing - A Python Parsing Module</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/pyparsing/pyparsing">查看原文</a></p>
+<p>Pyparsing 是一个 lex/yacc 的替代方案，可以用 Python 的语法写出 DSL。
+使用起来的体验是语法部分可以用编辑器的高亮和 Linting 做语法检查。</p>
+<p>写了一个例子可以做四则运算，逻辑比较，函数调用。</p>
+<p><a href="https://gist.github.com/soasme/1685e80a6f70311dbb801823ac8827fa">https://gist.github.com/soasme/1685e80a6f70311dbb801823ac8827fa</a></p>
+<script src="https://gist.github.com/soasme/1685e80a6f70311dbb801823ac8827fa.js"></script>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/208d1102-a710-4e9f-bef1-cbc460dec98e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/507b2b90-34a1-47b3-9487-16645827d0e9.html" rel="bookmark"
+                                title="Permalink to Zero Downtime deployments with Terraform"
+                                >Zero Downtime deployments with Terraform</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://checklyhq.com/blog/2018/08/an-in-depth-look-at-100-zero-downtime-deployments-with-terraform/">查看原文</a></p>
+<p>本文介绍了 Checkly 的工程团队如何使用 AWS EC2 / SQS / Terraform 完成队列 worker 的 zero downtime。</p>
+<ul>
+<li>目标<ul>
+<li>worker 在不伤害用户体验的情况下可以杀掉</li>
+<li>多版本 worker 可以共存</li>
+<li>每个 worker 都可以独立升级</li>
+<li>新 worker 一旦就绪立马工作</li>
+<li>当新 worker 都起来以后 老 worker 要被杀掉</li>
+<li>release 出错时停止继续部署</li>
+<li>可以被部署到多个 region</li>
+<li>新 worker 自动加入监控</li>
+<li>release 出错时可以触发警告</li>
+</ul>
+</li>
+<li>实现<ul>
+<li>使用 cron 发送消息到 sqs 队列。</li>
+<li>workers 订阅一个队列，每台机器 5 …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/507b2b90-34a1-47b3-9487-16645827d0e9.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/69012a7e-a3c7-4e50-a4c4-ab7c27b9f3db.html" rel="bookmark"
+                                title="Permalink to Pampy - Pattern Matching for Python"
+                                >Pampy - Pattern Matching for Python</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/santinic/pampy">查看原文</a></p>
+<p>Pampy 是一个 Python 的模式匹配的库。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pampy</span> <span class="kn">import</span> <span class="n">match</span><span class="p">,</span> <span class="n">_</span>
+
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">match</span><span class="p">(</span><span class="n">n</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+
+<p>可以对 dict 进行解构：</p>
+<div class="highlight"><pre><span></span><code><span class="err">&gt;&gt;&gt; print(match({&quot;a&quot;: &quot;b&quot;, &quot;c&quot;: &quot;d&quot;}, {&quot;a&quot;: _, _: &quot;d&quot;}, lambda x, y: (x, y)))</span>
+<span class="err">(&quot;b&quot;, &quot;c&quot;)</span>
+</code></pre></div>
+
+
+<p>能简化不少代码 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/69012a7e-a3c7-4e50-a4c4-ab7c27b9f3db.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/7a18cf9b-1b8a-4369-9a15-8ab4e80a59ec.html" rel="bookmark"
+                                title="Permalink to 12 Factor CLI Apps"
+                                >12 Factor CLI Apps</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46">查看原文</a></p>
+<p>本文在推广一种写命令行工具的方法论 - 12 Factor CLI Apps.</p>
+<ul>
+<li>提供 <code>-h/--help</code> / shell completion</li>
+<li>优先使用 flags，而不是 args；flags 也有利于 autocomplete；对于要把参数传给子进程的命令，可以用 <code>--</code> 分隔开本命令和子进程要用的参数。</li>
+<li>提供 <code>version</code>, <code>--version</code>, <code>-V</code></li>
+<li>区分开 stdout 和 stderr</li>
+<li>出错时可以提供更多有用信息：error code，error title，error description，how to fix the error，还有 url； 可以在 DEBUG 模式把更多信息打出来。</li>
+<li>打出颜色，进度条，但也支持 NO_PROGRESS …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/7a18cf9b-1b8a-4369-9a15-8ab4e80a59ec.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/c509f2fc-5a02-42a7-8fa9-c97ca00a863e.html" rel="bookmark"
+                                title="Permalink to What Happen When K8S"
+                                >What Happen When K8S</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/jamiehannaford/what-happens-when-k8s">查看原文</a></p>
+<p>本文介绍了在命令行运行 <code>kubectl run --image=nginx --replicas=3</code> 时 Kubernetes 服务端和客户端的运行时。</p>
+<ol>
+<li><code>kubectl</code> 会做 client-side validation, 通过校验的会通过 kubectl generator 组装 HTTP 请求可以发送到 kube-apiserver, 例如 deployment 会组装 DeploymentV1Beta1.</li>
+<li>本地有一个 ~/.kube/cache/dicovery 用于缓存资源的 apiVersion, 例如，deployment 属于 apps/v1.</li>
+<li>kubectl 会根据 <code>--kubeconfig</code> 或者 <code>$KUBECONFIG</code> 读取 kubeconfig.</li>
+<li>解析 kubeconfig, 获得 current context, current …</li></ol>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/c509f2fc-5a02-42a7-8fa9-c97ca00a863e.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/208b7547-75c8-419c-8ad7-9789a05f9ae7.html" rel="bookmark"
+                                title="Permalink to Things Nobody Told Me About Being a Software Engineer"
+                                >Things Nobody Told Me About Being a Software Engineer</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://anaulin.org/blog/things-nobody-told-me-about-being-a-software-engineer/">查看原文</a></p>
+<p>本文描述了一个老工程师的心得。</p>
+<ul>
+<li>测试代码远高于 production code。</li>
+<li>用于 build/release/tooling 的时间跟花在写代码的时间是一样的。这还不计入 on-call, operations, ...</li>
+<li>要部署代码进入生产环境，写代码真的只是很小的一部分。</li>
+<li>时间在前进，轮子也在不停的重造。</li>
+<li>在 debug 和 code review 中要学习如何找到激情。</li>
+<li>工资和技术不强相关。</li>
+<li>CSS 很难！</li>
+<li>闪亮的技术不一定就能风生水起,很经常就莫名其妙死了。</li>
+<li>沟通时挑选 Emoji 是个技术活 </li>
+</ul>
+<p>衍生思考：☝️  👍 👏</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/208b7547-75c8-419c-8ad7-9789a05f9ae7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4d587a7b-0b73-4cd4-b61b-45cdb16f902d.html" rel="bookmark"
+                                title="Permalink to Minio Docs"
+                                >Minio Docs</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://docs.minio.io/">查看原文</a></p>
+<p>Minio 是一个 AWS S3 的兼容工具，可以自己选择搭在想要的机房里。</p>
+<ul>
+<li><a href="https://docs.minio.io/docs/minio-server-configuration-guide.html">conf</a>: 可用配置文件和环境变量，然后用 <code>minio server /data</code> 启动。</li>
+<li>有 liveness 和 readiness proble: <code>/minio/health/live</code>, <code>/minio/health/ready</code>.</li>
+<li><a href="https://docs.minio.io/docs/minio-federation-quickstart-guide.html">fed</a>: 可使用 etcd_endpoints 作为后端完成 federation</li>
+<li>【client](https://docs.minio.io/docs/minio-client-quickstart-guide.html): 客户端提供 <code>mc ls</code>, <code>mc cat</code>, 等一系列 UNIX 兼容的命令。</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4d587a7b-0b73-4cd4-b61b-45cdb16f902d.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4e22fb2e-6800-49be-bf7f-9907b59329d0.html" rel="bookmark"
+                                title="Permalink to Pulumi - Guestbook App Tutorial"
+                                >Pulumi - Guestbook App Tutorial</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://pulumi.io/quickstart/kubernetes/tutorial-guestbook.html">查看原文</a></p>
+<p>Pulumi 最近发布的 IAAS 工具包看起来像个 terraform 的 copy。</p>
+<ul>
+<li>使用 <code>plum new kubernetes-typescript</code> 新建一个项目。</li>
+<li>写 JS 代码写 YAML。
+  <code>let redisMasterService = new k8s.core.v1.Service("redid-master": {"metadata": {…
+  let redisMasterDeployment = new k8s.apps.v1.Deployment("redis-master", {spec: {…</code></li>
+<li>运行：<code>pulumi up</code>, 运行前也跟 Terraform 一样需要经过确认。工具可自己决定是创建还是更新。</li>
+<li>也提供跟 Terraform output 一样的功能。<code>pulumi stack output frontendIP …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4e22fb2e-6800-49be-bf7f-9907b59329d0.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses.html">&laquo;</a>
+    Page 2 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses3.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

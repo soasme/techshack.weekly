@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/72fd2b2c-7759-408c-af7b-34165d516a2b.html" rel="bookmark"
+                                title="Permalink to LinkedIn Real-Time Presence Platform 的实现"
+                                >LinkedIn Real-Time Presence Platform 的实现</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://engineering.linkedin.com/blog/2018/01/now-you-see-me--now-you-dont--linkedins-real-time-presence-platf">查看原文</a></p>
+<p>Presence 系统说白了就是那套标记在线隐身正在忙这些状态的系统，LinkedIn 使用的技术栈是 Play Framework &amp; Akka Actor Model，处理的流量量级为 1.8K QPS。</p>
+<p>从业务上来说，要存储的数据自然是 online status + timestamp，挑战倒不在数据存储，而是怎么把这样的数据变更推到 C 端该用户的关注者，特别是那些正停留在该用户页面上浏览的那些用户。关于推送这个流程，Linkedin 的做法是浏览器保持实时连接，然后引入 Pub/Sub 系统，让这个实时连接去 Sub 另外一个用户的 user presence topic。当某个用户上线了，Presence Platform 就 Pub 消息到频道，这样另外一边的用户就收到推送了。</p>
+<p>这个系统要解决的另外一个大问题是用户反复上线下线给系统造成不必要的压力，这可能会是用户网络情况不给力等原因。LinkedIn 的做法倒也简单，实时连接加上一个心跳，一轮心跳 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/72fd2b2c-7759-408c-af7b-34165d516a2b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/e69e43cc-fbaa-4511-bd0e-2d2f439407de.html" rel="bookmark"
+                                title="Permalink to Python `JSON` 库的一些不为人知的用法"
+                                >Python `JSON` 库的一些不为人知的用法</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://pymotw.com/3/json/">查看原文</a></p>
+<p>JSON 作为 REST API 事实上的标准序列化表示 (serialized representation)，在 Python 很早的版本就加入了支持。很多人也许平时只用 <code>json.dumps()</code> / <code>json.loads()</code> 这几个方法，但事实上，这个库还有不少小众但好用的功能。</p>
+<ul>
+<li><code>json.dumps(data, indent=4)</code>: 配置缩进</li>
+<li><code>json.dumps(data, sort_keys=True)</code>: 序列化以后 key 是排序好的</li>
+<li>^ 以上两个方法还是给人看的，数据量会加大。</li>
+<li><code>json.dumps(data, separators=(',', ':')</code>: 序列化的时候, object :, 中间的空格都不要了。默认用的 <code>separators=(', ', ': ')</code>。这个方法可以压缩最后的数据量。</li>
+<li><code>json.dumps(data, skipkeys=True …</code></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/e69e43cc-fbaa-4511-bd0e-2d2f439407de.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/4108b00a-5e3f-48dc-b4a2-1213d6e4f802.html" rel="bookmark"
+                                title="Permalink to Microservices 的长处：快"
+                                >Microservices 的长处：快</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blogs.sas.com/content/hiddeninsights/2018/01/22/widening-analytics-base-microservices/">查看原文</a></p>
+<p>Microservices 的 Micro 更多地是指单个应用程序的权责很小，每一个服务都做一件事情，它们以松散的形式组合出应用的整体功能。它和目前的 containers 技术相契合，在实现层面，最关乎的事情是对接口。至于内部实现，八仙过海。</p>
+<p>Microservices 显然增加了系统的复杂度，不管是设计，编码，还是运维。但它也让团队更专注开发属于自己的那一部分解决方案，加快企业推进需求到市场的速度。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/4108b00a-5e3f-48dc-b4a2-1213d6e4f802.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/416d578d-71ce-47b6-a898-4209b74cc32b.html" rel="bookmark"
+                                title="Permalink to 解析 Shit Programmers 的话中话"
+                                >解析 Shit Programmers 的话中话</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://hackernoon.com/shit-programmers-say-translated-946849c2fbd4">查看原文</a></p>
+<p>本文列举了一些 Shit Programmers 常说的话。</p>
+<ul>
+<li>我一周搞定。 =&gt; 不催我，我搞一年。</li>
+<li>做不了。 =&gt; 不会做。</li>
+<li>优先级不高。=&gt; 不想修。</li>
+<li>开不了这个会。=&gt; 别浪费我时间。</li>
+<li>这个不是 bug。=&gt;  这个是 feature。</li>
+<li>下周补测试。=&gt; 我今天还是写了点代码的啊！</li>
+<li>有 T-shirt 么？=&gt; T-shirt 之于软件工程师就像狗粮对于狗一样重要啊！</li>
+</ul>
+<p>衍生思考：反过来想，(!Shit Programmers) 的做法是：主动思考问题，主动解决问题，主动参与问题讨论，思虑周全，开发时足工足料。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/416d578d-71ce-47b6-a898-4209b74cc32b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/6152d01f-7fd9-4af5-901a-2b139c0cd11f.html" rel="bookmark"
+                                title="Permalink to Metaparticle 技术 - 分布式太难，我们用这个偷懒的工具"
+                                >Metaparticle 技术 - 分布式太难，我们用这个偷懒的工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.youtube.com/watch?v=gCQfFXSHSxw">查看原文</a></p>
+<p>在将应用程序切换到分布式系统的时候，将会经历一番工具噩梦，你要考虑代码，编译，打包，写镜像，配容器，推 registry，配集群，配k8s，配置yaml，此外还有各种工具，语言，文件要管理，中间环节错一个系统就可能会出错。回到软件开发的最本源，我们希望一切难题可以通过写代码来解决，这个视频中演讲者讲述了通过 metaparticle 技术来解决这个问题。我们仅仅只需要在 Web 应用中添加几个装饰器，配置上例如 <code>@containerize('docker.io/my-image', options)</code> 这样的代码，你的应用启动时就会转为从 docker 启动。你可以将 Metaparticle 理解为一种 cloud native application 的标准库，普通应用程序加上几行 metaparticle 的代码后就能变为分布式系统。而这些代码你不用再去理会什么 dockerfile，什么 yaml，你的应用是 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/6152d01f-7fd9-4af5-901a-2b139c0cd11f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/6b824009-8572-4167-bf6a-53736818590a.html" rel="bookmark"
+                                title="Permalink to Google SRE 们如何做 Escalation 和事故应急响应"
+                                >Google SRE 们如何做 Escalation 和事故应急响应</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://cloudplatform.googleblog.com/2018/01/an-example-escalation-policy-CRE-life-lessons.html">查看原文</a></p>
+<p>本文是 Google Cloud Platform 团队的工程博客新文章，通过不少例子介绍了在 Google 内部是如何在开发和保障服务可靠性之间做权衡。简单介绍 Google SRE 团队的现状：两个 Shard 在欧洲和美国两个时区的团队各值守 12 小时，两班倒，监控核心的 10 个最高流量的服务外加十几个小一些的服务。这个团队的监控指标既有关于用户使用体验的顶级 SLO 指标，也有核心组件可用性的细粒度的 SLO 指标。一旦出了问题，SRE 团队可以将任何单一相对应的 SLO 指标转给相关的开发团队去核查。服务会配置 error budget，举个例子，对于某个服务，如果一小时内烧掉九个小时的错误预算就报警；如果一周的错误预算超过上周的，那就提工单建档排查。</p>
+<p>从 Escalation policy 的目的来看，它既要能保证快速响应，又要减少不必要的误报，并保持测量项的准确度。对此，Google …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/6b824009-8572-4167-bf6a-53736818590a.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/9edd6773-ec0a-445a-ac4d-134a01fea9fb.html" rel="bookmark"
+                                title="Permalink to GLB - 看看 GibHub 如何做负载均衡"
+                                >GLB - 看看 GibHub 如何做负载均衡</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://githubengineering.com/introducing-glb/">查看原文</a></p>
+<p>本文是 GitHub  工程团队博客对他们的负载均衡器 GLB (GitHub Load Balancer) 做的简介。</p>
+<ul>
+<li>挑战<ul>
+<li>要同时支持 HTTP, SSH, Git 三种协议的流量。</li>
+<li>每天流量数十亿。</li>
+</ul>
+</li>
+<li>历史架构<ul>
+<li>跑在专用的，调优过，巨大的 Bare Metal （裸机）。</li>
+<li>Haproxy 做故障转移。</li>
+<li>硬件上支持 10G link 故障转移。</li>
+</ul>
+</li>
+<li>^ 遇到的问题<ul>
+<li>网络硬件，负载均衡的主机，硬件配置，三者都混写在一起，太痛苦。</li>
+<li>没法水平扩展。</li>
+</ul>
+</li>
+<li>描述期望<ul>
+<li>能跑在普通的商用硬件上。</li>
+<li>能水平扩展。</li>
+<li>支持高可用，故障转移时 abort TCP 连接。</li>
+<li>支持 connection draining （感觉是 graceful shutdown …</li></ul></li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/9edd6773-ec0a-445a-ac4d-134a01fea9fb.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/f3ad48a9-74c8-4848-a531-750b6338b39f.html" rel="bookmark"
+                                title="Permalink to sqlmap - penetration testing tool"
+                                >sqlmap - penetration testing tool</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://github.com/sqlmapproject/sqlmap">查看原文</a></p>
+<p>为了保障应用使用数据库足够安全，我们可以引入一个工具做注入攻击，以增强我们的信心。sqlmap 是一款开源的渗透测试工具，用来自动注入 SQL 攻击语句，检测出系统漏洞。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/f3ad48a9-74c8-4848-a531-750b6338b39f.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/52e6cb10-7e30-4fb2-90e3-e594ffa4c66b.html" rel="bookmark"
+                                title="Permalink to 系统组件失效时的常见应对策略"
+                                >系统组件失效时的常见应对策略</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://blog.risingstack.com/designing-microservices-architecture-for-failure/">查看原文</a></p>
+<p>如果遇到了网络，硬件，程序级别的组件失效，我们应该如何保证最小化影响呢？本文介绍了常见的技巧和策略。</p>
+<ul>
+<li>大多数宕机源于系统变更：代码更新，配置变更等等。解决方案是变更先在一小部分实例中应用，通过监控，可以在有不良影响发生是快速回滚。</li>
+<li>另一种方案是 blue-green / red-black 部署，部署两份，但负载均衡只指向其中一个，上线就是上到其中一个，然后让负载均衡切换到另一个。</li>
+<li>应用提供 <code>GET /health</code> 之类的接口，或者其它自己报告的方法，告诉负载均衡自己的健康情况。负载均衡将其移除出 Pool Members，如果一个实例遇到了问题。</li>
+<li>Self Healing：可以开发一个系统，监控实例的健康，如果坏掉了，就自动将其启动。当然，我们要考虑程序过载，应用到数据库链接超时等等因素进来。需要引入额外的逻辑，知道当遇到什么情况的时候不要重启坏掉的实例。</li>
+<li>Failover Caching：相比服务挂掉什么都没了，如果可以接受返回过期数据，那就可以引入缓存组件。</li>
+<li>Retry: 当应用好了以后可以重试执行一些操作，不过要小心，它可能会引发层叠效应 …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/52e6cb10-7e30-4fb2-90e3-e594ffa4c66b.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/7e31d2ca-11c9-411b-aef5-3f03fc3dd8f7.html" rel="bookmark"
+                                title="Permalink to UID 简介"
+                                >UID 简介</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://www.linfo.org/uid.html">查看原文</a></p>
+<p>系统中每个用户都有自己独立的 User ID (UID)，用户名则是方便给人使用而已。所有的 UID 都存在 /etc/passwd 文件中。GID 是 UID 所从属的组的 ID。在 Linux 中，UID 是 32位整型数字，其中 UID=0 是 root（有所有权限），UID=65534 是 nobody（什么特权都没有）。UID in (1, 99) 保留给 pseudo-users，例如 wheel, daemon, 等等。更高位的保留 UID 不同的发行版不太一样。一般来说，为了安全起见，整个组织或企业内部还是应该让同一个 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/7e31d2ca-11c9-411b-aef5-3f03fc3dd8f7.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses37.html">&laquo;</a>
+    Page 38 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses39.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

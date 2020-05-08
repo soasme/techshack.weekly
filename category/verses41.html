@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+        
+        
+
+ 
+                <section id="content" class="body">
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/df49bdca-8913-40ad-b1bd-bf336404e457.html" rel="bookmark"
+                                title="Permalink to 行业新趋势 - Kubernetes 已经成为部署分布式程序的标准做法"
+                                >行业新趋势 - Kubernetes 已经成为部署分布式程序的标准做法</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://hackernoon.com/the-gravity-of-kubernetes-33126a96ee23">查看原文</a></p>
+<p>在 Kubernetes 之前，软件行业没有统一标准可以在分布式系统中编排应用的节点。基本上，大公司诸如 Google, M$, Amazon 等都已经在使用 Kubernetes 部署应用了。本文讨论了为什么会是 K8S, 以及程序员该如何应对。</p>
+<ul>
+<li>像 Docker 成为打包的标准，Kubernetes 成为了分布式平台部署的标准。Kubernetes 基于容器的概念继续封装，解决诸如以下这样的问题：容器间怎么通信？容器怎么扩展？容器怎么分派流量？同时期有 Mesos，Swarm，甚至有人只用 Puppet / Chef 这些工具来编排容器。在 2016 年底，Kubernetes 差不多成为这个领域的赢家，差不多主流公司都相继吃进 Kubernetes 这套技术。</li>
+<li>容器编排的需求：部署调度，资源管理（内存，CPU，GPU，硬盘，IP …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/df49bdca-8913-40ad-b1bd-bf336404e457.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/278e7bd4-7730-4a86-baef-9c0a24d89016.html" rel="bookmark"
+                                title="Permalink to 将 CLI 的功能迁移到 Web"
+                                >将 CLI 的功能迁移到 Web</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://hackernoon.com/your-cli-should-be-a-server-maybe-acf6a64be691">查看原文</a></p>
+<p>本文作者的观点是，如果你有一个 CLI，你也可以选择将其写成一个 Server。作者认为基于 CLI 这种字符串处理脚本或命令的集成，整个系统会比较脆弱。相反地，应该写成 (HTTP) Server 的形式。这样，我们会有统一约定的 API（比较稳定，有版本）。作者认为的比较合理的做法是，将逻辑写在 Service 里面，但用户也可以通过 CLI / Server 两者来交互。开发 CLI 工具需要很清楚使用场景。事实上，Docker 就是遵循这样的设计范式的工具。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/278e7bd4-7730-4a86-baef-9c0a24d89016.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/3404ce2c-878f-494d-97e0-4b2cf3cb8fa5.html" rel="bookmark"
+                                title="Permalink to Flux - 看看 Netflix 如何观测系统实时流量变化"
+                                >Flux - 看看 Netflix 如何观测系统实时流量变化</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/netflix-techblog/flux-a-new-approach-to-system-intuition-cf428b7316ec">查看原文</a></p>
+<p>Netflix 家观测他们复杂的微服务架构的方法是，引入一个自己撸出来的工具 Flux，方法是可视化观测流经系统的所有流量。他们的需求是：要看实时数据，数据主要是容量+延迟+请求的健康，能看到服务依赖，能在网络层看到流量，最好能钻到 IPC 级别查看流量。</p>
+<p>一般来说，只要我们能把监控的东西转为报警或者阈值，那我们就能自动化。但对于那些实在说不清道不明的东西，只能引入人来分析，而可视化就是很好地工具：人脑最适合处理大量的视觉数据，并发的，多维的。</p>
+<p>他们最终的呈现方案是一个图片，四个圈，分别代表互联网和三个数据中心；这四个圈互相发送光点代表发送流量。可以通过观察这些观点的数量和颜色（红色代表错误）来得出结论，一个数据中心是不是OK的。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ftIsVoJNCHk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/3404ce2c-878f-494d-97e0-4b2cf3cb8fa5.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5590f096-99d8-4f5c-9edf-2656047bf762.html" rel="bookmark"
+                                title="Permalink to 在 AWS 10 年学到的东西，关于系统设计+运维+应急处置 (Part 1 + Part 2合集)"
+                                >在 AWS 10 年学到的东西，关于系统设计+运维+应急处置 (Part 1 + Part 2合集)</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://hackernoon.com/10-lessons-from-10-years-of-aws-part-1-258b56703fcf">查看原文</a></p>
+<p>本文作者在 AWS 干了十年，总结了十个觉得有用的注意的地方，例如拥抱失败，避免本地状态，不可变式的架构，架构即代码，异步与事件驱动，数据库 Sharding，测量，应急预案，写代码的人负责运行，等等。</p>
+<ul>
+<li>EMBRACE FAILURE: 学东西，只看书看博客，不如弄脏自己的手，搞出几个错误来！不过在线上的服务，需要确保有回滚或者服务降级控制等机制，这样线上的失效才是可控的。Chaos Engineering 是作者认为这辈子最值的做的十件事之一。</li>
+<li>LOCAL STATE IS A CLOUD ANTI-PATTERN: Local State 在这里意味着有数据会因为应用被杀掉而丢失，解决办法就是将 state 放到 Memcached / Redis 中供所有实例中共享。迁移服务到云平台上，可能首要解决的问题便是处理 state。另外提到的一点是：看清场景，有些 state …</li></ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5590f096-99d8-4f5c-9edf-2656047bf762.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/65b8455e-b8f2-44ba-b93c-93eb84799b60.html" rel="bookmark"
+                                title="Permalink to ChAP - Netflix Chaos 自动化平台"
+                                >ChAP - Netflix Chaos 自动化平台</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.com/netflix-techblog/chap-chaos-automation-platform-53e6d528371f">查看原文</a></p>
+<p>ChAP 是 Netflix 的 Chaos 自动化平台，用于从服务级别提供像 混乱猴子(Chaos Monkey) 之类的功能。他们仍然将试验放在 Production 上做，当然，不会影响到用户体验。这意味着他们需要权衡风险和到底试验能得到多大的成果。在 ChAP 这个平台上可以写一个任务，然后平台会切一部分流量均匀分布到一个可控的集群上做实验。他们设定了一个断路器，当试验超过了错误阈值，就会自动停止试验。有了这样的系统，就很容易做 Canary Analysis 了，在滚动部署的时候，就能预先发现问题。例如，评分系统要上线，切 0.5% 的流量到上线的金丝雀环境，这也意味着几乎 100% 的功能都会被测试到。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/65b8455e-b8f2-44ba-b93c-93eb84799b60.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/5bfc8b7a-ab1e-46aa-8b71-bfb6ad084f1c.html" rel="bookmark"
+                                title="Permalink to 通过 Preconnect 加速网站资源的加载"
+                                >通过 Preconnect 加速网站资源的加载</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.viget.com/articles/make-your-site-faster-with-preconnect-hints/">查看原文</a></p>
+<p>正常加载资源需要经历 DNS 查找，TCP 握手，TLS 协商等环节才能开始下载数据，我们可以引入一个 preconnect 的提示让浏览器预先连上网站，从而加速资源的获取，提高网站的性能。具体做法在 link 标签里面填写 rel="preconnect", href="https://the-website-you-want-to-connect" 即可。在本文的示例中可以看到在设定了 googlefont 的预先连接后，资源加载时间减半。需要注意的一点是，<code>crossorigin</code> 标识在这个场景下是必须的，因为字体加载是异步的操作。另外注意的一点是，这个标识只是给浏览器的 hint，具体能不能生效，得看具体的浏览器，一般来说，chrome 会没啥问题。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/5bfc8b7a-ab1e-46aa-8b71-bfb6ad084f1c.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/afd345ee-5b80-4355-9c7b-22216d3658b5.html" rel="bookmark"
+                                title="Permalink to `ENTR` - 一款当文件变更时让你执行任意命令的工具"
+                                >`ENTR` - 一款当文件变更时让你执行任意命令的工具</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="http://entrproject.org/">查看原文</a></p>
+<p><code>entr</code> 的功能六个词说清楚：Run arbitrary commands when files change。示例：</p>
+<div class="highlight"><pre><span></span><code><span class="err">ag -l | entr make</span>
+</code></pre></div>
+
+
+<p>它的基本使用场景是“修改-测试”这样的循环。它的基本假定是文件查找那部分交托给更好的程序，例如 ag, ack, grep, ls 等。它的设计哲学是接口最小化，尽可能简洁。甚至于对于新增文件的用户都需要自己写下 <code>while true; do ls *.py | entr command</code>。</p>
+<p>简单也意味着强大，它可以跟很多工具配合起来使用，例如 pkill, tmux, reload-browser 等等。另外，简单的接口不意味着它面对的场景简单，事实上，它的正确实现要考虑很多细节，例如 NFS 文件系统上 inotify 通知不一样 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/afd345ee-5b80-4355-9c7b-22216d3658b5.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/b91cd381-9a6b-45a0-93af-591180b65158.html" rel="bookmark"
+                                title="Permalink to 本程序员会不会被时代淘汰？"
+                                >本程序员会不会被时代淘汰？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://software.intel.com/en-us/blogs/2017/11/27/am-i-becoming-obsolete">查看原文</a></p>
+<p>技术更新换代很快，程序员得有居安思危的意识，不断开阔眼界，才能不被时代淘汰。以本文为例，作者试图解决一个从有向图中找无向图的问题，用上了各种优化的算法技巧，但最后发现其实相对简单的做法是把一行 Python 代码 <code>edges = edges.intersection(edges.map(lambda x: (x[1], x[0])))</code> 部署到 Spark 集群里即可。</p>
+<p>技术进步，往往带来了更简单和优雅的解决方案。为此，作者认为可以向懂得新式编程范式的人虚心请教。另外，作者也觉得修炼内功依然很重要，对CS 学科的基础知识要足够扎实。</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/b91cd381-9a6b-45a0-93af-591180b65158.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/2a97fd31-700a-4246-9328-a06f1e1f71cd.html" rel="bookmark"
+                                title="Permalink to 响应式宣言是什么？"
+                                >响应式宣言是什么？</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://www.reactivemanifesto.org/">查看原文</a></p>
+<p>响应式宣言，是指一种系统架构方法，系统能够快速响应，故障自回复，负载变化能够伸缩资源，以及基于异步的消息传递（Responsive, Resilient, Elastic, Message Driven）。在系统设计之初就考虑这些以后会省心不少。</p>
+<ul>
+<li>Responsive: 系统尽可能地在给定时间里给出响应。<ul>
+<li>这个特性意味着我们可以快速高效检测系统的可用性。</li>
+</ul>
+</li>
+<li>Resilient: 即便面临 failure，系统仍然可以给出响应。<ul>
+<li>这样的特性不一定非要是高可用的系统才需要满足，普通系统也可以做到，技巧：replication, containment, isolation, delegation.</li>
+<li>系统的部分可以失效，但整体仍然可以响应。</li>
+<li>系统的每个组件恢复，可借由另外的组件来完成。</li>
+</ul>
+</li>
+<li>Elastic: 负载变化，能够通过增加或减少资源来处理请求。<ul>
+<li>这个特性意味着系统必须得很容易 shard / replicate</li>
+</ul>
+</li>
+<li>Message Driven： <ul>
+<li>系统组件之间更多地靠异步消息来传递信息。</li>
+</ul>
+</li>
+</ul>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/2a97fd31-700a-4246-9328-a06f1e1f71cd.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+
+        
+
+ 
+            <div>
+                <article class="hentry">
+                    <header>
+                        <h3>
+                            <a href="https://www.soasme.com/techshack.weekly/verses/827fb5d0-54e3-4739-a1cb-f3ca09cd45ad.html" rel="bookmark"
+                                title="Permalink to 信鸽也懂什么叫 HTTPS"
+                                >信鸽也懂什么叫 HTTPS</a>
+                        </h3>
+                    </header>
+                    <div class="entry-content">
+                        <p><a href="https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351">查看原文</a></p>
+<p>HTTPS 比较难理解的部分就是密码学的部分，比较学术的解释是通过 Alice 同学和 Bob 同学，本文作者尝试用信鸽来解释 HTTPS。</p>
+<ul>
+<li>Bob 用信鸽给 Alice 发了空消息。</li>
+<li>Alice 让信鸽把开着锁的箱子送回给 Bob，给自己留下了钥匙。</li>
+<li>Bob 把信息放入箱子，锁起来，送回给 Alice。</li>
+<li>Alice 收到箱子，用一把只有自己能打开的钥匙查看信息。</li>
+</ul>
+<p>一个问题是 Bob 怎么确保这个箱子真的来自 Alice，而且没有被人调包过。解决方案是引入 Ted，一个值得信任的人，让 Ted 给箱子签名，大家都信任 Ted。</p>
+<p>这就是非对称加密：你可以公钥加密任何信息，但只有有对应那把私钥的人才能查看消息。Ted 在这个系统里就是 Certificate Authority，管签名的。</p>
+<p>另一个问题是箱子太重：非对称加密比起对称加密太慢。我们的解决办法是只用这个方法传输 …</p>
+                        <a class="readmore" href="https://www.soasme.com/techshack.weekly/verses/827fb5d0-54e3-4739-a1cb-f3ca09cd45ad.html"
+                            >read more</a>
+                    </div><!-- /.entry-content -->
+                </article>
+            </div>
+
+<p class="paginator">
+        <a href="https://www.soasme.com/techshack.weekly/category/verses40.html">&laquo;</a>
+    Page 41 / 54
+        <a href="https://www.soasme.com/techshack.weekly/category/verses42.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

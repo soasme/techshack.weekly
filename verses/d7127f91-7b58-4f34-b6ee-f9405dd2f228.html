@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Techshack Weekly - Runit 应用于 Ruby 程序的开发</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://www.soasme.com/techshack.weekly/theme/css/main.css" type="text/css" />
+        <link href="https://www.soasme.com/techshack.weekly/" type="application/atom+xml" rel="alternate" title="Techshack Weekly ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie.css"/>
+                <script src="https://www.soasme.com/techshack.weekly/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="https://www.soasme.com/techshack.weekly/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div id="content" class="col-lg-6">
+                <div class="entry">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Runit 应用于 Ruby 程序的开发</h2>
+  </header>
+  <div class="entry-content">
+        <p><a href="http://rubyists.github.io/2011/05/02/runit-for-ruby-and-everything-else.html">查看原文</a></p>
+<p>Runit 是一个进程监管程序，附带了一系列监管有关的工具集。它可以作为 sysvinit 的替代品，也可以和 init 并行运行维护监管程序层级。</p>
+<ul>
+<li>可以通过 <code>sv s /service/*</code> ($SVDIR) 查看所有的服务，以及其日志。</li>
+<li><code>/service/*</code> 的服务被链接到 <code>/etc/sv/</code> 目录，服务只需含有一个 run 文件即可。</li>
+<li>run 可执行文件应该将程序 exec 到前台，stderr 转到 stdout: <code>exec 2&gt;&amp;1; exec yourapp</code>. 这也是 Runit 对你的应用程序的唯一要求：前台，日志</li>
+<li>Runit 将各种功能封装进 c 写的小工具集里面。</li>
+<li><code>/etc/sv/xxx/log/</code> 被视作日志服务，可以在 <code>/etc/sv/xxx/logrun</code> 中写 <code>exec svlogd -t /var/log/xxx/</code>。</li>
+<li>svlogd 是轻量的日志系统。在不停下来应用程序的情况下，它可以按照 metrics 做 rotation，后续处理，网络日志，通知，过滤等等。</li>
+<li>Runit 的日志配置不算直白，但是都用文档写清楚了。</li>
+<li>程序崩溃，runsv 会立即重启，不需干预。程序启动马上失败，runsv 会等待一秒再启动，避免过度消耗资源。如果服务目录内提供了 finish，这调用这个 finish 脚本，调用参数是 exit code 和 run 的 exit status。</li>
+<li>可以通过 <code>sv s xxx</code> 查看服务状态，<code>sv t xxx</code> 发送 TERM，<code>sv d xxx</code> 关闭（down）。</li>
+<li>移除链接 /service，相当于发送了 d(own) 给 runsv，停止进程和日志, 关闭 runsv。</li>
+<li>服务依赖：可以在 run 脚本中写 <code>sv -w7 check asvc bsvc csvc</code>，这样默认等 7 秒才执行后续的 exec 部分。整个服务必须等到依赖的服务都起好了才会起好。</li>
+<li>sv 允许提供用户级别的 supervision, 服务目录可设在 /home/$user/service 内。</li>
+<li>run 中使用 chpst 设定干净的进程状态。可以在 /proc/PID/env/ 中查看进程的环境变量。</li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</section>
+                </div>
+
+                <hr>
+                <div id="footer" class="col-lg-12">
+                    <nav>
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="sidebar" class="col-lg-4">
+                <h1>
+                    <a href="https://www.soasme.com/techshack.weekly " title="Techshack Weekly">
+                        <img src="https://www.soasme.com/techshack.weekly/images/logo-200x50.png" />
+                    </a>
+                </h1>
+                <span class="description"> </span>
+                <div><div class="entry-subscription">
+    <h5>Techshack Weekly</h5>
+    <br>
+    专注于后端技术阅读
+    <br>
+    目前有上百位订阅者。
+    <br>
+    订阅 <a href="https://www.soasme.com/techshack.weekly/feeds/issues.atom.xml">RSS</a>
+    <br>
+    欢迎加入 <a href="https://t.me/techshack">Telegram Channel</a> ，
+    <br>
+    <iframe src="https://tgwidget.com/widget/count/?id=5a66b26483ba88e7118b4568" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="160px" height="50px" async></iframe>
+    <br>
+    关注推特 <a href="https://twitter.com/techshackweekly">@techshackweekly</a>。
+    <br>
+    <a href="https://twitter.com/TechshackWeekly?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TechshackWeekly</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <hr>
+</div></div>
+                <div><!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:250px;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://soasme.us17.list-manage.com/subscribe/post?u=617c1cb80ba1b0cbf828df387&amp;id=10442a8ee6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_617c1cb80ba1b0cbf828df387_10442a8ee6" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+                    <div>:: <a href="https://www.soasme.com/techshack.weekly/categories.html">Categories</a></div>
+                <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-36183732-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>
